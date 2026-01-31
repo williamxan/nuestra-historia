@@ -218,6 +218,74 @@
     <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
     <p id="aniversario" class="latido" style="font-size:22px; font-weight:bold;"></p>
   </div>
+  <div class="card">
+  <h2>Un mensaje solo para ti 🔐💌</h2>
+  <p>Este mensaje está protegido con una clave secreta.</p>
+
+  <input type="password" id="clave" placeholder="Ingresa la clave..." style="
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+  ">
+
+  <br><br>
+
+  <button onclick="verCarta()" style="
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #d63384;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+  ">
+    🔓 Desbloquear mensaje
+  </button>
+
+  <div id="carta" style="display:none; margin-top: 25px;">
+    <p>
+      Constanza,  
+      <br><br>
+      No hay un solo día en que no agradezca haberte encontrado.  
+      Llegaste a mi vida sin avisar y te volviste mi lugar seguro,  
+      mi risa favorita y la persona con la que quiero construir todo.  
+      <br><br>
+      Gracias por cada momento, por cada paciencia, por cada te amo,  
+      por cada abrazo que sana más de lo que imaginas.  
+      <br><br>
+      Prometo seguir eligiéndote incluso en los días difíciles,  
+      cuidarte y amarte de la forma más bonita que sepa.  
+      <br><br>
+      Esto es solo el comienzo de nuestra historia.  
+      Te amo hoy, mañana y siempre. 💖
+    </p>
+  </div>
+
+  <p id="error-clave" style="color:red; display:none; margin-top:10px;">
+    Clave incorrecta 💔
+  </p>
+</div>
+
+<script>
+  function verCarta() {
+    const claveCorrecta = "3004"; // CAMBIA AQUÍ LA CLAVE SECRETA
+    const input = document.getElementById("clave").value;
+    const carta = document.getElementById("carta");
+    const error = document.getElementById("error-clave");
+
+    if (input === claveCorrecta) {
+      carta.style.display = "block";
+      error.style.display = "none";
+    } else {
+      carta.style.display = "none";
+      error.style.display = "block";
+    }
+  }
+</script>
+
 
 
 <script>
