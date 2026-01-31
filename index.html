@@ -137,6 +137,37 @@
     </p>
     <img src="imagenes/11.jpeg" alt="Siempre contigo">
   </div>
+    <div class="card">
+    <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
+    <p id="aniversario" style="font-size:22px; font-weight:bold;"></p>
+  </div>
+
+  <script>
+    function actualizarAniversario() {
+      const aniversario = new Date("2026-04-30T00:00:00"); // 30 de abril de 2026
+      const ahora = new Date();
+
+      const diferencia = aniversario - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById("aniversario").innerHTML =
+          "¡Feliz primer aniversario! 💖🎉";
+        return;
+      }
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
+
+      document.getElementById("aniversario").innerHTML =
+        `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
+    }
+
+    actualizarAniversario();
+    setInterval(actualizarAniversario, 1000);
+  </script>
+
 
 </body>
 </html>
