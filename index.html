@@ -5,41 +5,6 @@
   <title>Nuestra historia</title>
   <style>
     body {
-      <!-- Portada sorpresa -->
-<div id="portada" style="
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #ffd6e8, #fff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  text-align: center;
-  padding: 20px;
-">
-  <h1 style="color:#d63384; font-size:32px; margin-bottom:10px;">
-    Tengo algo para ti 💖
-  </h1>
-  <p style="font-size:18px; margin-bottom:30px;">
-    Toca el botón para ver nuestra historia
-  </p>
-  <button onclick="abrirHistoria()" style="
-    padding: 14px 22px;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
-    background: #d63384;
-    color: white;
-    cursor: pointer;
-  ">
-    💌 Abrir nuestra historia
-  </button>
-</div>
-<div id="contenido" style="display:none;">
-
-  
-
       font-family: Arial, sans-serif;
       background: #fdf2f8;
       color: #333;
@@ -65,51 +30,76 @@
       font-size: 18px;
       line-height: 1.6;
     }
+
+    /* Latido */
     @keyframes latido {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.08); }
-    50% { transform: scale(1); }
-    70% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-  }
+      0% { transform: scale(1); }
+      30% { transform: scale(1.08); }
+      50% { transform: scale(1); }
+      70% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .latido {
+      animation: latido 1.2s infinite;
+      color: #d63384;
+      display: inline-block;
+    }
 
-  .latido {
-    animation: latido 1.2s infinite;
-    color: #d63384;
-    display: inline-block;
-  }
     /* Corazones flotando */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: flotar 6s linear forwards;
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-@keyframes flotar {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-  }
-}
-
-  
-</style> 
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: flotar 6s linear forwards;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    @keyframes flotar {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
   </style>
 </head>
 
 <body>
 
+<!-- Portada sorpresa -->
+<div id="portada" style="
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffd6e8, #fff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+">
+  <h1 style="color:#d63384; font-size:32px; margin-bottom:10px;">
+    Feliz aniversario, amor 💖
+  </h1>
+  <p style="font-size:18px; margin-bottom:30px;">
+    Preparé esto solo para ti
+  </p>
+  <button onclick="abrirHistoria()" style="
+    padding: 14px 22px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    background: #d63384;
+    color: white;
+    cursor: pointer;
+  ">
+    ✨ Ver nuestro amor
+  </button>
+</div>
+
+<div id="contenido" style="display:none;">
+
   <!-- Música -->
   <audio id="bg-music" loop>
     <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
   </audio>
 
   <button id="music-btn" onclick="toggleMusic()" style="
@@ -130,187 +120,93 @@
   <div class="card">
     <h2>Llevamos juntos 💞</h2>
     <p id="contador" class="latido" style="font-size:22px; font-weight:bold;"></p>
-
   </div>
-
-  <script>
-    function actualizarContador() {
-      const inicio = new Date("2025-04-30T00:00:00");
-      const ahora = new Date();
-
-      const diferencia = ahora - inicio;
-
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
-      const segundos = Math.floor((diferencia / 1000) % 60);
-
-      document.getElementById("contador").innerHTML =
-        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
-    }
-
-    actualizarContador();
-    setInterval(actualizarContador, 1000);
-  </script>
-
-
 
   <div class="card">
     <h1>Nuestra historia 💖</h1>
-    <p>
-      Este sitio es solo para nosotros.  
-      Un lugar donde guardo cada recuerdo, cada risa  
-      y cada momento contigo.
-    </p>
+    <p>Este sitio es solo para nosotros. Un lugar donde guardo cada recuerdo contigo.</p>
   </div>
 
   <div class="card">
-    <h2>Cómo nos conocimos(enero-marzo)</h2>
-    <p>
-      Desde el primer día supe que algo especial estaba pasando, nuestra forma de decirnos te amo
-      las fotos de comida con la inicial las noches de 8ball llamadas eternas.  
-      No fue perfecto, pero fue real… y fue nuestro.
-    </p>
-    <img src="imagenes/papi.jpeg" alt="Nuestro inicio">
-  </div>
-
-  <div class="card">
-    <h2>Nuestra primera foto juntos(16/04/2025</h2>
-    <p>
-      Fue un día tan especial que lo queria recordar con esta foto.
-    </p>
-    <img src="imagenes/2.jpeg" alt="Primera foto juntos">
-  </div>
-  <div class="card">
-    <h2>Momento del SI (30/04/2025)</h2>
-    <p>
-     Me acuerdo como si fuera ayer yo estaba tan nervioso no sabia como ibas a reaccionar
-      aunque la respuesta era obvia
-    </p>
-    <img src="imagenes/30.jpeg" alt="Primer si">
-  </div>
-    <div class="card">
-    <h2>Nuestro primer mes(30/05/2025)</h2>
-    <p>
-      Una fecha especial, donde en un mes confirme lo que ya sentia
-      y me di cuenta que queria estar contigo por el resto de mi vida
-    </p>
-    <img src="imagenes/7.jpeg" alt="Primer mes">
-  </div>
-      <div class="card">
-    <h2>Nuestro primer viaje juntos(Kidd Voodoo)</h2>
-    <p>
-      Nuestro primer viaje juntos, para ir a escuchar uno de nuestros artistas fav
-      noche media mala pero el viaje en general fue demasiado bonito
-    </p>
-    <img src="imagenes/25.jpeg" alt="Primer viaje">
-  </div>
-  <div class="card">
-    <h2>Nuestro primera navidad(25/12/2025)</h2>
-    <p>
-      Nada mas que agregar otro dia especial a tu lado
-    </p>
-    <img src="imagenes/23.jpeg" alt="Primera navidad">
-  </div>
-  <div class="card">
-    <h2>Nuestro primer Año nuevo(01/12/2026)</h2>
-    <p>
-     (no encontre mas fotos jaja)
-    </p>
-    <img src="imagenes/24.jpeg" alt="Primera año">
-  </div>
-  <div class="card">
-  <div class="card">
-    <h2>Para ti 💌</h2>
-    <p>
-      Gracias por ser mi lugar seguro,  
-      mi persona favorita  
-      y mi mejor historia.
-    </p>
-    <p>
-      Te elijo hoy, mañana y siempre.
-    </p>
-    <img src="imagenes/11.jpeg" alt="Siempre contigo">
-  </div>
-    <div class="card">
-     <div class="card">
     <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
     <p id="aniversario" class="latido" style="font-size:22px; font-weight:bold;"></p>
-
   </div>
 
-  <script>
-    function actualizarAniversario() {
-      const aniversario = new Date("2026-04-30T00:00:00");
-      const ahora = new Date();
-      const diferencia = aniversario - ahora;
-
-      if (diferencia <= 0) {
-        document.getElementById("aniversario").innerHTML =
-          "¡Feliz primer aniversario! 💖🎉";
-        return;
-      }
-
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
-      const segundos = Math.floor((diferencia / 1000) % 60);
-
-      document.getElementById("aniversario").innerHTML =
-        `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
-    }
-
-    actualizarAniversario();
-    setInterval(actualizarAniversario, 1000);
-  </script>
-
-  <script>
-    let playing = false;
-    function toggleMusic() {
-      const music = document.getElementById("bg-music");
-      const btn = document.getElementById("music-btn");
-
-      if (!playing) {
-        music.play().then(() => {
-          playing = true;
-          btn.innerText = "⏸️ Pausar música";
-        }).catch(err => {
-          alert("Tu navegador bloqueó la reproducción automática. Toca el botón otra vez.");
-          console.error(err);
-        });
-      } else {
-        music.pause();
-        playing = false;
-        btn.innerText = "▶️ Reproducir música";
-      }
-    }
-  </script>
-  <script>
-  function crearCorazon() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = "💗";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }
-
-  setInterval(crearCorazon, 800); // crea un corazón cada 0.8 segundos
-</script>
 </div>
+
 <script>
   function abrirHistoria() {
     document.getElementById("portada").style.display = "none";
     document.getElementById("contenido").style.display = "block";
   }
-</script>
 
+  function actualizarContador() {
+    const inicio = new Date("2025-04-30T00:00:00");
+    const ahora = new Date();
+    const diff = ahora - inicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("contador").innerText =
+      `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
+  }
+
+  function actualizarAniversario() {
+    const aniversario = new Date("2026-04-30T00:00:00");
+    const ahora = new Date();
+    const diff = aniversario - ahora;
+
+    if (diff <= 0) {
+      document.getElementById("aniversario").innerText = "¡Feliz primer aniversario! 💖🎉";
+      return;
+    }
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("aniversario").innerText =
+      `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
+  }
+
+  actualizarContador();
+  actualizarAniversario();
+  setInterval(actualizarContador, 1000);
+  setInterval(actualizarAniversario, 1000);
+
+  let playing = false;
+  function toggleMusic() {
+    const music = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+
+    if (!playing) {
+      music.play();
+      playing = true;
+      btn.innerText = "⏸️ Pausar música";
+    } else {
+      music.pause();
+      playing = false;
+      btn.innerText = "▶️ Reproducir música";
+    }
+  }
+
+  function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(crearCorazon, 800);
+</script>
 
 </body>
 </html>
+
