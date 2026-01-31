@@ -5,6 +5,41 @@
   <title>Nuestra historia</title>
   <style>
     body {
+      <!-- Portada sorpresa -->
+<div id="portada" style="
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffd6e8, #fff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+">
+  <h1 style="color:#d63384; font-size:32px; margin-bottom:10px;">
+    Tengo algo para ti 💖
+  </h1>
+  <p style="font-size:18px; margin-bottom:30px;">
+    Toca el botón para ver nuestra historia
+  </p>
+  <button onclick="abrirHistoria()" style="
+    padding: 14px 22px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    background: #d63384;
+    color: white;
+    cursor: pointer;
+  ">
+    💌 Abrir nuestra historia
+  </button>
+</div>
+<div id="contenido" style="display:none;">
+
+  
+
       font-family: Arial, sans-serif;
       background: #fdf2f8;
       color: #333;
@@ -267,6 +302,13 @@
   }
 
   setInterval(crearCorazon, 800); // crea un corazón cada 0.8 segundos
+</script>
+</div>
+<script>
+  function abrirHistoria() {
+    document.getElementById("portada").style.display = "none";
+    document.getElementById("contenido").style.display = "block";
+  }
 </script>
 
 
