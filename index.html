@@ -257,6 +257,44 @@
   <img src="imagenes/flor12.jpeg" alt="Flor 12">
   <img src="imagenes/flor13.jpeg" alt="Flor 13">
 </div>
+  <div class="card">
+  <h2>Te amo en distintos idiomas 🌍💖</h2>
+  <p>Aprieta un idioma:</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:15px;">
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('Te amo ❤️ (Español)')">Español</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('I love you ❤️ (Inglés)')">Inglés</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('Je t’aime ❤️ (Francés)')">Francés</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('Ti amo ❤️ (Italiano)')">Italiano</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('Ich liebe dich ❤️ (Alemán)')">Alemán</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('Eu te amo ❤️ (Portugués)')">Portugués</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('사랑해 ❤️ (Coreano)')">Coreano</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('愛してる ❤️ (Japonés)')">Japonés</button>
+
+    <button style="padding:8px 14px; border-radius:20px; border:none; background:#ffd6e8; cursor:pointer;"
+      onclick="mostrarAmor('我爱你 ❤️ (Chino)')">Chino</button>
+  </div>
+
+  <p id="amor-idioma" style="margin-top:20px; font-size:22px; font-weight:bold; color:#d63384;"></p>
+</div>
+
+
+    
 
 </div>
 
@@ -406,6 +444,11 @@
   }
 
   setInterval(crearCorazon, 800);
+</script>
+<script>
+  function mostrarAmor(texto) {
+    document.getElementById("amor-idioma").innerText = texto;
+  }
 </script>
 
 </body>
