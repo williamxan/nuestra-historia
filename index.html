@@ -58,6 +58,31 @@
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
     }
+    .galeria {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.galeria img {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  scroll-snap-align: center;
+}
+
+.galeria::-webkit-scrollbar {
+  height: 6px;
+}
+.galeria::-webkit-scrollbar-thumb {
+  background: #f3a6c9;
+  border-radius: 10px;
+}
+
   </style>
 </head>
 
@@ -213,6 +238,18 @@
     </p>
     <img src="imagenes/11.jpeg" alt="Siempre contigo">
   </div>
+  <div class="card">
+  <h2>Todas las flores para ti 🌷</h2>
+  <p>Un pequeño recuerdo de cada flor que te he regalado 💐</p>
+
+  <div class="galeria">
+    <img src="imagenes/flor1.jpg" alt="Flor 1">
+    <img src="imagenes/flor2.jpg" alt="Flor 2">
+    <img src="imagenes/flor3.jpg" alt="Flor 3">
+    <!-- agrega más fotos aquí -->
+  </div>
+</div>
+
 
   <div class="card">
     <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
