@@ -43,6 +43,28 @@
     color: #d63384;
     display: inline-block;
   }
+    /* Corazones flotando */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: flotar 6s linear forwards;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+  
 </style> 
   </style>
 </head>
@@ -228,6 +250,25 @@
       }
     }
   </script>
+  <script>
+  function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💗";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(crearCorazon, 800); // crea un corazón cada 0.8 segundos
+</script>
+
 
 </body>
 </html>
