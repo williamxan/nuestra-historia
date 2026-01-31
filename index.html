@@ -5,26 +5,6 @@
   <title>Nuestra historia</title>
   <style>
     body {
-        <audio id="bg-music" loop>
-    <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
-
-  <button onclick="toggleMusic()" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 16px;
-    border-radius: 50px;
-    border: none;
-    background: #d63384;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-  ">
-    🎵 Nuestra canción
-  </button>
-
       font-family: Arial, sans-serif;
       background: #fdf2f8;
       color: #333;
@@ -52,31 +32,54 @@
     }
   </style>
 </head>
+
 <body>
-    <div class="card">
+
+  <!-- Música -->
+  <audio id="bg-music" loop>
+    <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <button id="music-btn" onclick="toggleMusic()" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    border-radius: 50px;
+    border: none;
+    background: #d63384;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  ">
+    ▶️ Reproducir música
+  </button>
+
+  <div class="card">
     <h2>Llevamos juntos 💞</h2>
     <p id="contador" style="font-size:22px; font-weight:bold;"></p>
   </div>
 
   <script>
-  function actualizarContador() {
-    const inicio = new Date("2025-04-30T00:00:00"); // ← cambia la fecha si quieres
-    const ahora = new Date();
+    function actualizarContador() {
+      const inicio = new Date("2025-04-30T00:00:00");
+      const ahora = new Date();
 
-    const diferencia = ahora - inicio;
+      const diferencia = ahora - inicio;
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
-    const segundos = Math.floor((diferencia / 1000) % 60);
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
 
-    document.getElementById("contador").innerHTML =
-      `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
-  }
+      document.getElementById("contador").innerHTML =
+        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
+    }
 
-  actualizarContador();
-  setInterval(actualizarContador, 1000); // actualiza cada 1 segundo
-</script>
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  </script>
 
 
 
@@ -158,15 +161,15 @@
     <img src="imagenes/11.jpeg" alt="Siempre contigo">
   </div>
     <div class="card">
+     <div class="card">
     <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
     <p id="aniversario" style="font-size:22px; font-weight:bold;"></p>
   </div>
 
   <script>
     function actualizarAniversario() {
-      const aniversario = new Date("2026-04-30T00:00:00"); // 30 de abril de 2026
+      const aniversario = new Date("2026-04-30T00:00:00");
       const ahora = new Date();
-
       const diferencia = aniversario - ahora;
 
       if (diferencia <= 0) {
@@ -187,21 +190,28 @@
     actualizarAniversario();
     setInterval(actualizarAniversario, 1000);
   </script>
+
   <script>
-  let playing = false;
-  function toggleMusic() {
-    const music = document.getElementById("bg-music");
-    if (!playing) {
-      music.play();
-      playing = true;
-    } else {
-      music.pause();
-      playing = false;
+    let playing = false;
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("music-btn");
+
+      if (!playing) {
+        music.play().then(() => {
+          playing = true;
+          btn.innerText = "⏸️ Pausar música";
+        }).catch(err => {
+          alert("Tu navegador bloqueó la reproducción automática. Toca el botón otra vez.");
+          console.error(err);
+        });
+      } else {
+        music.pause();
+        playing = false;
+        btn.innerText = "▶️ Reproducir música";
+      }
     }
-  }
-</script>
-
-
+  </script>
 
 </body>
 </html>
