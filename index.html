@@ -56,7 +56,6 @@
       box-shadow: var(--shadow2);
     }
 
-    /* PORTADA */
     #portada {
       position: fixed;
       inset: 0;
@@ -90,7 +89,6 @@
       font-size: 18px;
     }
 
-    /* BOTONES */
     .btn {
       border: none;
       border-radius: 999px;
@@ -223,13 +221,6 @@
       margin-top: 10px;
     }
 
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(214,51,132,.2), transparent);
-      margin: 18px 0;
-    }
-
-    /* GALERÍAS */
     .galeria {
       display: flex;
       gap: 14px;
@@ -282,7 +273,6 @@
       text-align: left;
     }
 
-    /* CORAZONES */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -297,7 +287,6 @@
       100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
 
-    /* PUZZLE */
     .puzzle-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(130px, 1fr));
@@ -344,50 +333,6 @@
       color: var(--pink);
     }
 
-    .game-box{
-      background:#fff8fb;
-      border:1px solid rgba(214,51,132,.1);
-      border-radius: 18px;
-      padding: 18px;
-      margin-top: 14px;
-    }
-
-    .word-grid {
-      font-family: monospace;
-      font-size: 18px;
-      line-height: 1.55;
-      white-space: pre-wrap;
-      background: #fff;
-      padding: 16px;
-      border-radius: 16px;
-      box-shadow: inset 0 0 0 1px rgba(214,51,132,.08);
-      max-width: 520px;
-      margin: 0 auto 10px;
-      text-align: center;
-    }
-
-    .found-list{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      justify-content:center;
-      margin-top: 12px;
-    }
-
-    .found-item{
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #fff0f6;
-      color: var(--pink);
-      font-weight: 700;
-      border: 1px solid rgba(214,51,132,.12);
-    }
-
-    .found-item.done{
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
-      color:#fff;
-    }
-
     .tiny-btns{
       display:flex;
       flex-wrap:wrap;
@@ -400,7 +345,6 @@
 
 <body>
 
-  <!-- PORTADA -->
   <div id="portada">
     <div class="portada-box">
       <div class="chip">Solo para nosotros 💖</div>
@@ -412,7 +356,6 @@
 
   <div id="contenido" style="display:none;">
 
-    <!-- MENU -->
     <div class="menu">
       <button class="btn menu-btn active" data-section="inicio" onclick="mostrarSeccion('inicio', this)">🏠 Inicio</button>
       <button class="btn menu-btn" data-section="historia" onclick="mostrarSeccion('historia', this)">💖 Historia</button>
@@ -430,7 +373,6 @@
       <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- INICIO -->
     <div id="inicio" class="seccion">
       <div class="card">
         <h2>Llevamos juntos 💞</h2>
@@ -452,7 +394,6 @@
       </div>
     </div>
 
-    <!-- HISTORIA -->
     <div id="historia" class="seccion">
       <div class="card">
         <h2>Cómo nos conocimos (enero–marzo)</h2>
@@ -543,7 +484,6 @@
       </div>
     </div>
 
-    <!-- FOTOS -->
     <div id="fotos" class="seccion">
       <div class="card">
         <h2>Nuestras fotos 📸</h2>
@@ -558,7 +498,6 @@
       </div>
     </div>
 
-    <!-- CARTAS -->
     <div id="cartas" class="seccion">
       <div class="card">
         <h2>Un mensaje solo para ti 🔐💌</h2>
@@ -675,7 +614,6 @@
       </div>
     </div>
 
-    <!-- JUEGOS -->
     <div id="juegos" class="seccion">
       <div class="card">
         <h2>Rompecabezas de fotos 🧩📸</h2>
@@ -701,48 +639,8 @@
           </p>
         </div>
       </div>
-
-      <div class="card">
-        <h2>Encuentra las palabras 🧠💖</h2>
-        <p>
-          Escribe las palabras que nos representan.
-          Cuando encuentres todas, aparece un mensaje especial.
-        </p>
-
-        <div class="game-box">
-          <div class="word-grid">C O N S T A N Z A
-W I L L I A M
-A M O R 8 B A L L
-F L O R E S
-K I D D V O O D O O
-B A D B U N N Y
-N A V I D A D
-C U M P L E A Ñ O S</div>
-
-          <p class="mini-text">Palabras para encontrar:</p>
-
-          <div class="found-list" id="word-list"></div>
-
-          <div style="margin-top:16px;">
-            <input type="text" id="word-input" placeholder="Escribe una palabra..." />
-            <br><br>
-            <button class="btn primary-btn" onclick="checkWord()">✅ Encontrar palabra</button>
-          </div>
-
-          <p id="word-feedback" style="margin-top:14px; font-weight:800;"></p>
-
-          <div id="final-word-message" style="display:none; margin-top:18px;">
-            <p>
-              Lo que más me gusta de nosotros es todo lo que llevamos dentro:
-              nuestros nombres, nuestras fotos, nuestras canciones, nuestras flores
-              y todo lo que solo nosotros entendemos. 💖
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- EXTRAS -->
     <div id="extras" class="seccion">
       <div class="card">
         <h2>Te amo en distintos idiomas 🌍💖</h2>
@@ -791,20 +689,8 @@ C U M P L E A Ñ O S</div>
       { id: "p4", src: "imagenes/7.jpeg", label: "Primer mes" }
     ];
 
-    const targetWords = [
-      "CONSTANZA",
-      "WILLIAM",
-      "AMOR",
-      "8BALL",
-      "FLORES",
-      "KIDDVOODOO",
-      "BADBUNNY",
-      "NAVIDAD",
-      "CUMPLEAÑOS"
-    ];
-
-    let foundWords = [];
     let puzzleState = [];
+    let selectedPuzzleIndex = null;
     let playing = false;
 
     function abrirHistoria() {
@@ -815,16 +701,13 @@ C U M P L E A Ñ O S</div>
       actualizarAniversario();
       renderGalleries();
       initPuzzle();
-      initWords();
 
       const music = document.getElementById("bg-music");
       const btn = document.getElementById("music-btn");
       music.play().then(() => {
         playing = true;
         btn.innerText = "⏸️ Pausar música";
-      }).catch(() => {
-        // Algunos navegadores bloquean autoplay hasta otra interacción
-      });
+      }).catch(() => {});
     }
 
     function mostrarSeccion(id, btn) {
@@ -901,14 +784,8 @@ C U M P L E A Ñ O S</div>
       const respuesta = normalizeText(document.getElementById("respuesta").value);
       const carta = document.getElementById("carta2");
       const error = document.getElementById("error-respuesta");
-      const validas = [
-        "30042025",
-        "300425",
-        "30abril2025",
-        "30deabril2025"
-      ];
 
-      if (validas.includes(respuesta)) {
+      if (respuesta === normalizeText("30/04/2025")) {
         carta.style.display = "block";
         error.style.display = "none";
         for (let i = 0; i < 20; i++) crearCorazon();
@@ -991,6 +868,7 @@ C U M P L E A Ñ O S</div>
       renderPuzzle();
       document.getElementById("puzzle-msg").style.display = "none";
       document.getElementById("carta-puzzle").style.display = "none";
+      selectedPuzzleIndex = null;
     }
 
     function renderPuzzle() {
@@ -1012,8 +890,6 @@ C U M P L E A Ñ O S</div>
         grid.appendChild(tile);
       });
     }
-
-    let selectedPuzzleIndex = null;
 
     function selectPuzzleTile(index) {
       const tiles = [...document.querySelectorAll(".puzzle-tile")];
@@ -1052,70 +928,6 @@ C U M P L E A Ñ O S</div>
     function reiniciarPuzzle() {
       initPuzzle();
     }
-
-    function initWords() {
-      foundWords = [];
-      const list = document.getElementById("word-list");
-      list.innerHTML = "";
-
-      targetWords.forEach(word => {
-        const pill = document.createElement("div");
-        pill.className = "found-item";
-        pill.dataset.word = word;
-        pill.textContent = word;
-        list.appendChild(pill);
-      });
-
-      document.getElementById("word-feedback").innerText = "";
-      document.getElementById("final-word-message").style.display = "none";
-      document.getElementById("word-input").value = "";
-    }
-
-    function checkWord() {
-      const input = normalizeText(document.getElementById("word-input").value);
-      const feedback = document.getElementById("word-feedback");
-
-      if (!input) {
-        feedback.innerText = "Escribe una palabra 💖";
-        feedback.style.color = "#d63384";
-        return;
-      }
-
-      const match = targetWords.find(w => normalizeText(w) === input);
-
-      if (!match) {
-        feedback.innerText = "Esa no está en la lista 💔";
-        feedback.style.color = "red";
-        return;
-      }
-
-      if (!foundWords.includes(match)) {
-        foundWords.push(match);
-        feedback.innerText = `Encontraste: ${match} 💖`;
-        feedback.style.color = "#d63384";
-
-        const pill = [...document.querySelectorAll(".found-item")].find(el => el.dataset.word === match);
-        if (pill) pill.classList.add("done");
-        for (let i = 0; i < 6; i++) crearCorazon();
-      } else {
-        feedback.innerText = `Ya encontraste: ${match} 💖`;
-        feedback.style.color = "#d63384";
-      }
-
-      document.getElementById("word-input").value = "";
-      document.getElementById("word-input").focus();
-
-      if (foundWords.length === targetWords.length) {
-        document.getElementById("final-word-message").style.display = "block";
-        feedback.innerText = "¡Encontraste todas las palabras! 💖";
-        feedback.style.color = "#d63384";
-        for (let i = 0; i < 20; i++) crearCorazon();
-      }
-    }
-
-    document.getElementById("word-input").addEventListener("keydown", function(e){
-      if (e.key === "Enter") checkWord();
-    });
 
     setInterval(actualizarContador, 1000);
     setInterval(actualizarAniversario, 1000);
