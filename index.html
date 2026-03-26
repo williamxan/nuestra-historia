@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuestra historia 💖</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nuestra historia 💖</title>
+<style>
     :root{
       --pink:#d63384;
       --pink2:#ff7eb6;
@@ -158,6 +158,35 @@
       justify-content:center;
       gap:10px;
       flex-wrap:wrap;
+    }
+
+
+    /* Estilos del reproductor */
+    .player-container {
+      margin: 14px auto 0;
+      max-width: 500px;
+      background: white;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: var(--shadow2);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .track-info {
+      font-weight: bold;
+      color: var(--pink);
+      font-size: 14px;
+    }
+
+    .player-controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     input[type="password"],
@@ -359,359 +388,320 @@
     }
   </style>
 </head>
-
 <body>
-
-  <div id="portada">
-    <div class="portada-box">
-      <div class="chip">Solo para nosotros 💖</div>
-      <h1>Eres el amor de mi vida</h1>
-      <p>Preparé esto con cada recuerdo que guardo contigo.</p>
-      <button class="btn primary-btn" onclick="abrirHistoria()">✨ Ver nuestro amor</button>
-    </div>
-  </div>
-
-  <div id="contenido" style="display:none;">
-
-    <div class="menu">
-      <button class="btn menu-btn active" data-section="inicio" onclick="mostrarSeccion('inicio', this)">🏠 Inicio</button>
-      <button class="btn menu-btn" data-section="historia" onclick="mostrarSeccion('historia', this)">💖 Historia</button>
-      <button class="btn menu-btn" data-section="fotos" onclick="mostrarSeccion('fotos', this)">📸 Fotos</button>
-      <button class="btn menu-btn" data-section="cartas" onclick="mostrarSeccion('cartas', this)">💌 Cartas</button>
-      <button class="btn menu-btn" data-section="juegos" onclick="mostrarSeccion('juegos', this)">🎮 Juegos</button>
-      <button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
-      <button class="btn menu-btn" data-section="capsula" onclick="mostrarSeccion('capsula', this)">⏳ Cápsula</button>
-    </div>
-
-    <div class="top-actions">
-      <button id="music-btn" class="btn primary-btn" onclick="toggleMusic()">▶️ Reproducir música</button>
-    </div>
-
-    <audio id="bg-music" loop>
-      <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="inicio" class="seccion">
-      <div class="card">
-        <h2>Llevamos juntos 💞</h2>
-        <p id="contador" class="latido" style="font-size:22px;"></p>
-      </div>
-
-      <div class="card">
-        <h1>Nuestra historia 💖</h1>
-        <p>
+<div id="portada">
+<div class="portada-box">
+<div class="chip">Solo para nosotros 💖</div>
+<h1>Eres el amor de mi vida</h1>
+<p>Preparé esto con cada recuerdo que guardo contigo.</p>
+<button class="btn primary-btn" onclick="abrirHistoria()">✨ Ver nuestro amor</button>
+</div>
+</div>
+<div id="contenido" style="display:none;">
+<div class="menu">
+<button class="btn menu-btn active" data-section="inicio" onclick="mostrarSeccion('inicio', this)">🏠 Inicio</button>
+<button class="btn menu-btn" data-section="historia" onclick="mostrarSeccion('historia', this)">💖 Historia</button>
+<button class="btn menu-btn" data-section="fotos" onclick="mostrarSeccion('fotos', this)">📸 Fotos</button>
+<button class="btn menu-btn" data-section="cartas" onclick="mostrarSeccion('cartas', this)">💌 Cartas</button>
+<button class="btn menu-btn" data-section="juegos" onclick="mostrarSeccion('juegos', this)">🎮 Juegos</button>
+<button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
+<button class="btn menu-btn" data-section="capsula" onclick="mostrarSeccion('capsula', this)">⏳ Cápsula</button>
+</div>
+<div class="player-container">
+<div class="track-info" id="track-name">Cargando música...</div>
+<div class="player-controls">
+<button class="btn ghost-btn" onclick="prevSong()">⏮️</button>
+<button class="btn primary-btn" id="music-btn" onclick="toggleMusic()">▶️ Reproducir</button>
+<button class="btn ghost-btn" onclick="nextSong()">⏭️</button>
+</div>
+</div>
+<audio id="bg-music" onended="nextSong()">
+<source id="music-source" src="" type="audio/mpeg"/>
+</audio>
+<div class="seccion" id="inicio">
+<div class="card">
+<h2>Llevamos juntos 💞</h2>
+<p class="latido" id="contador" style="font-size:22px;"></p>
+</div>
+<div class="card">
+<h1>Nuestra historia 💖</h1>
+<p>
           Este sitio es solo para nosotros.
           Un lugar donde guardo cada recuerdo, cada risa
           y cada momento contigo.
         </p>
-      </div>
-
-      <div class="card">
-        <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
-        <p id="aniversario" class="latido" style="font-size:22px;"></p>
-      </div>
-    </div>
-
-    <div id="historia" class="seccion">
-      <div class="card">
-        <h2>Cómo nos conocimos (enero–marzo)</h2>
-        <p>
+</div>
+<div class="card">
+<h2>Cuenta regresiva para nuestro primer año 🎉</h2>
+<p class="latido" id="aniversario" style="font-size:22px;"></p>
+</div>
+</div>
+<div class="seccion" id="historia">
+<div class="card">
+<h2>Cómo nos conocimos (enero–marzo)</h2>
+<p>
           Desde el primer día supe que algo especial estaba pasando,
           nuestra forma de decirnos te amo,
           las fotos de comida con la inicial,
           las noches de 8ball, llamadas eternas.
           No fue perfecto, pero fue real… y fue nuestro.
         </p>
-        <img src="imagenes/papi.jpeg" alt="Nuestro inicio">
-      </div>
-
-      <div class="card">
-        <h2>Nuestra primera foto juntos (16/04/2025)</h2>
-        <p>Fue un día tan especial que lo quería recordar con esta foto.</p>
-        <img src="imagenes/2.jpeg" alt="Primera foto juntos">
-      </div>
-
-      <div class="card">
-        <h2>Momento del “sí” (30/04/2025)</h2>
-        <p>
+<img alt="Nuestro inicio" src="imagenes/papi.jpeg"/>
+</div>
+<div class="card">
+<h2>Nuestra primera foto juntos (16/04/2025)</h2>
+<p>Fue un día tan especial que lo quería recordar con esta foto.</p>
+<img alt="Primera foto juntos" src="imagenes/2.jpeg"/>
+</div>
+<div class="card">
+<h2>Momento del “sí” (30/04/2025)</h2>
+<p>
           Me acuerdo como si fuera ayer, estaba tan nervioso…
           aunque la respuesta era obvia 💖
         </p>
-        <img src="imagenes/30.jpeg" alt="Primer sí">
-      </div>
-
-      <div class="card">
-        <h2>Nuestro primer mes (30/05/2025)</h2>
-        <p>
+<img alt="Primer sí" src="imagenes/30.jpeg"/>
+</div>
+<div class="card">
+<h2>Nuestro primer mes (30/05/2025)</h2>
+<p>
           En un mes confirmé lo que ya sentía
           y supe que quería estar contigo por el resto de mi vida.
         </p>
-        <img src="imagenes/7.jpeg" alt="Primer mes">
-      </div>
-
-      <div class="card">
-        <h2>Tu Cumpleaños (12/11/2025)</h2>
-        <p>
+<img alt="Primer mes" src="imagenes/7.jpeg"/>
+</div>
+<div class="card">
+<h2>Tu Cumpleaños (12/11/2025)</h2>
+<p>
           El primer cumpleaños juntos, solo quería sacarte una sonrisa en tu día especial y creo que lo logré...
         </p>
-        <img src="imagenes/26.jpeg" alt="Tu cumpleaños">
-      </div>
-
-      <div class="card">
-        <h2>Nuestro primer viaje juntos (Kidd Voodoo)</h2>
-        <p>
+<img alt="Tu cumpleaños" src="imagenes/26.jpeg"/>
+</div>
+<div class="card">
+<h2>Nuestro primer viaje juntos (Kidd Voodoo)</h2>
+<p>
           Nuestro primer viaje juntos para ver a uno de nuestros artistas fav.
           La noche media mala, pero el viaje fue demasiado bonito.
         </p>
-        <img src="imagenes/25.jpeg" alt="Primer viaje">
-      </div>
-
-      <div class="card">
-        <h2>Nuestra primera Navidad (25/12/2025)</h2>
-        <p>
+<img alt="Primer viaje" src="imagenes/25.jpeg"/>
+</div>
+<div class="card">
+<h2>Nuestra primera Navidad (25/12/2025)</h2>
+<p>
           Nada más que agregar, otro día especial a tu lado 🎄
         </p>
-        <img src="imagenes/23.jpeg" alt="Primera Navidad">
-      </div>
-
-      <div class="card">
-        <h2>Nuestro primer Año Nuevo (01/01/2026)</h2>
-        <p>
+<img alt="Primera Navidad" src="imagenes/23.jpeg"/>
+</div>
+<div class="card">
+<h2>Nuestro primer Año Nuevo (01/01/2026)</h2>
+<p>
           (No encontré más fotos jaja 😅)
         </p>
-        <img src="imagenes/31.jpeg" alt="Primer Año Nuevo">
-      </div>
-
-      <div class="card">
-        <h2>Bad Bunny</h2>
-        <p>
+<img alt="Primer Año Nuevo" src="imagenes/31.jpeg"/>
+</div>
+<div class="card">
+<h2>Bad Bunny</h2>
+<p>
           El mejor viaje y el mejor día de mi puta vida.
         </p>
-        <img src="imagenes/20.jpeg" alt="Bad Bunny">
-      </div>
-
-      <div class="card">
-        <h2>Para ti 💌</h2>
-        <p>
+<img alt="Bad Bunny" src="imagenes/20.jpeg"/>
+</div>
+<div class="card">
+<h2>Para ti 💌</h2>
+<p>
           Gracias por ser mi lugar seguro,
           mi persona favorita
           y mi mejor historia.
         </p>
-        <p>Te elijo hoy, mañana y siempre.</p>
-        <img src="imagenes/11.jpeg" alt="Siempre contigo">
-      </div>
-    </div>
-
-    <div id="fotos" class="seccion">
-      <div class="card">
-        <h2>Nuestras fotos 📸</h2>
-        <p class="mini-text">Toca una foto para ver su mensaje oculto.</p>
-        <div id="galeria-principal" class="galeria"></div>
-      </div>
-
-      <div class="card">
-        <h2>Todas las flores para ti 🌷</h2>
-        <p class="mini-text">Un pequeño recuerdo de cada flor que te he regalado 💐</p>
-        <div id="galeria-flores" class="galeria"></div>
-      </div>
-    </div>
-
-    <div id="cartas" class="seccion">
-      <div class="card">
-        <h2>Un mensaje solo para ti 🔐💌</h2>
-        <p>Este mensaje está protegido con una clave secreta.</p>
-
-        <input type="password" id="clave" placeholder="Ingresa la clave..." />
-        <br><br>
-
-        <button class="btn primary-btn" onclick="verCarta()">🔓 Desbloquear mensaje</button>
-
-        <div id="carta" style="display:none; margin-top: 25px;">
-          <p>
-            Constanza,<br><br>
+<p>Te elijo hoy, mañana y siempre.</p>
+<img alt="Siempre contigo" src="imagenes/11.jpeg"/>
+</div>
+</div>
+<div class="seccion" id="fotos">
+<div class="card">
+<h2>Nuestras fotos 📸</h2>
+<p class="mini-text">Toca una foto para ver su mensaje oculto.</p>
+<div class="galeria" id="galeria-principal"></div>
+</div>
+<div class="card">
+<h2>Todas las flores para ti 🌷</h2>
+<p class="mini-text">Un pequeño recuerdo de cada flor que te he regalado 💐</p>
+<div class="galeria" id="galeria-flores"></div>
+</div>
+</div>
+<div class="seccion" id="cartas">
+<div class="card">
+<h2>Un mensaje solo para ti 🔐💌</h2>
+<p>Este mensaje está protegido con una clave secreta.</p>
+<input id="clave" placeholder="Ingresa la clave..." type="password"/>
+<br/><br/>
+<button class="btn primary-btn" onclick="verCarta()">🔓 Desbloquear mensaje</button>
+<div id="carta" style="display:none; margin-top: 25px;">
+<p>
+            Constanza,<br/><br/>
             No hay un solo día en que no agradezca haberte encontrado.
             Llegaste a mi vida sin avisar y te volviste mi lugar seguro,
             mi risa favorita y la persona con la que quiero construir todo.
-            <br><br>
+            <br/><br/>
             Gracias por cada momento, por cada paciencia, por cada te amo,
             por cada abrazo que sana más de lo que imaginas.
-            <br><br>
+            <br/><br/>
             Prometo seguir eligiéndote incluso en los días difíciles,
             cuidarte y amarte de la forma más bonita que sepa.
-            <br><br>
+            <br/><br/>
             Esto es solo el comienzo de nuestra historia.
             Te amo hoy, mañana y siempre. 💖
           </p>
-        </div>
-
-        <p id="error-clave" style="color:#d63384; display:none; margin-top:10px; font-weight:700;">
+</div>
+<p id="error-clave" style="color:#d63384; display:none; margin-top:10px; font-weight:700;">
           Clave incorrecta 💔
         </p>
-      </div>
-
-      <div class="card">
-        <h2>Carta especial con pregunta 💌</h2>
-        <p>Responde para desbloquearla:</p>
-        <p style="font-weight:bold; color:#d63384;">
-          ¿Qué fecha empezó oficialmente lo nuestro? 💖
+</div>
+<div class="card">
+<h2>Carta especial con pregunta 💌</h2>
+<p>Responde para desbloquearla:</p>
+<p style="font-weight:bold; color:#d63384;">
+          ¿(Incluye momentos difíciles) Qué fecha empezó oficialmente lo nuestro? 💖
         </p>
-
-        <input type="text" id="respuesta" placeholder="Ej: 30/04/2025" />
-        <br><br>
-
-        <button class="btn primary-btn" onclick="verCartaPregunta()">💖 Desbloquear carta</button>
-
-        <div id="carta2" style="display:none; margin-top:20px;">
-          <p>
+<input id="respuesta" placeholder="Ej: 30/04/2025" type="text"/>
+<br/><br/>
+<button class="btn primary-btn" onclick="verCartaPregunta()">💖 Desbloquear carta</button>
+<div id="carta2" style="display:none; margin-top:20px;">
+<p>
             No todo ha sido fácil entre nosotros,
             y creo que eso es lo que hace que lo nuestro sea tan real.
-            <br><br>
-            Hemos pasado momentos difíciles,
+            <br/><br/>
+            Hemos pasado ,
             días donde las cosas no salían como queríamos,
             donde quizás dolía un poco más de lo normal.
-            <br><br>
+            <br/><br/>
             Pero aun así… nunca dejamos de intentarlo.
             Nunca dejamos de elegirnos.
-            <br><br>
+            <br/><br/>
             Y eso dice mucho de nosotros.
             Dice que lo nuestro no es algo pasajero,
             que es algo que vale la pena cuidar.
-            <br><br>
+            <br/><br/>
             Me gusta saber que incluso en los momentos complicados,
             seguimos aquí, juntos, aprendiendo, creciendo
             y haciéndonos más fuertes.
-            <br><br>
+            <br/><br/>
             Porque al final…
             no se trata de no tener problemas,
             sino de superarlos contigo.
-            <br><br>
+            <br/><br/>
             Y si volvemos a caer en días difíciles,
             quiero que recuerdes algo:
             yo siempre voy a querer que esto funcione contigo.
-            <br><br>
+            <br/><br/>
             Te amo en lo bueno…
             pero también en lo difícil, que es donde más importa. 💖
           </p>
-        </div>
-
-        <p id="error-respuesta" style="color:red; display:none; margin-top:10px;">
+</div>
+<p id="error-respuesta" style="color:red; display:none; margin-top:10px;">
           Respuesta incorrecta 💔
         </p>
-      </div>
-
-      <div class="card">
-        <h2>Momentos difíciles 🖤➡️💖</h2>
-        <p>
+</div>
+<div class="card">
+<h2> 🖤➡️💖</h2>
+<p>
           No todo en nuestra historia ha sido fácil,
           y creo que eso también la hace más real.
-          Hemos tenido momentos difíciles, días en los que
+          Hemos tenido , días en los que
           parecía que todo pesaba más de lo normal.
-          <br><br>
+          <br/><br/>
           Pero incluso en esos momentos, nunca dejé de elegirte.
           Nunca dejé de querer que esto funcionara,
           porque tú vales cada intento, cada esfuerzo
           y cada vez que decidimos quedarnos.
-          <br><br>
+          <br/><br/>
           Lo que más me gusta de nosotros
           no es que todo sea perfecto,
           sino que incluso cuando no lo es,
           seguimos adelante juntos.
-          <br><br>
+          <br/><br/>
           Hemos aprendido, hemos crecido
           y hemos demostrado que lo nuestro
           es más fuerte que cualquier problema.
-          <br><br>
+          <br/><br/>
           Y si alguna vez volvemos a pasar por algo difícil,
           quiero que recuerdes esto:
           no somos perfectos… pero somos nosotros,
           y eso siempre va a ser suficiente.
-          <br><br>
+          <br/><br/>
           Te amo incluso en los días complicados,
           porque también forman parte de nuestra historia. 💖
         </p>
-      </div>
-    </div>
-
-    <div id="juegos" class="seccion">
-      <div class="card">
-        <h2>Rompecabezas de fotos 🧩📸</h2>
-        <p>Ordena las fotos intercambiándolas de lugar. Cuando quede bien, se desbloquea un mensaje.</p>
-
-        <div id="puzzle-grid" class="puzzle-grid"></div>
-
-        <div class="tiny-btns">
-          <button class="btn ghost-btn" onclick="reiniciarPuzzle()">🔄 Reiniciar puzzle</button>
-        </div>
-
-        <p id="puzzle-msg" style="display:none; margin-top:14px; font-weight:800; color:#d63384;">
+</div>
+</div>
+<div class="seccion" id="juegos">
+<div class="card">
+<h2>Rompecabezas de fotos 🧩📸</h2>
+<p>Ordena las fotos intercambiándolas de lugar. Cuando quede bien, se desbloquea un mensaje.</p>
+<div class="puzzle-grid" id="puzzle-grid"></div>
+<div class="tiny-btns">
+<button class="btn ghost-btn" onclick="reiniciarPuzzle()">🔄 Reiniciar puzzle</button>
+</div>
+<p id="puzzle-msg" style="display:none; margin-top:14px; font-weight:800; color:#d63384;">
           ¡Puzzle completo! 💖
         </p>
-
-        <div id="carta-puzzle" style="display:none; margin-top:20px;">
-          <p>
+<div id="carta-puzzle" style="display:none; margin-top:20px;">
+<p>
             Ganarlo contigo es fácil.
             Igual que todo lo lindo que hemos construido.
             Gracias por estar, por sumar, por quedarte y por amarme.
-            <br><br>
+            <br/><br/>
             Eres mi pieza favorita de toda la historia. 🧩💞
           </p>
-        </div>
-      </div>
-    </div>
-
-    <div id="extras" class="seccion">
-      <div class="card">
-        <h2>Te amo en distintos idiomas 🌍💖</h2>
-        <p>Aprieta un idioma:</p>
-
-        <div class="tiny-btns">
-          <button class="btn ghost-btn" onclick="mostrarAmor('Te amo ❤️ (Español)')">Español</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('I love you ❤️ (Inglés)')">Inglés</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('Je t’aime ❤️ (Francés)')">Francés</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('Ti amo ❤️ (Italiano)')">Italiano</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('Ich liebe dich ❤️ (Alemán)')">Alemán</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('Eu te amo ❤️ (Portugués)')">Portugués</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('사랑해 ❤️ (Coreano)')">Coreano</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('愛してる ❤️ (Japonés)')">Japonés</button>
-          <button class="btn ghost-btn" onclick="mostrarAmor('我爱你 ❤️ (Chino)')">Chino</button>
-        </div>
-
-        <p id="amor-idioma" style="margin-top:20px; font-size:22px; font-weight:bold; color:#d63384;"></p>
-      </div>
-    </div>
-
-    <div id="capsula" class="seccion">
-      <div class="card capsula-content">
-        <h2>Cápsula del Tiempo ⏳💖</h2>
-        
-        <div id="capsula-bloqueada" class="lock-box">
-          <span style="font-size: 60px;">🔒</span>
-          <h3 style="margin-top:15px;">Contenido Protegido</h3>
-          <p style="text-align:center;">
+</div>
+</div>
+</div>
+<div class="seccion" id="extras">
+<div class="card">
+<h2>Te amo en distintos idiomas 🌍💖</h2>
+<p>Aprieta un idioma:</p>
+<div class="tiny-btns">
+<button class="btn ghost-btn" onclick="mostrarAmor('Te amo ❤️ (Español)')">Español</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('I love you ❤️ (Inglés)')">Inglés</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('Je t’aime ❤️ (Francés)')">Francés</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('Ti amo ❤️ (Italiano)')">Italiano</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('Ich liebe dich ❤️ (Alemán)')">Alemán</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('Eu te amo ❤️ (Portugués)')">Portugués</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('사랑해 ❤️ (Coreano)')">Coreano</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('愛してる ❤️ (Japonés)')">Japonés</button>
+<button class="btn ghost-btn" onclick="mostrarAmor('我爱你 ❤️ (Chino)')">Chino</button>
+</div>
+<p id="amor-idioma" style="margin-top:20px; font-size:22px; font-weight:bold; color:#d63384;"></p>
+</div>
+</div>
+<div class="seccion" id="capsula">
+<div class="card capsula-content">
+<h2>Cápsula del Tiempo ⏳💖</h2>
+<div class="lock-box" id="capsula-bloqueada">
+<span style="font-size: 60px;">🔒</span>
+<h3 style="margin-top:15px;">Contenido Protegido</h3>
+<p style="text-align:center;">
             Esta cápsula se abrirá automáticamente el día de nuestro 
             <strong>Primer Aniversario Oficial</strong> (30 de abril de 2026).
           </p>
-          <p id="capsula-timer" class="latido" style="font-size:20px; color:var(--pink); text-align:center; font-weight:800;"></p>
-        </div>
-
-        <div id="capsula-desbloqueada" style="display:none;">
-          <div class="chip">¡Feliz Primer Aniversario, Amor de mi Vida! 🎉💖</div>
-          <p>
-            Constanza, amor mío,<br><br>
-            Si estás leyendo esto, es porque oficialmente hemos completado nuestra primera vuelta al sol juntos. ¡Un año, amor! No puedo creer lo rápido que pasó, y al mismo tiempo, siento que te conozco de toda la vida. Me acuerdo perfectamente de ese 30 de abril de 2025, estaba tan nervioso que sentía que el corazón se me iba a salir, aunque en el fondo sabía que me ibas a decir que sí. Esa sonrisa tuya ese día... no se me va a olvidar nunca.<br><br>
-            Ha sido un año increíble. No perfecto, tú sabes que hemos tenido nuestros días de mierda, momentos difíciles donde las cosas no salían y quizás dolía un poquito más de lo normal. Pero lo que más me enorgullece de nosotros es que nunca, ni por un segundo, nos soltamos. Siempre, incluso enojados o tristes, nos terminábamos eligiendo. Ese "nunca dejamos de intentarlo" es lo que hace que lo nuestro sea real, no una historia de cuentos, sino una historia de verdad, de nosotros.<br><br>
-            Me acuerdo de cada locura. Desde las fotos de comida con la inicial al principio, las noches eternas jugando 8ball hasta la madrugada, y esas llamadas que no queríamos cortar nunca. Y los viajes... ¡wow! El viaje a Kidd Voodoo, que aunque la noche fue media mala, el viaje en sí fue demasiado bonito porque estaba contigo. Y obvio, Bad Bunny. El mejor puto viaje y el mejor puto día de mi vida, sin duda alguna, y fue perfecto porque lo viví a tu lado.<br><br>
-            Gracias por ser mi lugar seguro, Constanza. Gracias por cada abrazo tuyo que me sana más de lo que imaginas, por tu paciencia infinita, por cada risa y por cada te amo. Eres mi persona favorita en todo el mundo y mi mejor historia. Prometo seguir cuidándote, haciéndote reír (o intentándolo) y eligiéndote todos los días, incluso en los complicados, porque ahí es donde más importa.<br><br>
-            Este sitio lo preparé con cada recuerdo que guardo contigo, pero esto es solo el volumen 1. Estoy listo para escribir miles de volúmenes más a tu lado. Te amo hoy, mañana y siempre. Feliz primer año, mi vida.<br><br>
+<p class="latido" id="capsula-timer" style="font-size:20px; color:var(--pink); text-align:center; font-weight:800;"></p>
+</div>
+<div id="capsula-desbloqueada" style="display:none;">
+<div class="chip">¡Feliz Primer Aniversario, Amor de mi Vida! 🎉💖</div>
+<p>
+            Constanza, amor mío,<br/><br/>
+            Si estás leyendo esto, es porque oficialmente hemos completado nuestra primera vuelta al sol juntos. ¡Un año, amor! No puedo creer lo rápido que pasó, y al mismo tiempo, siento que te conozco de toda la vida. Me acuerdo perfectamente de ese 30 de abril de 2025, estaba tan nervioso que sentía que el corazón se me iba a salir, aunque en el fondo sabía que me ibas a decir que sí. Esa sonrisa tuya ese día... no se me va a olvidar nunca.<br/><br/>
+            Ha sido un año increíble. No perfecto, tú sabes que hemos tenido nuestros días de mierda,  donde las cosas no salían y quizás dolía un poquito más de lo normal. Pero lo que más me enorgullece de nosotros es que nunca, ni por un segundo, nos soltamos. Siempre, incluso enojados o tristes, nos terminábamos eligiendo. Ese "nunca dejamos de intentarlo" es lo que hace que lo nuestro sea real, no una historia de cuentos, sino una historia de verdad, de nosotros.<br/><br/>
+            Me acuerdo de cada locura. Desde las fotos de comida con la inicial al principio, las noches eternas jugando 8ball hasta la madrugada, y esas llamadas que no queríamos cortar nunca. Y los viajes... ¡wow! El viaje a Kidd Voodoo, que aunque la noche fue media mala, el viaje en sí fue demasiado bonito porque estaba contigo. Y obvio, Bad Bunny. El mejor puto viaje y el mejor puto día de mi vida, sin duda alguna, y fue perfecto porque lo viví a tu lado.<br/><br/>
+            Gracias por ser mi lugar seguro, Constanza. Gracias por cada abrazo tuyo que me sana más de lo que imaginas, por tu paciencia infinita, por cada risa y por cada te amo. Eres mi persona favorita en todo el mundo y mi mejor historia. Prometo seguir cuidándote, haciéndote reír (o intentándolo) y eligiéndote todos los días, incluso en los complicados, porque ahí es donde más importa.<br/><br/>
+            Este sitio lo preparé con cada recuerdo que guardo contigo, pero esto es solo el volumen 1. Estoy listo para escribir miles de volúmenes más a tu lado. Te amo hoy, mañana y siempre. Feliz primer año, mi vida.<br/><br/>
             Contigo, siempre. 💖
           </p>
-          <img src="imagenes/30.jpeg" alt="Nuestro Aniversario" style="width:100%; max-width:500px; display:block; margin:20px auto; border-radius:20px;">
-        </div>
-      </div>
-    </div>
-    </div>
-
-  <script>
+<img alt="Nuestro Aniversario" src="imagenes/30.jpeg" style="width:100%; max-width:500px; display:block; margin:20px auto; border-radius:20px;"/>
+</div>
+</div>
+</div>
+</div>
+<script>
     const principalPhotos = [
       { src: "imagenes/papi.jpeg", msg: "Nuestro comienzo 💖" },
       { src: "imagenes/2.jpeg", msg: "Primera foto juntos 📸" },
@@ -741,6 +731,49 @@
     let selectedPuzzleIndex = null;
     let playing = false;
 
+    // Lógica del Reproductor
+    const playlist = [
+      { src: "musica/nuestra-cancion.mp3", name: "Nuestra Canción 💖" },
+      { src: "musica/cancion2.mp3", name: "Recuerdos 2 ✨" },
+      { src: "musica/cancion3.mp3", name: "Para ti 🌹" }
+    ];
+    let currentSongIndex = 0;
+    const audio = document.getElementById("bg-music");
+
+    function loadSong(index) {
+      currentSongIndex = index;
+      const song = playlist[currentSongIndex];
+      document.getElementById("music-source").src = song.src;
+      document.getElementById("track-name").innerText = "Reproduciendo: " + song.name;
+      audio.load();
+      if (playing) audio.play();
+    }
+
+    function toggleMusic() {
+      const btn = document.getElementById("music-btn");
+      if (!playing) {
+        audio.play();
+        playing = true;
+        btn.innerText = "⏸️ Pausar";
+      } else {
+        audio.pause();
+        playing = false;
+        btn.innerText = "▶️ Reproducir";
+      }
+    }
+
+    function nextSong() {
+      currentSongIndex = (currentSongIndex + 1) % playlist.length;
+      loadSong(currentSongIndex);
+      if (playing) audio.play();
+    }
+
+    function prevSong() {
+      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+      loadSong(currentSongIndex);
+      if (playing) audio.play();
+    }
+
     function abrirHistoria() {
       document.getElementById("portada").style.display = "none";
       document.getElementById("contenido").style.display = "block";
@@ -749,14 +782,10 @@
       actualizarAniversario();
       renderGalleries();
       initPuzzle();
-      checkCapsula(); // NUEVA LÓGICA DE LA CÁPSULA
+      checkCapsula();
 
-      const music = document.getElementById("bg-music");
-      const btn = document.getElementById("music-btn");
-      music.play().then(() => {
-        playing = true;
-        btn.innerText = "⏸️ Pausar música";
-      }).catch(() => {});
+      loadSong(0);
+      toggleMusic();
     }
 
     function mostrarSeccion(id, btn) {
