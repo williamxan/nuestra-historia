@@ -8,14 +8,14 @@
   <style>
     :root{
       --pink:#d63384;
-      --pink-2:#ff7eb6;
-      --pink-3:#ffd6e8;
+      --pink2:#ff7eb6;
+      --pink3:#ffd6e8;
       --bg:#fdf2f8;
       --card:#ffffff;
       --text:#2f2f2f;
-      --shadow:0 10px 30px rgba(214, 51, 132, .12);
-      --shadow-2:0 6px 18px rgba(0,0,0,.08);
-      --radius:20px;
+      --shadow:0 10px 30px rgba(214,51,132,.12);
+      --shadow2:0 6px 18px rgba(0,0,0,.08);
+      --radius:22px;
     }
 
     *{ box-sizing:border-box; }
@@ -26,7 +26,7 @@
       color: var(--text);
       text-align: center;
       margin: 0;
-      padding: 0 14px 60px;
+      padding: 0 14px 70px;
     }
 
     h1, h2, h3 {
@@ -41,19 +41,19 @@
 
     .card {
       background: var(--card);
-      max-width: 900px;
+      max-width: 920px;
       margin: 22px auto;
       padding: 28px 24px;
       border-radius: 24px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(214, 51, 132, .08);
+      border: 1px solid rgba(214,51,132,.08);
     }
 
     img {
       max-width: 100%;
       border-radius: 16px;
       margin-top: 14px;
-      box-shadow: var(--shadow-2);
+      box-shadow: var(--shadow2);
     }
 
     /* PORTADA */
@@ -71,8 +71,8 @@
 
     .portada-box{
       max-width: 620px;
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(214, 51, 132, .12);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(214,51,132,.12);
       backdrop-filter: blur(8px);
       padding: 34px 22px;
       border-radius: 28px;
@@ -90,25 +90,7 @@
       font-size: 18px;
     }
 
-    /* MENU */
-    .menu {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.88);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(214, 51, 132, .08);
-      box-shadow: var(--shadow-2);
-      padding: 12px;
-      margin: 14px auto 8px;
-      border-radius: 22px;
-      max-width: 980px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
+    /* BOTONES */
     .btn {
       border: none;
       border-radius: 999px;
@@ -129,20 +111,8 @@
       transform: translateY(0) scale(.99);
     }
 
-    .menu-btn {
-      background: linear-gradient(135deg, #fff 0%, #ffe4ef 100%);
-      color: var(--pink);
-      border: 1px solid rgba(214, 51, 132, .12);
-    }
-
-    .menu-btn.active {
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color: white;
-      box-shadow: 0 10px 24px rgba(214, 51, 132, .24);
-    }
-
     .primary-btn {
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
       color: white;
       box-shadow: 0 10px 24px rgba(214, 51, 132, .22);
     }
@@ -153,16 +123,48 @@
       border: 1px solid rgba(214, 51, 132, .12);
     }
 
-    .tiny-btns{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin-top: 14px;
+    .menu {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(214, 51, 132, .08);
+      box-shadow: var(--shadow2);
+      padding: 12px;
+      margin: 14px auto 8px;
+      border-radius: 22px;
+      max-width: 980px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
-    input[type="password"]{
-      width: min(320px, 92%);
+    .menu-btn {
+      background: linear-gradient(135deg, #fff 0%, #ffe4ef 100%);
+      color: var(--pink);
+      border: 1px solid rgba(214, 51, 132, .12);
+    }
+
+    .menu-btn.active {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color: white;
+      box-shadow: 0 10px 24px rgba(214, 51, 132, .24);
+    }
+
+    .top-actions{
+      margin: 14px auto 0;
+      max-width: 980px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    input[type="password"],
+    input[type="text"]{
+      width: min(360px, 92%);
       padding: 13px 16px;
       border-radius: 999px;
       border: 1px solid rgba(214, 51, 132, .15);
@@ -172,7 +174,8 @@
       box-shadow: inset 0 2px 10px rgba(0,0,0,.03);
     }
 
-    input[type="password"]:focus{
+    input[type="password"]:focus,
+    input[type="text"]:focus{
       border-color: rgba(214, 51, 132, .35);
       box-shadow: 0 0 0 4px rgba(214, 51, 132, .12);
     }
@@ -202,7 +205,31 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* GALERÍA */
+    .chip{
+      display:inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff0f6;
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(214,51,132,.12);
+    }
+
+    .mini-text{
+      color:#666;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(214,51,132,.2), transparent);
+      margin: 18px 0;
+    }
+
+    /* GALERÍAS */
     .galeria {
       display: flex;
       gap: 14px;
@@ -270,41 +297,103 @@
       100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
     }
 
-    .mini-text{
-      color:#666;
-      font-size: 15px;
-      margin-top: 10px;
+    /* PUZZLE */
+    .puzzle-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(130px, 1fr));
+      gap: 12px;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    .section-title{
-      margin-bottom: 8px;
+    .puzzle-tile{
+      background: #fff;
+      border-radius: 18px;
+      border: 2px solid rgba(214,51,132,.12);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
 
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(214,51,132,.2), transparent);
-      margin: 18px 0;
+    .puzzle-tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(214,51,132,.28);
+      box-shadow: 0 10px 22px rgba(214,51,132,.14);
     }
 
-    .chip{
-      display:inline-block;
-      padding: 8px 14px;
+    .puzzle-tile.selected{
+      outline: 4px solid rgba(214,51,132,.22);
+      transform: scale(1.02);
+    }
+
+    .puzzle-tile img{
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display:block;
+      margin-top:0;
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .puzzle-tile span{
+      display:block;
+      padding: 10px;
+      font-weight: 700;
+      color: var(--pink);
+    }
+
+    .game-box{
+      background:#fff8fb;
+      border:1px solid rgba(214,51,132,.1);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .word-grid {
+      font-family: monospace;
+      font-size: 18px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(214,51,132,.08);
+      max-width: 520px;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+
+    .found-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      justify-content:center;
+      margin-top: 12px;
+    }
+
+    .found-item{
+      padding: 8px 12px;
       border-radius: 999px;
       background: #fff0f6;
       color: var(--pink);
       font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 8px;
       border: 1px solid rgba(214,51,132,.12);
     }
 
-    .top-actions{
-      margin: 14px auto 0;
-      max-width: 980px;
+    .found-item.done{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color:#fff;
+    }
+
+    .tiny-btns{
       display:flex;
-      justify-content:center;
-      gap:10px;
       flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 14px;
     }
   </style>
 </head>
@@ -329,6 +418,7 @@
       <button class="btn menu-btn" data-section="historia" onclick="mostrarSeccion('historia', this)">💖 Historia</button>
       <button class="btn menu-btn" data-section="fotos" onclick="mostrarSeccion('fotos', this)">📸 Fotos</button>
       <button class="btn menu-btn" data-section="cartas" onclick="mostrarSeccion('cartas', this)">💌 Cartas</button>
+      <button class="btn menu-btn" data-section="juegos" onclick="mostrarSeccion('juegos', this)">🎮 Juegos</button>
       <button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
     </div>
 
@@ -342,9 +432,8 @@
 
     <!-- INICIO -->
     <div id="inicio" class="seccion">
-
       <div class="card">
-        <h2 class="section-title">Llevamos juntos 💞</h2>
+        <h2>Llevamos juntos 💞</h2>
         <p id="contador" class="latido" style="font-size:22px;"></p>
       </div>
 
@@ -365,7 +454,6 @@
 
     <!-- HISTORIA -->
     <div id="historia" class="seccion">
-
       <div class="card">
         <h2>Cómo nos conocimos (enero–marzo)</h2>
         <p>
@@ -457,130 +545,21 @@
 
     <!-- FOTOS -->
     <div id="fotos" class="seccion">
-
       <div class="card">
         <h2>Nuestras fotos 📸</h2>
         <p class="mini-text">Toca una foto para ver su mensaje oculto.</p>
-
-        <div class="galeria">
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/papi.jpeg" alt="Nuestro inicio">
-            <div class="mensaje">Nuestro comienzo, donde todo cambió 💖</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/2.jpeg" alt="Primera foto juntos">
-            <div class="mensaje">La primera foto juntos, guardada para siempre 📸</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/30.jpeg" alt="Primer si">
-            <div class="mensaje">El día del sí, el recuerdo más bonito 💍</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/7.jpeg" alt="Primer mes">
-            <div class="mensaje">Un mes, mil sentimientos y una sola persona 💞</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/26.jpeg" alt="Cumpleaños">
-            <div class="mensaje">Tu cumpleaños, un día para hacerte sonreír 🎂</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/25.jpeg" alt="Viaje juntos">
-            <div class="mensaje">Nuestro primer viaje y un recuerdo inolvidable ✈️</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/23.jpeg" alt="Navidad">
-            <div class="mensaje">Navidad contigo, todo se siente más bonito 🎄</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/31.jpeg" alt="Año nuevo">
-            <div class="mensaje">Año nuevo, el mismo amor de siempre 🎆</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/20.jpeg" alt="Bad Bunny">
-            <div class="mensaje">Un viaje perfecto, de esos que no se olvidan 🐰</div>
-          </div>
-
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/11.jpeg" alt="Siempre contigo">
-            <div class="mensaje">Siempre tú, siempre nosotros, siempre 💖</div>
-          </div>
-
-        </div>
+        <div id="galeria-principal" class="galeria"></div>
       </div>
 
       <div class="card">
         <h2>Todas las flores para ti 🌷</h2>
-        <p class="mini-text">Cada flor tiene un pedacito de amor.</p>
-
-        <div class="galeria">
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor1.jpeg" alt="Flor 1">
-            <div class="mensaje">Para ti, por ser mi persona favorita 💐</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor2.jpeg" alt="Flor 2">
-            <div class="mensaje">Una flor para tu sonrisa 🌸</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor3.jpeg" alt="Flor 3">
-            <div class="mensaje">Una flor para tu ternura 🌹</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor4.jpeg" alt="Flor 4">
-            <div class="mensaje">Una flor para cada abrazo 💖</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor5.jpeg" alt="Flor 5">
-            <div class="mensaje">Una flor para cada “te amo” 🌷</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor6.jpeg" alt="Flor 6">
-            <div class="mensaje">Una flor para cada recuerdo bonito 🌼</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor7.jpeg" alt="Flor 7">
-            <div class="mensaje">Una flor para tu luz ✨</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor8.jpeg" alt="Flor 8">
-            <div class="mensaje">Una flor para tu paciencia 💕</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor9.jpeg" alt="Flor 9">
-            <div class="mensaje">Una flor para tu cariño 🌸</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor10.jpeg" alt="Flor 10">
-            <div class="mensaje">Una flor para nuestra historia 🌷</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor11.jpeg" alt="Flor 11">
-            <div class="mensaje">Una flor por cada día contigo 💐</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor12.jpeg" alt="Flor 12">
-            <div class="mensaje">Una flor para el amor más bonito 🌹</div>
-          </div>
-          <div class="foto" onclick="toggleMsg(this)">
-            <img src="imagenes/flor13.jpeg" alt="Flor 13">
-            <div class="mensaje">La última flor… pero no el último amor 💖</div>
-          </div>
-        </div>
+        <p class="mini-text">Un pequeño recuerdo de cada flor que te he regalado 💐</p>
+        <div id="galeria-flores" class="galeria"></div>
       </div>
     </div>
 
     <!-- CARTAS -->
     <div id="cartas" class="seccion">
-
       <div class="card">
         <h2>Un mensaje solo para ti 🔐💌</h2>
         <p>Este mensaje está protegido con una clave secreta.</p>
@@ -612,11 +591,159 @@
           Clave incorrecta 💔
         </p>
       </div>
+
+      <div class="card">
+        <h2>Carta especial con pregunta 💌</h2>
+        <p>Responde para desbloquearla:</p>
+        <p style="font-weight:bold; color:#d63384;">
+          ¿Qué fecha empezó oficialmente lo nuestro? 💖
+        </p>
+
+        <input type="text" id="respuesta" placeholder="Ej: 30/04/2025" />
+        <br><br>
+
+        <button class="btn primary-btn" onclick="verCartaPregunta()">💖 Desbloquear carta</button>
+
+        <div id="carta2" style="display:none; margin-top:20px;">
+          <p>
+            No todo ha sido fácil entre nosotros,
+            y creo que eso es lo que hace que lo nuestro sea tan real.
+            <br><br>
+            Hemos pasado momentos difíciles,
+            días donde las cosas no salían como queríamos,
+            donde quizás dolía un poco más de lo normal.
+            <br><br>
+            Pero aun así… nunca dejamos de intentarlo.
+            Nunca dejamos de elegirnos.
+            <br><br>
+            Y eso dice mucho de nosotros.
+            Dice que lo nuestro no es algo pasajero,
+            que es algo que vale la pena cuidar.
+            <br><br>
+            Me gusta saber que incluso en los momentos complicados,
+            seguimos aquí, juntos, aprendiendo, creciendo
+            y haciéndonos más fuertes.
+            <br><br>
+            Porque al final…
+            no se trata de no tener problemas,
+            sino de superarlos contigo.
+            <br><br>
+            Y si volvemos a caer en días difíciles,
+            quiero que recuerdes algo:
+            yo siempre voy a querer que esto funcione contigo.
+            <br><br>
+            Te amo en lo bueno…
+            pero también en lo difícil, que es donde más importa. 💖
+          </p>
+        </div>
+
+        <p id="error-respuesta" style="color:red; display:none; margin-top:10px;">
+          Respuesta incorrecta 💔
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Momentos difíciles 🖤➡️💖</h2>
+        <p>
+          No todo en nuestra historia ha sido fácil,
+          y creo que eso también la hace más real.
+          Hemos tenido momentos difíciles, días en los que
+          parecía que todo pesaba más de lo normal.
+          <br><br>
+          Pero incluso en esos momentos, nunca dejé de elegirte.
+          Nunca dejé de querer que esto funcionara,
+          porque tú vales cada intento, cada esfuerzo
+          y cada vez que decidimos quedarnos.
+          <br><br>
+          Lo que más me gusta de nosotros
+          no es que todo sea perfecto,
+          sino que incluso cuando no lo es,
+          seguimos adelante juntos.
+          <br><br>
+          Hemos aprendido, hemos crecido
+          y hemos demostrado que lo nuestro
+          es más fuerte que cualquier problema.
+          <br><br>
+          Y si alguna vez volvemos a pasar por algo difícil,
+          quiero que recuerdes esto:
+          no somos perfectos… pero somos nosotros,
+          y eso siempre va a ser suficiente.
+          <br><br>
+          Te amo incluso en los días complicados,
+          porque también forman parte de nuestra historia. 💖
+        </p>
+      </div>
+    </div>
+
+    <!-- JUEGOS -->
+    <div id="juegos" class="seccion">
+      <div class="card">
+        <h2>Rompecabezas de fotos 🧩📸</h2>
+        <p>Ordena las fotos intercambiándolas de lugar. Cuando quede bien, se desbloquea un mensaje.</p>
+
+        <div id="puzzle-grid" class="puzzle-grid"></div>
+
+        <div class="tiny-btns">
+          <button class="btn ghost-btn" onclick="reiniciarPuzzle()">🔄 Reiniciar puzzle</button>
+        </div>
+
+        <p id="puzzle-msg" style="display:none; margin-top:14px; font-weight:800; color:#d63384;">
+          ¡Puzzle completo! 💖
+        </p>
+
+        <div id="carta-puzzle" style="display:none; margin-top:20px;">
+          <p>
+            Ganarlo contigo es fácil.
+            Igual que todo lo lindo que hemos construido.
+            Gracias por estar, por sumar, por quedarte y por amarme.
+            <br><br>
+            Eres mi pieza favorita de toda la historia. 🧩💞
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Encuentra las palabras 🧠💖</h2>
+        <p>
+          Escribe las palabras que nos representan.
+          Cuando encuentres todas, aparece un mensaje especial.
+        </p>
+
+        <div class="game-box">
+          <div class="word-grid">C O N S T A N Z A
+W I L L I A M
+A M O R 8 B A L L
+F L O R E S
+K I D D V O O D O O
+B A D B U N N Y
+N A V I D A D
+C U M P L E A Ñ O S</div>
+
+          <p class="mini-text">Palabras para encontrar:</p>
+
+          <div class="found-list" id="word-list"></div>
+
+          <div style="margin-top:16px;">
+            <input type="text" id="word-input" placeholder="Escribe una palabra..." />
+            <br><br>
+            <button class="btn primary-btn" onclick="checkWord()">✅ Encontrar palabra</button>
+          </div>
+
+          <p id="word-feedback" style="margin-top:14px; font-weight:800;"></p>
+
+          <div id="final-word-message" style="display:none; margin-top:18px;">
+            <p>
+              Lo que más me gusta de nosotros es todo lo que llevamos dentro:
+              nuestros nombres, nuestras fotos, nuestras canciones, nuestras flores
+              y todo lo que solo nosotros entendemos. 💖
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- EXTRAS -->
     <div id="extras" class="seccion">
-
       <div class="card">
         <h2>Te amo en distintos idiomas 🌍💖</h2>
         <p>Aprieta un idioma:</p>
@@ -639,12 +766,56 @@
   </div>
 
   <script>
+    const principalPhotos = [
+      { src: "imagenes/papi.jpeg", msg: "Nuestro comienzo 💖" },
+      { src: "imagenes/2.jpeg", msg: "Primera foto juntos 📸" },
+      { src: "imagenes/30.jpeg", msg: "El día que dijiste sí 💍" },
+      { src: "imagenes/7.jpeg", msg: "Nuestro primer mes 💞" },
+      { src: "imagenes/26.jpeg", msg: "Tu cumpleaños 🎂" },
+      { src: "imagenes/25.jpeg", msg: "Nuestro viaje juntos ✈️" },
+      { src: "imagenes/23.jpeg", msg: "Navidad contigo 🎄" },
+      { src: "imagenes/31.jpeg", msg: "Año nuevo juntos 🎆" },
+      { src: "imagenes/20.jpeg", msg: "El mejor viaje 🐰" },
+      { src: "imagenes/11.jpeg", msg: "Siempre tú 💖" }
+    ];
+
+    const flowerPhotos = Array.from({ length: 13 }, (_, i) => ({
+      src: `imagenes/flor${i + 1}.jpeg`,
+      msg: "Para ti 🌹"
+    }));
+
+    const puzzlePiecesBase = [
+      { id: "p1", src: "imagenes/papi.jpeg", label: "Nuestro inicio" },
+      { id: "p2", src: "imagenes/2.jpeg", label: "Primera foto" },
+      { id: "p3", src: "imagenes/30.jpeg", label: "El sí" },
+      { id: "p4", src: "imagenes/7.jpeg", label: "Primer mes" }
+    ];
+
+    const targetWords = [
+      "CONSTANZA",
+      "WILLIAM",
+      "AMOR",
+      "8BALL",
+      "FLORES",
+      "KIDDVOODOO",
+      "BADBUNNY",
+      "NAVIDAD",
+      "CUMPLEAÑOS"
+    ];
+
+    let foundWords = [];
+    let puzzleState = [];
+    let playing = false;
+
     function abrirHistoria() {
       document.getElementById("portada").style.display = "none";
       document.getElementById("contenido").style.display = "block";
       mostrarSeccion("inicio", document.querySelector('.menu-btn[data-section="inicio"]'));
       actualizarContador();
       actualizarAniversario();
+      renderGalleries();
+      initPuzzle();
+      initWords();
 
       const music = document.getElementById("bg-music");
       const btn = document.getElementById("music-btn");
@@ -652,7 +823,7 @@
         playing = true;
         btn.innerText = "⏸️ Pausar música";
       }).catch(() => {
-        // El navegador puede bloquear autoplay; el botón sigue funcionando
+        // Algunos navegadores bloquean autoplay hasta otra interacción
       });
     }
 
@@ -682,6 +853,29 @@
       }
     }
 
+    function renderGalleries() {
+      const galeriaPrincipal = document.getElementById("galeria-principal");
+      const galeriaFlores = document.getElementById("galeria-flores");
+
+      if (galeriaPrincipal && galeriaPrincipal.children.length === 0) {
+        galeriaPrincipal.innerHTML = principalPhotos.map(photo => `
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="${photo.src}" alt="">
+            <div class="mensaje">${photo.msg}</div>
+          </div>
+        `).join("");
+      }
+
+      if (galeriaFlores && galeriaFlores.children.length === 0) {
+        galeriaFlores.innerHTML = flowerPhotos.map(photo => `
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="${photo.src}" alt="">
+            <div class="mensaje">${photo.msg}</div>
+          </div>
+        `).join("");
+      }
+    }
+
     function toggleMsg(el) {
       const msg = el.querySelector(".mensaje");
       msg.style.display = msg.style.display === "block" ? "none" : "block";
@@ -689,7 +883,7 @@
 
     function verCarta() {
       const claveCorrecta = "3004";
-      const input = document.getElementById("clave").value;
+      const input = document.getElementById("clave").value.trim();
       const carta = document.getElementById("carta");
       const error = document.getElementById("error-clave");
 
@@ -697,6 +891,27 @@
         carta.style.display = "block";
         error.style.display = "none";
         for (let i = 0; i < 18; i++) crearCorazon();
+      } else {
+        carta.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+
+    function verCartaPregunta() {
+      const respuesta = normalizeText(document.getElementById("respuesta").value);
+      const carta = document.getElementById("carta2");
+      const error = document.getElementById("error-respuesta");
+      const validas = [
+        "30042025",
+        "300425",
+        "30abril2025",
+        "30deabril2025"
+      ];
+
+      if (validas.includes(respuesta)) {
+        carta.style.display = "block";
+        error.style.display = "none";
+        for (let i = 0; i < 20; i++) crearCorazon();
       } else {
         carta.style.display = "none";
         error.style.display = "block";
@@ -723,7 +938,6 @@
       const aniversario = new Date("2026-04-30T00:00:00");
       const ahora = new Date();
       const diff = aniversario - ahora;
-
       const el = document.getElementById("aniversario");
       if (!el) return;
 
@@ -741,8 +955,7 @@
     }
 
     function mostrarAmor(texto) {
-      const el = document.getElementById("amor-idioma");
-      el.innerText = texto;
+      document.getElementById("amor-idioma").innerText = texto;
       for (let i = 0; i < 8; i++) crearCorazon();
     }
 
@@ -756,12 +969,157 @@
       setTimeout(() => heart.remove(), 6000);
     }
 
-    let playing = false;
+    function normalizeText(text) {
+      return (text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "")
+        .replace(/-/g, "")
+        .replace(/[.,!?¿¡'"]/g, "");
+    }
+
+    function shuffle(array) {
+      return array
+        .map(v => ({ v, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ v }) => v);
+    }
+
+    function initPuzzle() {
+      puzzleState = shuffle([...puzzlePiecesBase]);
+      renderPuzzle();
+      document.getElementById("puzzle-msg").style.display = "none";
+      document.getElementById("carta-puzzle").style.display = "none";
+    }
+
+    function renderPuzzle() {
+      const grid = document.getElementById("puzzle-grid");
+      grid.innerHTML = "";
+
+      puzzleState.forEach((piece, index) => {
+        const tile = document.createElement("div");
+        tile.className = "puzzle-tile";
+        tile.dataset.id = piece.id;
+        tile.dataset.index = index;
+        tile.onclick = () => selectPuzzleTile(index);
+
+        tile.innerHTML = `
+          <img src="${piece.src}" alt="">
+          <span>${piece.label}</span>
+        `;
+
+        grid.appendChild(tile);
+      });
+    }
+
+    let selectedPuzzleIndex = null;
+
+    function selectPuzzleTile(index) {
+      const tiles = [...document.querySelectorAll(".puzzle-tile")];
+
+      if (selectedPuzzleIndex === null) {
+        selectedPuzzleIndex = index;
+        tiles[index].classList.add("selected");
+        return;
+      }
+
+      if (selectedPuzzleIndex === index) {
+        selectedPuzzleIndex = null;
+        tiles[index].classList.remove("selected");
+        return;
+      }
+
+      const temp = puzzleState[selectedPuzzleIndex];
+      puzzleState[selectedPuzzleIndex] = puzzleState[index];
+      puzzleState[index] = temp;
+
+      selectedPuzzleIndex = null;
+      renderPuzzle();
+      checkPuzzleSolved();
+    }
+
+    function checkPuzzleSolved() {
+      const solved = puzzleState.every((piece, idx) => piece.id === puzzlePiecesBase[idx].id);
+
+      if (solved) {
+        document.getElementById("puzzle-msg").style.display = "block";
+        document.getElementById("carta-puzzle").style.display = "block";
+        for (let i = 0; i < 22; i++) crearCorazon();
+      }
+    }
+
+    function reiniciarPuzzle() {
+      initPuzzle();
+    }
+
+    function initWords() {
+      foundWords = [];
+      const list = document.getElementById("word-list");
+      list.innerHTML = "";
+
+      targetWords.forEach(word => {
+        const pill = document.createElement("div");
+        pill.className = "found-item";
+        pill.dataset.word = word;
+        pill.textContent = word;
+        list.appendChild(pill);
+      });
+
+      document.getElementById("word-feedback").innerText = "";
+      document.getElementById("final-word-message").style.display = "none";
+      document.getElementById("word-input").value = "";
+    }
+
+    function checkWord() {
+      const input = normalizeText(document.getElementById("word-input").value);
+      const feedback = document.getElementById("word-feedback");
+
+      if (!input) {
+        feedback.innerText = "Escribe una palabra 💖";
+        feedback.style.color = "#d63384";
+        return;
+      }
+
+      const match = targetWords.find(w => normalizeText(w) === input);
+
+      if (!match) {
+        feedback.innerText = "Esa no está en la lista 💔";
+        feedback.style.color = "red";
+        return;
+      }
+
+      if (!foundWords.includes(match)) {
+        foundWords.push(match);
+        feedback.innerText = `Encontraste: ${match} 💖`;
+        feedback.style.color = "#d63384";
+
+        const pill = [...document.querySelectorAll(".found-item")].find(el => el.dataset.word === match);
+        if (pill) pill.classList.add("done");
+        for (let i = 0; i < 6; i++) crearCorazon();
+      } else {
+        feedback.innerText = `Ya encontraste: ${match} 💖`;
+        feedback.style.color = "#d63384";
+      }
+
+      document.getElementById("word-input").value = "";
+      document.getElementById("word-input").focus();
+
+      if (foundWords.length === targetWords.length) {
+        document.getElementById("final-word-message").style.display = "block";
+        feedback.innerText = "¡Encontraste todas las palabras! 💖";
+        feedback.style.color = "#d63384";
+        for (let i = 0; i < 20; i++) crearCorazon();
+      }
+    }
+
+    document.getElementById("word-input").addEventListener("keydown", function(e){
+      if (e.key === "Enter") checkWord();
+    });
 
     setInterval(actualizarContador, 1000);
     setInterval(actualizarAniversario, 1000);
     setInterval(crearCorazon, 800);
   </script>
-
 </body>
 </html>
