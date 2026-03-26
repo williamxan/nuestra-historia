@@ -33,7 +33,7 @@
       color: var(--pink);
       margin-top: 0;
     }
- 
+
     p {
       font-size: 18px;
       line-height: 1.7;
@@ -151,31 +151,13 @@
       box-shadow: 0 10px 24px rgba(214, 51, 132, .24);
     }
 
-    /* Estilos del reproductor */
-    .player-container {
+    .top-actions{
       margin: 14px auto 0;
-      max-width: 500px;
-      background: white;
-      padding: 15px;
-      border-radius: 20px;
-      box-shadow: var(--shadow2);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .track-info {
-      font-weight: bold;
-      color: var(--pink);
-      font-size: 14px;
-    }
-
-    .player-controls {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
+      max-width: 980px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
     input[type="password"],
@@ -284,7 +266,7 @@
       bottom: 0;
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.72) 100%);
       color: white;
-      padding: 16px 12px 12px;
+      padding: 166px 12px 12px;
       font-size: 14px;
       border-radius: 0 0 16px 16px;
       display: none;
@@ -332,7 +314,6 @@
     .puzzle-tile.selected{
       outline: 4px solid rgba(214,51,132,.22);
       transform: scale(1.02);
-      opacity: 0.8;
     }
 
     .puzzle-tile img{
@@ -359,6 +340,23 @@
       justify-content:center;
       margin-top: 14px;
     }
+
+    /* ESTILOS NUEVOS PARA LA CÁPSULA - NO BORRAR NADA */
+    .lock-box {
+      background: #fff0f6;
+      padding: 40px;
+      border-radius: 28px;
+      border: 3px dashed var(--pink2);
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: var(--shadow2);
+    }
+
+    .capsula-content p {
+      text-align: left;
+      font-size: 17px;
+      margin-bottom: 1.5em;
+    }
   </style>
 </head>
 
@@ -382,19 +380,15 @@
       <button class="btn menu-btn" data-section="cartas" onclick="mostrarSeccion('cartas', this)">💌 Cartas</button>
       <button class="btn menu-btn" data-section="juegos" onclick="mostrarSeccion('juegos', this)">🎮 Juegos</button>
       <button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
+      <button class="btn menu-btn" data-section="capsula" onclick="mostrarSeccion('capsula', this)">⏳ Cápsula</button>
     </div>
 
-    <div class="player-container">
-      <div id="track-name" class="track-info">Cargando música...</div>
-      <div class="player-controls">
-        <button class="btn ghost-btn" onclick="prevSong()">⏮️</button>
-        <button id="music-btn" class="btn primary-btn" onclick="toggleMusic()">▶️ Reproducir</button>
-        <button class="btn ghost-btn" onclick="nextSong()">⏭️</button>
-      </div>
+    <div class="top-actions">
+      <button id="music-btn" class="btn primary-btn" onclick="toggleMusic()">▶️ Reproducir música</button>
     </div>
 
-    <audio id="bg-music" onended="nextSong()">
-      <source id="music-source" src="" type="audio/mpeg">
+    <audio id="bg-music" loop>
+      <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
     </audio>
 
     <div id="inicio" class="seccion">
@@ -604,6 +598,38 @@
           Respuesta incorrecta 💔
         </p>
       </div>
+
+      <div class="card">
+        <h2>Momentos difíciles 🖤➡️💖</h2>
+        <p>
+          No todo en nuestra historia ha sido fácil,
+          y creo que eso también la hace más real.
+          Hemos tenido momentos difíciles, días en los que
+          parecía que todo pesaba más de lo normal.
+          <br><br>
+          Pero incluso en esos momentos, nunca dejé de elegirte.
+          Nunca dejé de querer que esto funcionara,
+          porque tú vales cada intento, cada esfuerzo
+          y cada vez que decidimos quedarnos.
+          <br><br>
+          Lo que más me gusta de nosotros
+          no es que todo sea perfecto,
+          sino que incluso cuando no lo es,
+          seguimos adelante juntos.
+          <br><br>
+          Hemos aprendido, hemos crecido
+          y hemos demostrado que lo nuestro
+          es más fuerte que cualquier problema.
+          <br><br>
+          Y si alguna vez volvemos a pasar por algo difícil,
+          quiero que recuerdes esto:
+          no somos perfectos… pero somos nosotros,
+          y eso siempre va a ser suficiente.
+          <br><br>
+          Te amo incluso en los días complicados,
+          porque también forman parte de nuestra historia. 💖
+        </p>
+      </div>
     </div>
 
     <div id="juegos" class="seccion">
@@ -653,7 +679,37 @@
         <p id="amor-idioma" style="margin-top:20px; font-size:22px; font-weight:bold; color:#d63384;"></p>
       </div>
     </div>
-  </div>
+
+    <div id="capsula" class="seccion">
+      <div class="card capsula-content">
+        <h2>Cápsula del Tiempo ⏳💖</h2>
+        
+        <div id="capsula-bloqueada" class="lock-box">
+          <span style="font-size: 60px;">🔒</span>
+          <h3 style="margin-top:15px;">Contenido Protegido</h3>
+          <p style="text-align:center;">
+            Esta cápsula se abrirá automáticamente el día de nuestro 
+            <strong>Primer Aniversario Oficial</strong> (30 de abril de 2026).
+          </p>
+          <p id="capsula-timer" class="latido" style="font-size:20px; color:var(--pink); text-align:center; font-weight:800;"></p>
+        </div>
+
+        <div id="capsula-desbloqueada" style="display:none;">
+          <div class="chip">¡Feliz Primer Aniversario, Amor de mi Vida! 🎉💖</div>
+          <p>
+            Constanza, amor mío,<br><br>
+            Si estás leyendo esto, es porque oficialmente hemos completado nuestra primera vuelta al sol juntos. ¡Un año, amor! No puedo creer lo rápido que pasó, y al mismo tiempo, siento que te conozco de toda la vida. Me acuerdo perfectamente de ese 30 de abril de 2025, estaba tan nervioso que sentía que el corazón se me iba a salir, aunque en el fondo sabía que me ibas a decir que sí. Esa sonrisa tuya ese día... no se me va a olvidar nunca.<br><br>
+            Ha sido un año increíble. No perfecto, tú sabes que hemos tenido nuestros días de mierda, momentos difíciles donde las cosas no salían y quizás dolía un poquito más de lo normal. Pero lo que más me enorgullece de nosotros es que nunca, ni por un segundo, nos soltamos. Siempre, incluso enojados o tristes, nos terminábamos eligiendo. Ese "nunca dejamos de intentarlo" es lo que hace que lo nuestro sea real, no una historia de cuentos, sino una historia de verdad, de nosotros.<br><br>
+            Me acuerdo de cada locura. Desde las fotos de comida con la inicial al principio, las noches eternas jugando 8ball hasta la madrugada, y esas llamadas que no queríamos cortar nunca. Y los viajes... ¡wow! El viaje a Kidd Voodoo, que aunque la noche fue media mala, el viaje en sí fue demasiado bonito porque estaba contigo. Y obvio, Bad Bunny. El mejor puto viaje y el mejor puto día de mi vida, sin duda alguna, y fue perfecto porque lo viví a tu lado.<br><br>
+            Gracias por ser mi lugar seguro, Constanza. Gracias por cada abrazo tuyo que me sana más de lo que imaginas, por tu paciencia infinita, por cada risa y por cada te amo. Eres mi persona favorita en todo el mundo y mi mejor historia. Prometo seguir cuidándote, haciéndote reír (o intentándolo) y eligiéndote todos los días, incluso en los complicados, porque ahí es donde más importa.<br><br>
+            Este sitio lo preparé con cada recuerdo que guardo contigo, pero esto es solo el volumen 1. Estoy listo para escribir miles de volúmenes más a tu lado. Te amo hoy, mañana y siempre. Feliz primer año, mi vida.<br><br>
+            Contigo, siempre. 💖
+          </p>
+          <img src="imagenes/30.jpeg" alt="Nuestro Aniversario" style="width:100%; max-width:500px; display:block; margin:20px auto; border-radius:20px;">
+        </div>
+      </div>
+    </div>
+    </div>
 
   <script>
     const principalPhotos = [
@@ -685,61 +741,22 @@
     let selectedPuzzleIndex = null;
     let playing = false;
 
-    // Lógica del Reproductor
-    const playlist = [
-      { src: "musica/nuestra-cancion.mp3", name: "Nuestra Canción 💖" },
-      { src: "musica/cancion2.mp3", name: "Recuerdos 2 ✨" },
-      { src: "musica/cancion3.mp3", name: "Para ti 🌹" }
-    ];
-    let currentSongIndex = 0;
-    const audio = document.getElementById("bg-music");
-
-    function loadSong(index) {
-      currentSongIndex = index;
-      const song = playlist[currentSongIndex];
-      document.getElementById("music-source").src = song.src;
-      document.getElementById("track-name").innerText = "Reproduciendo: " + song.name;
-      audio.load();
-      if (playing) audio.play();
-    }
-
-    function toggleMusic() {
-      const btn = document.getElementById("music-btn");
-      if (!playing) {
-        audio.play();
-        playing = true;
-        btn.innerText = "⏸️ Pausar";
-      } else {
-        audio.pause();
-        playing = false;
-        btn.innerText = "▶️ Reproducir";
-      }
-    }
-
-    function nextSong() {
-      currentSongIndex = (currentSongIndex + 1) % playlist.length;
-      loadSong(currentSongIndex);
-      if (playing) audio.play();
-    }
-
-    function prevSong() {
-      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-      loadSong(currentSongIndex);
-      if (playing) audio.play();
-    }
-
     function abrirHistoria() {
       document.getElementById("portada").style.display = "none";
       document.getElementById("contenido").style.display = "block";
       mostrarSeccion("inicio", document.querySelector('.menu-btn[data-section="inicio"]'));
-      
       actualizarContador();
       actualizarAniversario();
       renderGalleries();
       initPuzzle();
-      
-      loadSong(0); // Cargar primera canción
-      toggleMusic(); // Intentar reproducir automáticamente
+      checkCapsula(); // NUEVA LÓGICA DE LA CÁPSULA
+
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("music-btn");
+      music.play().then(() => {
+        playing = true;
+        btn.innerText = "⏸️ Pausar música";
+      }).catch(() => {});
     }
 
     function mostrarSeccion(id, btn) {
@@ -751,6 +768,21 @@
       if (btn) btn.classList.add("active");
 
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("music-btn");
+
+      if (!playing) {
+        music.play();
+        playing = true;
+        btn.innerText = "⏸️ Pausar música";
+      } else {
+        music.pause();
+        playing = false;
+        btn.innerText = "▶️ Reproducir música";
+      }
     }
 
     function renderGalleries() {
@@ -802,7 +834,7 @@
       const carta = document.getElementById("carta2");
       const error = document.getElementById("error-respuesta");
 
-      if (respuesta === normalizeText("30/04/2025") || respuesta === "30042025") {
+      if (respuesta === normalizeText("30/04/2025")) {
         carta.style.display = "block";
         error.style.display = "none";
         for (let i = 0; i < 20; i++) crearCorazon();
@@ -813,7 +845,7 @@
     }
 
     function actualizarContador() {
-      const inicio = new Date(2025, 3, 30); // Abril es mes 3
+      const inicio = new Date("2025-04-30T00:00:00");
       const ahora = new Date();
       const diff = ahora - inicio;
 
@@ -824,12 +856,12 @@
 
       const contador = document.getElementById("contador");
       if (contador) {
-        contador.innerHTML = `${dias} días, ${horas}h, ${minutos}m y ${segundos}s 💖`;
+        contador.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
       }
     }
 
     function actualizarAniversario() {
-      const aniversario = new Date(2026, 3, 30);
+      const aniversario = new Date("2026-04-30T00:00:00");
       const ahora = new Date();
       const diff = aniversario - ahora;
       const el = document.getElementById("aniversario");
@@ -845,7 +877,7 @@
       const minutos = Math.floor((diff / (1000 * 60)) % 60);
       const segundos = Math.floor((diff / 1000) % 60);
 
-      el.innerText = `Faltan ${dias} días, ${horas}h, ${minutos}m y ${segundos}s 💝`;
+      el.innerText = `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
     }
 
     function mostrarAmor(texto) {
@@ -946,9 +978,31 @@
       initPuzzle();
     }
 
+    // NUEVA LÓGICA DE LA CÁPSULA - SIN QUITAR NADA
+    function checkCapsula() {
+      const unlockDate = new Date("2026-04-30T00:00:00");
+      const now = new Date();
+      const lockedEl = document.getElementById("capsula-bloqueada");
+      const unlockedEl = document.getElementById("capsula-desbloqueada");
+      const timerEl = document.getElementById("capsula-timer");
+
+      if (now >= unlockDate) {
+        lockedEl.style.display = "none";
+        unlockedEl.style.display = "block";
+      } else {
+        lockedEl.style.display = "block";
+        unlockedEl.style.display = "none";
+        const diff = unlockDate - now;
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        timerEl.innerText = `Faltan ${dias} días y ${horas} horas para abrirse... ⏳`;
+      }
+    }
+
     setInterval(actualizarContador, 1000);
     setInterval(actualizarAniversario, 1000);
     setInterval(crearCorazon, 800);
+    setInterval(checkCapsula, 60000); // Actualizar contador cápsula cada minuto
   </script>
 </body>
 </html>
