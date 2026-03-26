@@ -1,334 +1,767 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Nuestra historia 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra historia 💖</title>
 
-<style>
-body {
-  font-family: Arial;
-  background: #fdf2f8;
-  text-align: center;
-  margin: 0;
-}
+  <style>
+    :root{
+      --pink:#d63384;
+      --pink-2:#ff7eb6;
+      --pink-3:#ffd6e8;
+      --bg:#fdf2f8;
+      --card:#ffffff;
+      --text:#2f2f2f;
+      --shadow:0 10px 30px rgba(214, 51, 132, .12);
+      --shadow-2:0 6px 18px rgba(0,0,0,.08);
+      --radius:20px;
+    }
 
-/* PORTADA */
-#portada {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg,#ffd6e8,#fff);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
+    *{ box-sizing:border-box; }
 
-/* MENU PRO */
-.menu {
-  position: sticky;
-  top: 0;
-  background: white;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #fff 0%, var(--bg) 45%, #fff 100%);
+      color: var(--text);
+      text-align: center;
+      margin: 0;
+      padding: 0 14px 60px;
+    }
 
-.menu button {
-  border: none;
-  padding: 10px 16px;
-  border-radius: 20px;
-  background: #ffd6e8;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    h1, h2, h3 {
+      color: var(--pink);
+      margin-top: 0;
+    }
 
-.menu button:hover {
-  background: #d63384;
-  color: white;
-  transform: scale(1.08);
-}
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+    }
 
-/* CARDS */
-.card {
-  background: white;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 14px;
-  max-width: 800px;
-}
+    .card {
+      background: var(--card);
+      max-width: 900px;
+      margin: 22px auto;
+      padding: 28px 24px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(214, 51, 132, .08);
+    }
 
-/* GALERIA */
-.galeria {
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-}
+    img {
+      max-width: 100%;
+      border-radius: 16px;
+      margin-top: 14px;
+      box-shadow: var(--shadow-2);
+    }
 
-.foto {
-  position: relative;
-}
+    /* PORTADA */
+    #portada {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ffd6e8 0%, #fff 50%, #ffe8f2 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
 
-.foto img {
-  width:200px;
-  height:280px;
-  object-fit:cover;
-  border-radius:12px;
-  cursor:pointer;
-  transition:0.3s;
-}
+    .portada-box{
+      max-width: 620px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(214, 51, 132, .12);
+      backdrop-filter: blur(8px);
+      padding: 34px 22px;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
 
-.foto img:hover {
-  transform: scale(1.05);
-}
+    .portada-box h1{
+      font-size: clamp(30px, 6vw, 48px);
+      margin-bottom: 10px;
+    }
 
-/* MENSAJE OCULTO */
-.mensaje {
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  background: rgba(0,0,0,0.6);
-  color:white;
-  padding:10px;
-  font-size:14px;
-  border-radius:0 0 12px 12px;
-  display:none;
-}
+    .portada-box p{
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 18px;
+    }
 
-/* LATIDO */
-.latido {
-  animation: latido 1.2s infinite;
-}
+    /* MENU */
+    .menu {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(214, 51, 132, .08);
+      box-shadow: var(--shadow-2);
+      padding: 12px;
+      margin: 14px auto 8px;
+      border-radius: 22px;
+      max-width: 980px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
 
-@keyframes latido {
-  50% { transform: scale(1.1);}
-}
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease, opacity .2s ease;
+      user-select: none;
+    }
 
-/* CORAZONES */
-.heart {
-  position: fixed;
-  bottom:-20px;
-  animation: subir 6s linear forwards;
-}
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 18px rgba(214, 51, 132, .16);
+    }
 
-@keyframes subir {
-  100% { transform: translateY(-100vh); opacity:0;}
-}
+    .btn:active {
+      transform: translateY(0) scale(.99);
+    }
 
-.seccion { display:none; }
+    .menu-btn {
+      background: linear-gradient(135deg, #fff 0%, #ffe4ef 100%);
+      color: var(--pink);
+      border: 1px solid rgba(214, 51, 132, .12);
+    }
 
-</style>
+    .menu-btn.active {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
+      color: white;
+      box-shadow: 0 10px 24px rgba(214, 51, 132, .24);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
+      color: white;
+      box-shadow: 0 10px 24px rgba(214, 51, 132, .22);
+    }
+
+    .ghost-btn {
+      background: linear-gradient(135deg, #fff 0%, #ffe8f2 100%);
+      color: var(--pink);
+      border: 1px solid rgba(214, 51, 132, .12);
+    }
+
+    .tiny-btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 14px;
+    }
+
+    input[type="password"]{
+      width: min(320px, 92%);
+      padding: 13px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 51, 132, .15);
+      text-align: center;
+      font-size: 16px;
+      outline: none;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,.03);
+    }
+
+    input[type="password"]:focus{
+      border-color: rgba(214, 51, 132, .35);
+      box-shadow: 0 0 0 4px rgba(214, 51, 132, .12);
+    }
+
+    .latido {
+      animation: latido 1.2s infinite;
+      display: inline-block;
+      color: var(--pink);
+      font-weight: 800;
+    }
+
+    @keyframes latido {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.08); }
+      50% { transform: scale(1); }
+      70% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .seccion {
+      display: none;
+      animation: fade .35s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GALERÍA */
+    .galeria {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 8px 2px 14px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .galeria::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .galeria::-webkit-scrollbar-thumb {
+      background: #f2a3c6;
+      border-radius: 999px;
+    }
+
+    .foto {
+      position: relative;
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+    }
+
+    .foto img {
+      width: 220px;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform .25s ease, filter .25s ease;
+    }
+
+    .foto img:hover{
+      transform: scale(1.03);
+      filter: saturate(1.05);
+    }
+
+    .mensaje {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.72) 100%);
+      color: white;
+      padding: 16px 12px 12px;
+      font-size: 14px;
+      border-radius: 0 0 16px 16px;
+      display: none;
+      text-align: left;
+    }
+
+    /* CORAZONES */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      pointer-events: none;
+      animation: subir 6s linear forwards;
+      z-index: 9998;
+      opacity: .85;
+    }
+
+    @keyframes subir {
+      0%   { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .mini-text{
+      color:#666;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .section-title{
+      margin-bottom: 8px;
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(214,51,132,.2), transparent);
+      margin: 18px 0;
+    }
+
+    .chip{
+      display:inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff0f6;
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(214,51,132,.12);
+    }
+
+    .top-actions{
+      margin: 14px auto 0;
+      max-width: 980px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="portada">
-  <h1>Eres el amor de mi vida 💖</h1>
-  <button onclick="abrir()">Entrar</button>
-</div>
-
-<div id="contenido" style="display:none;">
-
-<div class="menu">
-  <button onclick="mostrar('inicio')">🏠 Inicio</button>
-  <button onclick="mostrar('fotos')">📸 Fotos</button>
-  <button onclick="mostrar('cartas')">💌 Cartas</button>
-  <button onclick="mostrar('extras')">✨ Extras</button>
-</div>
-
-<audio id="music" loop>
-  <source src="musica/nuestra-cancion.mp3">
-</audio>
-
-<!-- INICIO -->
-<div id="inicio" class="seccion">
-<div class="card">
-<h2 class="latido" id="contador"></h2>
-<p>Nuestra historia 💖</p>
-</div>
-</div>
-
-<!-- FOTOS -->
-<div id="fotos" class="seccion">
-
-<div class="card">
-<h2>Nuestras fotos 📸</h2>
-
-<div class="galeria">
-
-<!-- FOTO TEMPLATE -->
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/papi.jpeg">
-<div class="mensaje">Nuestro comienzo 💖</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/2.jpeg">
-<div class="mensaje">Primera foto juntos 📸</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/30.jpeg">
-<div class="mensaje">El día que dijiste sí 💍</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/7.jpeg">
-<div class="mensaje">Nuestro primer mes 💞</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/26.jpeg">
-<div class="mensaje">Tu cumpleaños 🎂</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/25.jpeg">
-<div class="mensaje">Nuestro viaje juntos ✈️</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/23.jpeg">
-<div class="mensaje">Navidad contigo 🎄</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/31.jpeg">
-<div class="mensaje">Año nuevo juntos 🎆</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/20.jpeg">
-<div class="mensaje">El mejor día de mi vida 🐰</div>
-</div>
-
-<div class="foto" onclick="toggleMsg(this)">
-<img src="imagenes/11.jpeg">
-<div class="mensaje">Siempre tú 💖</div>
-</div>
-
-</div>
-</div>
-
-<!-- FLORES -->
-<div class="card">
-<h2>Tus flores 🌷</h2>
-<div class="galeria">
-
-<script>
-for(let i=1;i<=13;i++){
-  document.write(`
-  <div class="foto" onclick="toggleMsg(this)">
-    <img src="imagenes/flor${i}.jpeg">
-    <div class="mensaje">Para ti 🌹</div>
+  <!-- PORTADA -->
+  <div id="portada">
+    <div class="portada-box">
+      <div class="chip">Solo para nosotros 💖</div>
+      <h1>Eres el amor de mi vida</h1>
+      <p>Preparé esto con cada recuerdo que guardo contigo.</p>
+      <button class="btn primary-btn" onclick="abrirHistoria()">✨ Ver nuestro amor</button>
+    </div>
   </div>
-  `)
-}
-</script>
 
-</div>
-</div>
+  <div id="contenido" style="display:none;">
 
-</div>
+    <!-- MENU -->
+    <div class="menu">
+      <button class="btn menu-btn active" data-section="inicio" onclick="mostrarSeccion('inicio', this)">🏠 Inicio</button>
+      <button class="btn menu-btn" data-section="historia" onclick="mostrarSeccion('historia', this)">💖 Historia</button>
+      <button class="btn menu-btn" data-section="fotos" onclick="mostrarSeccion('fotos', this)">📸 Fotos</button>
+      <button class="btn menu-btn" data-section="cartas" onclick="mostrarSeccion('cartas', this)">💌 Cartas</button>
+      <button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
+    </div>
 
-<!-- CARTAS -->
-<div id="cartas" class="seccion">
-<div class="card">
+    <div class="top-actions">
+      <button id="music-btn" class="btn primary-btn" onclick="toggleMusic()">▶️ Reproducir música</button>
+    </div>
 
-<h2>Mensaje secreto 💌</h2>
+    <audio id="bg-music" loop>
+      <source src="musica/nuestra-cancion.mp3" type="audio/mpeg">
+    </audio>
 
-<input type="password" id="clave" placeholder="Clave...">
-<br><br>
-<button onclick="verCarta()">Desbloquear</button>
+    <!-- INICIO -->
+    <div id="inicio" class="seccion">
 
-<div id="carta" style="display:none;">
-<p>
-Constanza, te amo con todo mi corazón 💖  
-Eres mi lugar seguro, mi todo.
-</p>
-</div>
+      <div class="card">
+        <h2 class="section-title">Llevamos juntos 💞</h2>
+        <p id="contador" class="latido" style="font-size:22px;"></p>
+      </div>
 
-<p id="error" style="color:red; display:none;">Clave incorrecta</p>
+      <div class="card">
+        <h1>Nuestra historia 💖</h1>
+        <p>
+          Este sitio es solo para nosotros.
+          Un lugar donde guardo cada recuerdo, cada risa
+          y cada momento contigo.
+        </p>
+      </div>
 
-</div>
-</div>
+      <div class="card">
+        <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
+        <p id="aniversario" class="latido" style="font-size:22px;"></p>
+      </div>
+    </div>
 
-<!-- EXTRAS -->
-<div id="extras" class="seccion">
-<div class="card">
-<h2 id="aniversario"></h2>
-</div>
+    <!-- HISTORIA -->
+    <div id="historia" class="seccion">
 
-<div class="card">
-<button onclick="mostrarAmor('Te amo ❤️')">Español</button>
-<button onclick="mostrarAmor('I love you ❤️')">Inglés</button>
-<p id="amor"></p>
-</div>
-</div>
+      <div class="card">
+        <h2>Cómo nos conocimos (enero–marzo)</h2>
+        <p>
+          Desde el primer día supe que algo especial estaba pasando,
+          nuestra forma de decirnos te amo,
+          las fotos de comida con la inicial,
+          las noches de 8ball, llamadas eternas.
+          No fue perfecto, pero fue real… y fue nuestro.
+        </p>
+        <img src="imagenes/papi.jpeg" alt="Nuestro inicio">
+      </div>
 
-</div>
+      <div class="card">
+        <h2>Nuestra primera foto juntos (16/04/2025)</h2>
+        <p>Fue un día tan especial que lo quería recordar con esta foto.</p>
+        <img src="imagenes/2.jpeg" alt="Primera foto juntos">
+      </div>
 
-<script>
-function abrir(){
-  document.getElementById("portada").style.display="none";
-  document.getElementById("contenido").style.display="block";
-  document.getElementById("music").play();
-  mostrar('inicio');
-}
+      <div class="card">
+        <h2>Momento del “sí” (30/04/2025)</h2>
+        <p>
+          Me acuerdo como si fuera ayer, estaba tan nervioso…
+          aunque la respuesta era obvia 💖
+        </p>
+        <img src="imagenes/30.jpeg" alt="Primer sí">
+      </div>
 
-function mostrar(id){
-  document.querySelectorAll('.seccion').forEach(s=>s.style.display='none');
-  document.getElementById(id).style.display='block';
-}
+      <div class="card">
+        <h2>Nuestro primer mes (30/05/2025)</h2>
+        <p>
+          En un mes confirmé lo que ya sentía
+          y supe que quería estar contigo por el resto de mi vida.
+        </p>
+        <img src="imagenes/7.jpeg" alt="Primer mes">
+      </div>
 
-function toggleMsg(el){
-  const msg = el.querySelector(".mensaje");
-  msg.style.display = msg.style.display === "block" ? "none" : "block";
-}
+      <div class="card">
+        <h2>Tu Cumpleaños (12/11/2025)</h2>
+        <p>
+          El primer cumpleaños juntos, solo quería sacarte una sonrisa en tu día especial y creo que lo logré...
+        </p>
+        <img src="imagenes/26.jpeg" alt="Tu cumpleaños">
+      </div>
 
-function verCarta(){
-  if(document.getElementById("clave").value==="3004"){
-    document.getElementById("carta").style.display="block";
-  } else {
-    document.getElementById("error").style.display="block";
-  }
-}
+      <div class="card">
+        <h2>Nuestro primer viaje juntos (Kidd Voodoo)</h2>
+        <p>
+          Nuestro primer viaje juntos para ver a uno de nuestros artistas fav.
+          La noche media mala, pero el viaje fue demasiado bonito.
+        </p>
+        <img src="imagenes/25.jpeg" alt="Primer viaje">
+      </div>
 
-function contador(){
-  let inicio=new Date("2025-04-30");
-  let ahora=new Date();
-  let dias=Math.floor((ahora-inicio)/86400000);
-  document.getElementById("contador").innerText=dias+" días juntos 💖";
-}
+      <div class="card">
+        <h2>Nuestra primera Navidad (25/12/2025)</h2>
+        <p>
+          Nada más que agregar, otro día especial a tu lado 🎄
+        </p>
+        <img src="imagenes/23.jpeg" alt="Primera Navidad">
+      </div>
 
-function aniversario(){
-  let fecha=new Date("2026-04-30");
-  let dias=Math.floor((fecha-new Date())/86400000);
-  document.getElementById("aniversario").innerText="Faltan "+dias+" días 🎉";
-}
+      <div class="card">
+        <h2>Nuestro primer Año Nuevo (01/01/2026)</h2>
+        <p>
+          (No encontré más fotos jaja 😅)
+        </p>
+        <img src="imagenes/31.jpeg" alt="Primer Año Nuevo">
+      </div>
 
-function mostrarAmor(t){
-  document.getElementById("amor").innerText=t;
-}
+      <div class="card">
+        <h2>Bad Bunny</h2>
+        <p>
+          El mejor viaje y el mejor día de mi puta vida.
+        </p>
+        <img src="imagenes/20.jpeg" alt="Bad Bunny">
+      </div>
 
-setInterval(contador,1000);
-setInterval(aniversario,1000);
+      <div class="card">
+        <h2>Para ti 💌</h2>
+        <p>
+          Gracias por ser mi lugar seguro,
+          mi persona favorita
+          y mi mejor historia.
+        </p>
+        <p>Te elijo hoy, mañana y siempre.</p>
+        <img src="imagenes/11.jpeg" alt="Siempre contigo">
+      </div>
+    </div>
 
-/* corazones */
-function corazon(){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerText="💗";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-}
-setInterval(corazon,800);
+    <!-- FOTOS -->
+    <div id="fotos" class="seccion">
 
-</script>
+      <div class="card">
+        <h2>Nuestras fotos 📸</h2>
+        <p class="mini-text">Toca una foto para ver su mensaje oculto.</p>
+
+        <div class="galeria">
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/papi.jpeg" alt="Nuestro inicio">
+            <div class="mensaje">Nuestro comienzo, donde todo cambió 💖</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/2.jpeg" alt="Primera foto juntos">
+            <div class="mensaje">La primera foto juntos, guardada para siempre 📸</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/30.jpeg" alt="Primer si">
+            <div class="mensaje">El día del sí, el recuerdo más bonito 💍</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/7.jpeg" alt="Primer mes">
+            <div class="mensaje">Un mes, mil sentimientos y una sola persona 💞</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/26.jpeg" alt="Cumpleaños">
+            <div class="mensaje">Tu cumpleaños, un día para hacerte sonreír 🎂</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/25.jpeg" alt="Viaje juntos">
+            <div class="mensaje">Nuestro primer viaje y un recuerdo inolvidable ✈️</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/23.jpeg" alt="Navidad">
+            <div class="mensaje">Navidad contigo, todo se siente más bonito 🎄</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/31.jpeg" alt="Año nuevo">
+            <div class="mensaje">Año nuevo, el mismo amor de siempre 🎆</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/20.jpeg" alt="Bad Bunny">
+            <div class="mensaje">Un viaje perfecto, de esos que no se olvidan 🐰</div>
+          </div>
+
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/11.jpeg" alt="Siempre contigo">
+            <div class="mensaje">Siempre tú, siempre nosotros, siempre 💖</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Todas las flores para ti 🌷</h2>
+        <p class="mini-text">Cada flor tiene un pedacito de amor.</p>
+
+        <div class="galeria">
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor1.jpeg" alt="Flor 1">
+            <div class="mensaje">Para ti, por ser mi persona favorita 💐</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor2.jpeg" alt="Flor 2">
+            <div class="mensaje">Una flor para tu sonrisa 🌸</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor3.jpeg" alt="Flor 3">
+            <div class="mensaje">Una flor para tu ternura 🌹</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor4.jpeg" alt="Flor 4">
+            <div class="mensaje">Una flor para cada abrazo 💖</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor5.jpeg" alt="Flor 5">
+            <div class="mensaje">Una flor para cada “te amo” 🌷</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor6.jpeg" alt="Flor 6">
+            <div class="mensaje">Una flor para cada recuerdo bonito 🌼</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor7.jpeg" alt="Flor 7">
+            <div class="mensaje">Una flor para tu luz ✨</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor8.jpeg" alt="Flor 8">
+            <div class="mensaje">Una flor para tu paciencia 💕</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor9.jpeg" alt="Flor 9">
+            <div class="mensaje">Una flor para tu cariño 🌸</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor10.jpeg" alt="Flor 10">
+            <div class="mensaje">Una flor para nuestra historia 🌷</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor11.jpeg" alt="Flor 11">
+            <div class="mensaje">Una flor por cada día contigo 💐</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor12.jpeg" alt="Flor 12">
+            <div class="mensaje">Una flor para el amor más bonito 🌹</div>
+          </div>
+          <div class="foto" onclick="toggleMsg(this)">
+            <img src="imagenes/flor13.jpeg" alt="Flor 13">
+            <div class="mensaje">La última flor… pero no el último amor 💖</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTAS -->
+    <div id="cartas" class="seccion">
+
+      <div class="card">
+        <h2>Un mensaje solo para ti 🔐💌</h2>
+        <p>Este mensaje está protegido con una clave secreta.</p>
+
+        <input type="password" id="clave" placeholder="Ingresa la clave..." />
+        <br><br>
+
+        <button class="btn primary-btn" onclick="verCarta()">🔓 Desbloquear mensaje</button>
+
+        <div id="carta" style="display:none; margin-top: 25px;">
+          <p>
+            Constanza,<br><br>
+            No hay un solo día en que no agradezca haberte encontrado.
+            Llegaste a mi vida sin avisar y te volviste mi lugar seguro,
+            mi risa favorita y la persona con la que quiero construir todo.
+            <br><br>
+            Gracias por cada momento, por cada paciencia, por cada te amo,
+            por cada abrazo que sana más de lo que imaginas.
+            <br><br>
+            Prometo seguir eligiéndote incluso en los días difíciles,
+            cuidarte y amarte de la forma más bonita que sepa.
+            <br><br>
+            Esto es solo el comienzo de nuestra historia.
+            Te amo hoy, mañana y siempre. 💖
+          </p>
+        </div>
+
+        <p id="error-clave" style="color:#d63384; display:none; margin-top:10px; font-weight:700;">
+          Clave incorrecta 💔
+        </p>
+      </div>
+    </div>
+
+    <!-- EXTRAS -->
+    <div id="extras" class="seccion">
+
+      <div class="card">
+        <h2>Te amo en distintos idiomas 🌍💖</h2>
+        <p>Aprieta un idioma:</p>
+
+        <div class="tiny-btns">
+          <button class="btn ghost-btn" onclick="mostrarAmor('Te amo ❤️ (Español)')">Español</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('I love you ❤️ (Inglés)')">Inglés</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('Je t’aime ❤️ (Francés)')">Francés</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('Ti amo ❤️ (Italiano)')">Italiano</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('Ich liebe dich ❤️ (Alemán)')">Alemán</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('Eu te amo ❤️ (Portugués)')">Portugués</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('사랑해 ❤️ (Coreano)')">Coreano</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('愛してる ❤️ (Japonés)')">Japonés</button>
+          <button class="btn ghost-btn" onclick="mostrarAmor('我爱你 ❤️ (Chino)')">Chino</button>
+        </div>
+
+        <p id="amor-idioma" style="margin-top:20px; font-size:22px; font-weight:bold; color:#d63384;"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function abrirHistoria() {
+      document.getElementById("portada").style.display = "none";
+      document.getElementById("contenido").style.display = "block";
+      mostrarSeccion("inicio", document.querySelector('.menu-btn[data-section="inicio"]'));
+      actualizarContador();
+      actualizarAniversario();
+
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("music-btn");
+      music.play().then(() => {
+        playing = true;
+        btn.innerText = "⏸️ Pausar música";
+      }).catch(() => {
+        // El navegador puede bloquear autoplay; el botón sigue funcionando
+      });
+    }
+
+    function mostrarSeccion(id, btn) {
+      document.querySelectorAll(".seccion").forEach(sec => sec.style.display = "none");
+      const seccion = document.getElementById(id);
+      if (seccion) seccion.style.display = "block";
+
+      document.querySelectorAll(".menu-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("music-btn");
+
+      if (!playing) {
+        music.play();
+        playing = true;
+        btn.innerText = "⏸️ Pausar música";
+      } else {
+        music.pause();
+        playing = false;
+        btn.innerText = "▶️ Reproducir música";
+      }
+    }
+
+    function toggleMsg(el) {
+      const msg = el.querySelector(".mensaje");
+      msg.style.display = msg.style.display === "block" ? "none" : "block";
+    }
+
+    function verCarta() {
+      const claveCorrecta = "3004";
+      const input = document.getElementById("clave").value;
+      const carta = document.getElementById("carta");
+      const error = document.getElementById("error-clave");
+
+      if (input === claveCorrecta) {
+        carta.style.display = "block";
+        error.style.display = "none";
+        for (let i = 0; i < 18; i++) crearCorazon();
+      } else {
+        carta.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+
+    function actualizarContador() {
+      const inicio = new Date("2025-04-30T00:00:00");
+      const ahora = new Date();
+      const diff = ahora - inicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      const contador = document.getElementById("contador");
+      if (contador) {
+        contador.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
+      }
+    }
+
+    function actualizarAniversario() {
+      const aniversario = new Date("2026-04-30T00:00:00");
+      const ahora = new Date();
+      const diff = aniversario - ahora;
+
+      const el = document.getElementById("aniversario");
+      if (!el) return;
+
+      if (diff <= 0) {
+        el.innerText = "¡Feliz primer aniversario! 💖🎉";
+        return;
+      }
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      el.innerText = `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
+    }
+
+    function mostrarAmor(texto) {
+      const el = document.getElementById("amor-idioma");
+      el.innerText = texto;
+      for (let i = 0; i < 8; i++) crearCorazon();
+    }
+
+    function crearCorazon() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    let playing = false;
+
+    setInterval(actualizarContador, 1000);
+    setInterval(actualizarAniversario, 1000);
+    setInterval(crearCorazon, 800);
+  </script>
 
 </body>
 </html>
