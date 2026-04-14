@@ -387,6 +387,70 @@
       font-size: 17px;
       margin-bottom: 1.5em;
     }
+
+    .word-search-wrap{
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .word-search-board{
+      display:grid;
+      grid-template-columns: repeat(14, minmax(24px, 1fr));
+      gap: 6px;
+      max-width: 620px;
+      margin: 18px auto 0;
+    }
+
+    .word-cell{
+      aspect-ratio: 1 / 1;
+      border:none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fff 0%, #ffe8f2 100%);
+      color: var(--pink);
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+    }
+
+    .word-cell:hover{
+      transform: translateY(-1px);
+    }
+
+    .word-cell.selected{
+      background: linear-gradient(135deg, #ffb3d1 0%, #ffd9e9 100%);
+      color: #8a1450;
+    }
+
+    .word-cell.found{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color: white;
+    }
+
+    .word-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 18px;
+    }
+
+    .word-chip{
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #fff0f6;
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(214,51,132,.12);
+    }
+
+    .word-chip.found{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color: white;
+    }
+
   </style>
 </head>
 
@@ -645,6 +709,35 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
             <br><br>
             Eres mi pieza favorita de toda la historia. 🧩💞
           </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Encuentra las palabras 💘🔎</h2>
+        <p>Busca todas nuestras palabras especiales dentro de la sopa de letras. Tócalas letra por letra en línea recta.</p>
+
+        <div class="word-search-wrap">
+          <div id="word-list" class="word-list"></div>
+          <div id="word-search-board" class="word-search-board"></div>
+
+          <div class="tiny-btns">
+            <button class="btn ghost-btn" onclick="limpiarSeleccionPalabra()">🧼 Limpiar selección</button>
+            <button class="btn ghost-btn" onclick="reiniciarSopaLetras()">🔄 Reiniciar palabras</button>
+          </div>
+
+          <p id="word-search-status" class="mini-text">Palabra actual: —</p>
+          <p id="word-search-msg" style="display:none; margin-top:14px; font-weight:800; color:#d63384;">
+            ¡Encontraste todas las palabras! 💖
+          </p>
+
+          <div id="carta-word-search" style="display:none; margin-top:20px;">
+            <p>
+              Cada palabra tiene algo nuestro:
+              recuerdos, fechas, música, apodos y amor.
+              Y al final todo siempre termina en lo mismo:
+              tú y yo eligiéndonos. 💞
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -1160,6 +1253,23 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
     let puzzleState = [];
     let selectedPuzzleIndex = null;
     let playing = false;
+    const wordSearchRows = 14;
+    const wordSearchCols = 14;
+    const wordSearchWords = [
+      { display: "KIDD VOODOO", value: "KIDDVOODOO" },
+      { display: "BAD BUNNY", value: "BADBUNNY" },
+      { display: "ROSAS", value: "ROSAS" },
+      { display: "AMOR", value: "AMOR" },
+      { display: "CONINI", value: "CONINI" },
+      { display: "WILLITO", value: "WILLITO" },
+      { display: "30DEABRIL", value: "30DEABRIL" },
+      { display: "DESTELLO", value: "DESTELLO" },
+      { display: "TEAMO", value: "TEAMO" }
+    ];
+    let wordSearchGrid = [];
+    let wordSearchPlacements = {};
+    let selectedWordCells = [];
+    let foundWordSet = new Set();
 
     // Lógica del Reproductor
     const playlist = [
@@ -1215,6 +1325,7 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       actualizarAniversario();
       renderGalleries();
       initPuzzle();
+      initWordSearch();
       checkCapsula();
       actualizarCartasDiarias();
 
@@ -1441,6 +1552,190 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       initPuzzle();
     }
 
+    function createEmptyWordGrid() {
+      return Array.from({ length: wordSearchRows }, () => Array(wordSearchCols).fill(""));
+    }
+
+    function placeWord(word, row, col, rowStep, colStep) {
+      const cells = [];
+      for (let i = 0; i < word.length; i++) {
+        const r = row + (rowStep * i);
+        const c = col + (colStep * i);
+        cells.push({ row: r, col: c });
+        wordSearchGrid[r][c] = word[i];
+      }
+      wordSearchPlacements[word] = cells;
+    }
+
+    function fillRandomLetters() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      for (let r = 0; r < wordSearchRows; r++) {
+        for (let c = 0; c < wordSearchCols; c++) {
+          if (!wordSearchGrid[r][c]) {
+            wordSearchGrid[r][c] = chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+      }
+    }
+
+    function initWordSearch() {
+      wordSearchGrid = createEmptyWordGrid();
+      wordSearchPlacements = {};
+      selectedWordCells = [];
+      foundWordSet = new Set();
+
+      placeWord("KIDDVOODOO", 0, 0, 0, 1);
+      placeWord("BADBUNNY", 1, 2, 1, 0);
+      placeWord("ROSAS", 10, 1, 0, 1);
+      placeWord("AMOR", 4, 10, 1, 0);
+      placeWord("CONINI", 12, 3, 0, 1);
+      placeWord("WILLITO", 3, 5, 1, 1);
+      placeWord("30DEABRIL", 13, 0, 0, 1);
+      placeWord("DESTELLO", 2, 13, 1, 0);
+      placeWord("TEAMO", 9, 0, 0, 1);
+
+      fillRandomLetters();
+      renderWordList();
+      renderWordSearchBoard();
+      actualizarEstadoPalabra();
+
+      const msg = document.getElementById("word-search-msg");
+      const carta = document.getElementById("carta-word-search");
+      if (msg) msg.style.display = "none";
+      if (carta) carta.style.display = "none";
+    }
+
+    function renderWordList() {
+      const list = document.getElementById("word-list");
+      if (!list) return;
+
+      list.innerHTML = wordSearchWords.map(word => `
+        <span class="word-chip ${foundWordSet.has(word.value) ? "found" : ""}" id="word-chip-${word.value}">${word.display}</span>
+      `).join("");
+    }
+
+    function renderWordSearchBoard() {
+      const board = document.getElementById("word-search-board");
+      if (!board) return;
+
+      board.innerHTML = "";
+
+      for (let r = 0; r < wordSearchRows; r++) {
+        for (let c = 0; c < wordSearchCols; c++) {
+          const btn = document.createElement("button");
+          btn.className = "word-cell";
+          btn.type = "button";
+          btn.textContent = wordSearchGrid[r][c];
+          btn.dataset.row = r;
+          btn.dataset.col = c;
+          btn.onclick = () => seleccionarCeldaPalabra(r, c);
+          board.appendChild(btn);
+        }
+      }
+
+      marcarCeldasPalabra();
+    }
+
+    function getCellButton(row, col) {
+      return document.querySelector(`.word-cell[data-row="${row}"][data-col="${col}"]`);
+    }
+
+    function limpiarSeleccionPalabra() {
+      selectedWordCells = [];
+      marcarCeldasPalabra();
+      actualizarEstadoPalabra();
+    }
+
+    function reiniciarSopaLetras() {
+      initWordSearch();
+    }
+
+    function sonAdyacentes(a, b) {
+      return Math.abs(a.row - b.row) <= 1 && Math.abs(a.col - b.col) <= 1 && !(a.row === b.row && a.col === b.col);
+    }
+
+    function mismaDireccion(cells, nueva) {
+      if (cells.length < 2) return true;
+      const dirRow = cells[1].row - cells[0].row;
+      const dirCol = cells[1].col - cells[0].col;
+      const last = cells[cells.length - 1];
+      return (nueva.row - last.row) === dirRow && (nueva.col - last.col) === dirCol;
+    }
+
+    function seleccionarCeldaPalabra(row, col) {
+      const current = { row, col };
+      const alreadySelected = selectedWordCells.some(cell => cell.row === row && cell.col === col);
+      const isFoundCell = Array.from(foundWordSet).some(word => (wordSearchPlacements[word] || []).some(cell => cell.row === row && cell.col === col));
+
+      if (alreadySelected || isFoundCell) return;
+
+      if (selectedWordCells.length === 0) {
+        selectedWordCells.push(current);
+      } else if (selectedWordCells.length === 1) {
+        if (!sonAdyacentes(selectedWordCells[0], current)) return;
+        selectedWordCells.push(current);
+      } else {
+        const last = selectedWordCells[selectedWordCells.length - 1];
+        if (!sonAdyacentes(last, current) || !mismaDireccion(selectedWordCells, current)) return;
+        selectedWordCells.push(current);
+      }
+
+      marcarCeldasPalabra();
+      validarPalabraSeleccionada();
+      actualizarEstadoPalabra();
+    }
+
+    function obtenerPalabraActual() {
+      return selectedWordCells.map(cell => wordSearchGrid[cell.row][cell.col]).join("");
+    }
+
+    function validarPalabraSeleccionada() {
+      const palabraActual = obtenerPalabraActual();
+      const palabraInvertida = palabraActual.split("").reverse().join("");
+      const match = wordSearchWords.find(word => !foundWordSet.has(word.value) && (word.value === palabraActual || word.value === palabraInvertida));
+
+      if (!match) return;
+
+      foundWordSet.add(match.value);
+      selectedWordCells = [];
+      renderWordList();
+      marcarCeldasPalabra();
+      actualizarEstadoPalabra(`Encontraste: ${match.display} 💖`);
+      for (let i = 0; i < 8; i++) crearCorazon();
+
+      if (foundWordSet.size === wordSearchWords.length) {
+        document.getElementById("word-search-msg").style.display = "block";
+        document.getElementById("carta-word-search").style.display = "block";
+        for (let i = 0; i < 20; i++) crearCorazon();
+      }
+    }
+
+    function marcarCeldasPalabra() {
+      document.querySelectorAll(".word-cell").forEach(btn => {
+        btn.classList.remove("selected", "found");
+      });
+
+      selectedWordCells.forEach(cell => {
+        const btn = getCellButton(cell.row, cell.col);
+        if (btn) btn.classList.add("selected");
+      });
+
+      Array.from(foundWordSet).forEach(word => {
+        (wordSearchPlacements[word] || []).forEach(cell => {
+          const btn = getCellButton(cell.row, cell.col);
+          if (btn) btn.classList.add("found");
+        });
+      });
+    }
+
+    function actualizarEstadoPalabra(textoExtra = "") {
+      const status = document.getElementById("word-search-status");
+      if (!status) return;
+      const actual = obtenerPalabraActual();
+      status.innerText = textoExtra || `Palabra actual: ${actual || "—"}`;
+    }
+
+
     
 function actualizarCartasDiarias() {
   const ahora = new Date();
@@ -1500,3 +1795,4 @@ function actualizarCartasDiarias() {
   </script>
 </body>
 </html>
+
