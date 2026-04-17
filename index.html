@@ -483,15 +483,13 @@
       transition: transform 4.2s cubic-bezier(.18,.89,.24,1);
       background:
         conic-gradient(
-          #ffd6e8 0deg 40deg,
-          #ffb8d2 40deg 80deg,
-          #ffe3ef 80deg 120deg,
-          #ffc6de 120deg 160deg,
-          #ffd6e8 160deg 200deg,
-          #ffb8d2 200deg 240deg,
-          #ffe3ef 240deg 280deg,
-          #ffc6de 280deg 320deg,
-          #ffd6e8 320deg 360deg
+          #ffd6e8 0deg 51.43deg,
+          #ffb8d2 51.43deg 102.86deg,
+          #ffe3ef 102.86deg 154.29deg,
+          #ffc6de 154.29deg 205.72deg,
+          #ffd6e8 205.72deg 257.15deg,
+          #ffb8d2 257.15deg 308.58deg,
+          #ffe3ef 308.58deg 360deg
         );
       position: relative;
       overflow: hidden;
@@ -850,7 +848,7 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
 
       <div class="card">
         <h2>Ruleta del amor 🎡💖</h2>
-        <p>Gírala una vez por día y descubre tu premio romántico.</p>
+        <p>Gírala hasta 2 veces por día y descubre tu premio romántico.</p>
 
         <div class="roulette-wrap">
           <div class="roulette-wheel-box">
@@ -867,20 +865,6 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
           <div id="roulette-result" class="roulette-result" style="display:none;">
             <h3 id="roulette-prize-title"></h3>
             <p id="roulette-prize-text" style="margin-bottom:0;"></p>
-          </div>
-
-          <div id="roulette-secret-card" class="roulette-secret-card">
-            <h3>Carta secreta desbloqueada 🔐💖</h3>
-            <p>
-              Mi amor,<br><br>
-              esta carta aparece solo cuando sale este premio, pero lo que dice te lo quiero recordar siempre: eres la única a la que amo así de fuerte, así de bonito y así de verdad.
-              <br><br>
-              Te amo muchísimo, más de lo que a veces sé explicar, y no hay nadie que ocupe tu lugar en mi corazón.
-              <br><br>
-              Eres mi persona favorita, mi niña, mi paz y el amor más bonito que me ha pasado.
-              <br><br>
-              Si algún día dudas, vuelve a leer esto: te elijo a ti, solo a ti, una y mil veces más. 💖
-            </p>
           </div>
 
           <p id="roulette-lock-msg" class="mini-text" style="display:none;"></p>
@@ -1419,61 +1403,46 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
 
     const roulettePrizes = [
       {
-        key: "teamo",
-        title: "Te amo infinito 💖",
-        text: "Por si hoy no lo escuchaste suficiente: te amo infinito.",
-        weight: 22
+        key: "teamo-oido",
+        title: "Vale por un te amo al oído 💖",
+        text: "Este vale es canjeable por un te amo al oído cuando estemos juntitos.",
+        weight: 28
       },
       {
-        key: "beso",
-        title: "Beso cuando nos veamos 😘",
-        text: "Este beso queda pendiente hasta que nos veamos… y será largo.",
+        key: "beso-largo",
+        title: "Vale por beso largo 😘",
+        text: "Este vale incluye un beso largo de esos que no quiero terminar.",
+        weight: 23
+      },
+      {
+        key: "10-besitos",
+        title: "Vale por 10 besitos 😚",
+        text: "Este vale incluye 10 besitos acumulables donde tú quieras.",
         weight: 18
-      },
-      {
-        key: "abrazo",
-        title: "Abrazo bueno 🫂",
-        text: "Vale por un abrazo bueno de esos que arreglan todo.",
-        weight: 18
-      },
-      {
-        key: "corazones",
-        title: "100 corazoncitos para ti 💗",
-        text: "Porque nunca son suficientes para demostrarte lo que siento.",
-        weight: 14,
-        hearts: 30
       },
       {
         key: "regaloneo",
-        title: "Vale por un regaloneo 😚",
-        text: "Este vale incluye mimos ilimitados cuando quieras.",
-        weight: 10
+        title: "Vale por regaloneo completo 😏",
+        text: "Este vale incluye sesión completa de regaloneo conmigo.",
+        weight: 15
       },
       {
-        key: "recuerdo",
-        title: "Recuerdo desbloqueado 📸",
-        text: "Mi recuerdo favorito siempre eres tú conmigo.",
+        key: "cuello",
+        title: "Vale por besito en el cuello 💞",
+        text: "Este vale incluye besito en el cuello cuando nos veamos.",
         weight: 8
       },
       {
-        key: "mini-carta",
-        title: "Mini carta sorpresa 💌",
-        text: "Gracias por existir en mi vida. No sabes lo feliz que me haces todos los días.",
-        weight: 6
+        key: "carta-mano",
+        title: "Vale por carta escrita a mano 💌",
+        text: "Este vale es canjeable por una carta escrita a mano especialmente para ti.",
+        weight: 5
       },
       {
-        key: "amordemivida",
-        title: "Eres el amor de mi vida 👑",
-        text: "Premio mayor del día: recordarte que eres el amor de mi vida.",
+        key: "besitos-cama",
+        title: "Vale por besitos cama 😏",
+        text: "Este vale incluye sesión especial de besitos cama solo para nosotros.",
         weight: 3
-      },
-      {
-        key: "carta-secreta",
-        title: "Carta secreta desbloqueada 🔐💖",
-        text: "Hoy tocó premio ultra especial... y te dejé una carta solo para ti.",
-        weight: 1,
-        secret: true,
-        hearts: 40
       }
     ];
     let rouletteIsSpinning = false;
@@ -1971,20 +1940,23 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
 
     function actualizarEstadoRuleta() {
       const today = obtenerFechaRuletaHoy();
-      const usedDate = localStorage.getItem("ruletaAmorFecha");
+      const spinsDate = localStorage.getItem("ruletaAmorFecha");
+      const spinsToday = parseInt(localStorage.getItem("ruletaAmorSpins") || "0");
       const lockMsg = document.getElementById("roulette-lock-msg");
       const btn = document.getElementById("spin-roulette-btn");
 
       if (!lockMsg || !btn) return;
 
-      if (usedDate === today) {
+      if (spinsDate === today && spinsToday >= 2) {
         lockMsg.style.display = "block";
-        lockMsg.innerText = "Ya giraste la ruleta hoy 💖 Vuelve mañana para otro premio.";
+        lockMsg.innerText = "Ya usaste tus 2 giros de hoy 💖 Vuelve mañana para más premios.";
         btn.disabled = true;
         btn.style.opacity = ".65";
         btn.style.cursor = "not-allowed";
       } else {
-        lockMsg.style.display = "none";
+        const girosRestantes = spinsDate === today ? 2 - spinsToday : 2;
+        lockMsg.style.display = "block";
+        lockMsg.innerText = `Te quedan ${girosRestantes} giro${girosRestantes === 1 ? "" : "s"} hoy 💖`;
         btn.disabled = false;
         btn.style.opacity = "1";
         btn.style.cursor = "pointer";
@@ -2007,8 +1979,10 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       if (rouletteIsSpinning) return;
 
       const today = obtenerFechaRuletaHoy();
-      const usedDate = localStorage.getItem("ruletaAmorFecha");
-      if (usedDate === today) {
+      const spinsDate = localStorage.getItem("ruletaAmorFecha");
+      const spinsToday = parseInt(localStorage.getItem("ruletaAmorSpins") || "0");
+
+      if (spinsDate === today && spinsToday >= 2) {
         actualizarEstadoRuleta();
         return;
       }
@@ -2017,9 +1991,8 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       const resultBox = document.getElementById("roulette-result");
       const titleEl = document.getElementById("roulette-prize-title");
       const textEl = document.getElementById("roulette-prize-text");
-      const secretCard = document.getElementById("roulette-secret-card");
       const btn = document.getElementById("spin-roulette-btn");
-      if (!wheel || !resultBox || !titleEl || !textEl || !secretCard || !btn) return;
+      if (!wheel || !resultBox || !titleEl || !textEl || !btn) return;
 
       const premio = elegirPremioRuleta();
       const index = roulettePrizes.findIndex(item => item.key === premio.key);
@@ -2028,7 +2001,6 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       const finalRotation = (360 * 6) + (360 - targetAngle);
 
       rouletteIsSpinning = true;
-      secretCard.style.display = "none";
       resultBox.style.display = "none";
       btn.disabled = true;
       btn.style.opacity = ".65";
@@ -2044,18 +2016,20 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
         const heartsToCreate = premio.hearts || 12;
         for (let i = 0; i < heartsToCreate; i++) crearCorazon();
 
-        if (premio.secret) {
-          secretCard.style.display = "block";
+        if (spinsDate === today) {
+          localStorage.setItem("ruletaAmorSpins", String(spinsToday + 1));
+        } else {
+          localStorage.setItem("ruletaAmorFecha", today);
+          localStorage.setItem("ruletaAmorSpins", "1");
         }
 
-        localStorage.setItem("ruletaAmorFecha", today);
         rouletteIsSpinning = false;
         actualizarEstadoRuleta();
       }, 4300);
     }
 
 
-    
+
 function actualizarCartasDiarias() {
   const ahora = new Date();
 
