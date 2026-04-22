@@ -556,6 +556,351 @@
       box-shadow: var(--shadow2);
     }
 
+  
+
+    /* ================= JUEGO PUERTA DEL FUTURO ================= */
+    .futuregame-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .futuregame-topbar{
+      padding: 18px 18px 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,.96) 0%, #fff0f6 100%);
+      border-bottom: 1px solid rgba(214,51,132,.10);
+    }
+
+    .futuregame-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .futuregame-stage{
+      position: relative;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #ffeef6 0%, #fff 100%);
+      border-top: 1px solid rgba(214,51,132,.08);
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    #futuregame-canvas{
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(180deg, #ffdbe9 0%, #fff3f8 100%);
+      touch-action: none;
+    }
+
+    .futuregame-hud{
+      display:grid;
+      grid-template-columns: 1.1fr .8fr;
+      gap: 12px;
+      align-items: start;
+      margin-top: 14px;
+    }
+
+    .futuregame-panel{
+      background: #fff;
+      border: 1px solid rgba(214,51,132,.12);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px;
+      text-align: left;
+    }
+
+    .futuregame-panel h3{
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .futuregame-objective{
+      font-size: 15px;
+      line-height: 1.55;
+      color: #4d4d4d;
+      min-height: 48px;
+    }
+
+    .futuregame-stats{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .futuregame-stat{
+      padding: 10px 12px;
+      background:#fff0f6;
+      color: var(--pink);
+      font-weight:800;
+      border-radius: 14px;
+      border:1px solid rgba(214,51,132,.12);
+      font-size: 14px;
+    }
+
+    .futuregame-action-hint{
+      font-size:14px;
+      color:#7a4a61;
+      margin-top: 10px;
+      min-height: 22px;
+      font-weight:700;
+    }
+
+    .futuregame-controls{
+      position: absolute;
+      inset: auto 14px 14px 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      pointer-events:none;
+      z-index: 5;
+    }
+
+    .futuregame-dpad,
+    .futuregame-action-buttons{
+      pointer-events:auto;
+    }
+
+    .futuregame-dpad{
+      width: 160px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 50px);
+      gap: 8px;
+    }
+
+    .futuregame-btn{
+      border:none;
+      border-radius: 18px;
+      background: rgba(255,255,255,.90);
+      color: var(--pink);
+      font-size: 22px;
+      font-weight: 800;
+      box-shadow: var(--shadow2);
+      border: 1px solid rgba(214,51,132,.14);
+      user-select:none;
+      -webkit-user-select:none;
+      touch-action: manipulation;
+    }
+
+    .futuregame-btn:active,
+    .futuregame-btn.active{
+      transform: scale(.97);
+      background: linear-gradient(135deg, #ffd0e3 0%, #fff0f6 100%);
+    }
+
+    .futuregame-btn.blank{
+      visibility: hidden;
+    }
+
+    .futuregame-action-buttons{
+      display:flex;
+      gap: 10px;
+      align-items:flex-end;
+    }
+
+    .futuregame-interact{
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1.1;
+      padding: 10px;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color:white;
+      box-shadow: 0 12px 28px rgba(214,51,132,.24);
+    }
+
+    .futuregame-reset{
+      font-size: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.92);
+      color: var(--pink);
+    }
+
+    .futuregame-dialog{
+      position:absolute;
+      inset:0;
+      background: rgba(35,10,26,.42);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 6;
+      padding: 16px;
+    }
+
+    .futuregame-dialog.show{
+      display:flex;
+    }
+
+    .futuregame-dialog-card{
+      width:min(100%, 580px);
+      background: linear-gradient(135deg, #fff 0%, #fff3f8 100%);
+      border: 1px solid rgba(214,51,132,.14);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 22px;
+      text-align:left;
+      max-height: min(88vh, 720px);
+      overflow:auto;
+    }
+
+    .futuregame-dialog-card p{
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0 0 12px;
+    }
+
+    .futuregame-dialog-actions,
+    .futuregame-options{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+
+    .futuregame-option,
+    .futuregame-dialog-btn{
+      border:none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-weight: 800;
+      cursor:pointer;
+      background: linear-gradient(135deg, #fff 0%, #ffe8f2 100%);
+      color: var(--pink);
+      border: 1px solid rgba(214,51,132,.14);
+    }
+
+    .futuregame-dialog-btn.primary{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink2) 100%);
+      color:white;
+      box-shadow: 0 10px 20px rgba(214,51,132,.18);
+    }
+
+    .futuregame-promise-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .futuregame-promise{
+      background: white;
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(214,51,132,.12);
+      box-shadow: var(--shadow2);
+    }
+
+    .futuregame-promise strong{
+      display:block;
+      color: #000;
+      margin-bottom: 8px;
+    }
+
+    .futuregame-ending{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(20,8,16,.42);
+      z-index: 7;
+      padding: 18px;
+    }
+
+    .futuregame-ending.show{
+      display:flex;
+      animation: futuregameFadeIn .55s ease;
+    }
+
+    .futuregame-ending-box{
+      width:min(100%, 560px);
+      padding: 28px 22px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #fff 0%, #fff2f8 100%);
+      border:1px solid rgba(214,51,132,.16);
+      box-shadow: var(--shadow);
+      text-align:center;
+      animation: futuregameEndPop .7s ease;
+    }
+
+    .futuregame-ending-heart{
+      font-size: 48px;
+      line-height:1;
+      animation: futuregameHeartBeat 1.15s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+
+    .futuregame-ending-box h3,
+    .futuregame-ending-box p,
+    .futuregame-dialog-card h3,
+    .futuregame-dialog-card p,
+    .futuregame-objective,
+    .futuregame-action-hint,
+    .futuregame-mini-note,
+    .futuregame-stat,
+    .futuregame-panel h3,
+    .futuregame-promise{
+      color:#000;
+    }
+
+    .futuregame-dialog-card h3{
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .futuregame-ending-box p{
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    @keyframes futuregameFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes futuregameEndPop {
+      0% { transform: scale(.88) translateY(18px); opacity:0; }
+      100% { transform: scale(1) translateY(0); opacity:1; }
+    }
+
+    @keyframes futuregameHeartBeat {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.12); }
+      55% { transform: scale(0.98); }
+      75% { transform: scale(1.08); }
+    }
+
+    .futuregame-mini-note{
+      font-size: 14px;
+      color:#805468;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 760px){
+      .futuregame-hud{
+        grid-template-columns: 1fr;
+      }
+
+      .futuregame-controls{
+        inset: auto 10px 10px 10px;
+      }
+
+      .futuregame-dpad{
+        width: 144px;
+        grid-template-rows: repeat(3, 46px);
+      }
+
+      .futuregame-interact{
+        width: 82px;
+        height: 82px;
+      }
+    }
+
   </style>
 </head>
 
@@ -581,6 +926,7 @@
       <button class="btn menu-btn" data-section="extras" onclick="mostrarSeccion('extras', this)">✨ Extras</button>
       <button class="btn menu-btn" data-section="carta-diaria" onclick="mostrarSeccion('carta-diaria', this)">📅 Carta diaria</button>
       <button class="btn menu-btn" data-section="capsula" onclick="mostrarSeccion('capsula', this)">⏳ Cápsula</button>
+      <button class="btn menu-btn" data-section="puerta-futuro" onclick="mostrarSeccion('puerta-futuro', this)">🎮 Puerta del Futuro</button>
     </div>
 
     <div class="player-container">
@@ -1352,6 +1698,82 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
         </div>
       </div>
     </div>
+
+    <div id="puerta-futuro" class="seccion">
+      <div class="card">
+        <h2>La Puerta del Futuro 🎮💖</h2>
+        <p>
+          Un juego real para celular y computador. Explora nuestro mundo desde arriba, revive recuerdos,
+          consigue las 5 llaves del amor y abre la puerta final.
+        </p>
+        <div class="tiny-btns">
+          <button class="btn primary-btn" onclick="futureGame.startFromButton()">💖 Empezar aventura</button>
+          <button class="btn ghost-btn" onclick="futureGame.resetGame(true)">🔄 Reiniciar aventura</button>
+        </div>
+        <p class="mini-text">En celular usa los controles táctiles. En computador también puedes jugar con WASD o flechas + espacio para interactuar.</p>
+      </div>
+
+      <div class="card futuregame-card">
+        <div class="futuregame-topbar futuregame-wrap">
+          <div class="futuregame-hud">
+            <div class="futuregame-panel">
+              <h3>Misión actual ✨</h3>
+              <div id="futuregame-objective" class="futuregame-objective">Toca “Empezar aventura” para entrar al mapa.</div>
+              <div id="futuregame-action-hint" class="futuregame-action-hint"></div>
+            </div>
+            <div class="futuregame-panel">
+              <h3>Progreso</h3>
+              <div class="futuregame-stats">
+                <div class="futuregame-stat">Llaves: <span id="futuregame-keys">0</span>/5</div>
+                <div class="futuregame-stat">Recuerdos: <span id="futuregame-memories">0</span>/4</div>
+                <div class="futuregame-stat">Cristales: <span id="futuregame-crystals">0</span>/3</div>
+              </div>
+              <div class="futuregame-mini-note">Meta final: cruzar el mapa y abrir la gran puerta brillante.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="futuregame-stage futuregame-wrap">
+          <canvas id="futuregame-canvas" width="960" height="600" aria-label="Juego La Puerta del Futuro"></canvas>
+
+          <div id="futuregame-dialog" class="futuregame-dialog" aria-live="polite">
+            <div class="futuregame-dialog-card">
+              <h3 id="futuregame-dialog-title">La Puerta del Futuro</h3>
+              <div id="futuregame-dialog-body"></div>
+              <div id="futuregame-dialog-options" class="futuregame-options"></div>
+              <div id="futuregame-dialog-actions" class="futuregame-dialog-actions"></div>
+            </div>
+          </div>
+
+          <div id="futuregame-ending" class="futuregame-ending" aria-live="polite">
+            <div class="futuregame-ending-box">
+              <div class="futuregame-ending-heart">💖</div>
+              <h3>Fin</h3>
+              <p>Te amo hoy y siempre Constanza</p>
+            </div>
+          </div>
+
+          <div class="futuregame-controls">
+            <div class="futuregame-dpad">
+              <button class="futuregame-btn blank" tabindex="-1"></button>
+              <button class="futuregame-btn" data-move="up">▲</button>
+              <button class="futuregame-btn blank" tabindex="-1"></button>
+              <button class="futuregame-btn" data-move="left">◀</button>
+              <button class="futuregame-btn blank" tabindex="-1"></button>
+              <button class="futuregame-btn" data-move="right">▶</button>
+              <button class="futuregame-btn blank" tabindex="-1"></button>
+              <button class="futuregame-btn" data-move="down">▼</button>
+              <button class="futuregame-btn blank" tabindex="-1"></button>
+            </div>
+            <div class="futuregame-action-buttons">
+              <button class="futuregame-btn futuregame-reset" onclick="futureGame.resetGame(true)">Reiniciar</button>
+              <button class="futuregame-btn futuregame-interact" id="futuregame-interact-btn">❤<br>Interactuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     </div>
 
   <script>
@@ -1505,6 +1927,7 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       initRouletteAmor();
       checkCapsula();
       actualizarCartasDiarias();
+      futureGame.init();
 
       loadSong(0);
       toggleMusic();
@@ -2079,6 +2502,836 @@ function actualizarCartasDiarias() {
         timerEl.innerText = `Faltan ${dias} días y ${horas} horas para abrirse... ⏳`;
       }
     }
+
+
+    /* ================= JUEGO PUERTA DEL FUTURO ================= */
+    const futureGame = (() => {
+      const state = {
+        initialized: false,
+        running: false,
+        showFutureIntro: false,
+        openedGate: false,
+        keys: 0,
+        memories: 0,
+        crystals: 0,
+        nearbyAction: null,
+        dialogOpen: false,
+        camera: { x: 0, y: 0 },
+        controls: { up: false, down: false, left: false, right: false },
+        unlocked: new Set(),
+        particles: [],
+        lastTime: 0,
+        activeSection: false,
+      };
+
+      const world = {
+        width: 2600,
+        height: 1800,
+        paths: [
+          { x: 80, y: 760, w: 720, h: 120 },
+          { x: 700, y: 600, w: 120, h: 900 },
+          { x: 740, y: 600, w: 900, h: 110 },
+          { x: 1540, y: 600, w: 130, h: 900 },
+          { x: 1600, y: 1240, w: 760, h: 110 },
+          { x: 2240, y: 900, w: 120, h: 460 },
+          { x: 2260, y: 880, w: 240, h: 120 },
+        ]
+      };
+
+      const player = { x: 180, y: 815, w: 42, h: 42, speed: 245 };
+      let canvas, ctx, objectiveEl, hintEl, keyEl, memoryEl, crystalEl, dialogEl, dialogTitleEl, dialogBodyEl, dialogOptionsEl, dialogActionsEl, endingEl;
+
+      const zones = [
+        { id: 'inicio', x: 40, y: 620, w: 440, h: 430, title: 'Plaza del Inicio', tint: '#ffe8f2' },
+        { id: 'pasado', x: 540, y: 420, w: 860, h: 620, title: 'Jardín del Pasado', tint: '#fff0f6' },
+        { id: 'presente', x: 520, y: 1090, w: 880, h: 560, title: 'Lago del Presente', tint: '#fef6fa' },
+        { id: 'bosque', x: 1450, y: 360, w: 740, h: 760, title: 'Bosque de Pruebas', tint: '#fff4fa' },
+        { id: 'promesas', x: 1650, y: 1180, w: 720, h: 430, title: 'Sendero de Promesas', tint: '#fff7fb' },
+        { id: 'futuro', x: 2230, y: 760, w: 320, h: 620, title: 'Cielo del Mañana', tint: '#fff0fb' },
+      ];
+
+      const trees = [
+        [350, 640],[420, 720],[380, 970],[600, 470],[720, 520],[1240, 500],[1320, 840],[600, 1520],[800, 1560],
+        [940, 1490],[1180, 1480],[1540, 430],[1690, 470],[1810, 480],[2030, 430],[2120, 980],[1750, 1000],[1550, 1020],
+        [1710, 1270],[2000, 1490],[2140, 1460],[2450, 820],[2470, 1280],[2360, 1480]
+      ].map(([x,y],i) => ({x,y,r: 54 + (i%3)*5}));
+
+      const flowers = [
+        [875, 560],[975, 540],[1065, 575],[1185, 560],[880, 700],[970, 725],[1080, 700],[1180, 730],[970, 880],[1080, 860],
+        [720, 1230],[800, 1290],[920, 1240],[1080, 1280],[1220, 1210],[1800, 1330],[1860, 1390],[1920, 1310],[2360, 1110]
+      ];
+
+      const lake = { x: 760, y: 1190, w: 420, h: 280 };
+      const gate = { x: 2260, y: 910, w: 170, h: 240 };
+
+      const interactables = [
+        {
+          id: 'cartel-inicio', x: 250, y: 790, w: 70, h: 70, label: 'Cartel inicial', icon: '📜',
+          title: 'Bienvenida, amor mío',
+          body: `Antes de abrir la puerta del futuro, primero quiero que recorras todo lo que hemos sido.\n\nCamina por el mapa, revive nuestros recuerdos, consigue las 5 llaves del amor y luego cruza la puerta brillante. Todo este mundo es para ti.`,
+          onInteract() {
+            unlock('cartel-inicio');
+            updateObjective();
+            openDialog({ title: this.title, body: this.body, actions: [{ label: 'Empezar a explorar 💖', primary: true, onClick: closeDialog }] });
+          }
+        },
+        {
+          id: 'rosa', x: 670, y: 650, w: 54, h: 54, label: 'Rosa del inicio', icon: '🌹',
+          title: 'La Rosa del Inicio',
+          body: `Como esa primera rosa que te di con todos los nervios del mundo. Aquí guardé el comienzo de todo: las ganas de verte, el corazón acelerado y esa sensación de que contigo podía nacer algo enorme.`,
+          rewardKey: 'Llave del Inicio',
+          onInteract() { rewardMemoryAndMaybeKey(this, 'mem-rosa'); }
+        },
+        {
+          id: 'foto-primera', x: 1035, y: 610, w: 64, h: 64, label: 'Primera foto', icon: '📸',
+          title: 'Nuestra primera foto',
+          body: `La guardé aquí porque para mí fue más que una foto. Fue una prueba visible de que lo nuestro estaba tomando forma y de que quería seguir llenando mi galería contigo.`,
+          onInteract() { rewardMemoryAndMaybeKey(this, 'mem-foto'); }
+        },
+        {
+          id: 'si-oficial', x: 1220, y: 745, w: 64, h: 64, label: 'El sí', icon: '💍',
+          title: 'El momento del “sí”',
+          body: `Ese día estaba demasiado nervioso, pero aun así quería que todo saliera bonito. Y salió mejor de lo que soñaba: nos elegimos oficialmente y desde ahí siento que empecé a vivir algo que vale la pena cuidar todos los días.`,
+          onInteract() { rewardMemoryAndMaybeKey(this, 'mem-si'); }
+        },
+        {
+          id: 'viaje', x: 875, y: 850, w: 64, h: 64, label: 'Primer viaje', icon: '✈️',
+          title: 'Nuestros viajes',
+          body: `Quise dejar esto en el jardín porque viajar contigo siempre se siente como avanzar de verdad. No importa si el plan sale perfecto o medio caótico, si es contigo termina siendo un recuerdo que quiero repetir una y otra vez.`,
+          onInteract() { rewardMemoryAndMaybeKey(this, 'mem-viaje'); }
+        },
+        {
+          id: 'banca', x: 810, y: 1320, w: 88, h: 52, label: 'Banca del presente', icon: '🪑',
+          title: 'Nuestro presente tiene paz',
+          body: `Si hoy tuviera que describir lo nuestro en una palabra, sería calma. Incluso cuando todo alrededor se siente pesado, contigo encuentro un lugar seguro donde quiero quedarme mucho tiempo más.`,
+          onInteract() { unlock('pres-banca'); rewardPresentCheck(this); }
+        },
+        {
+          id: 'farol', x: 1045, y: 1250, w: 52, h: 90, label: 'Farol de confianza', icon: '💡',
+          title: 'La confianza que construimos',
+          body: `Este farol ilumina lo que somos hoy: una historia que aprendió a seguir incluso cuando los días se pusieron difíciles. No somos perfectos, pero sí somos de verdad, y eso vale demasiado.`,
+          onInteract() { unlock('pres-farol'); rewardPresentCheck(this); }
+        },
+        {
+          id: 'corazon-presente', x: 1180, y: 1360, w: 60, h: 60, label: 'Corazón del presente', icon: '💖',
+          title: 'Lo que siento hoy por ti',
+          body: `Hoy te amo con más conciencia, más decisión y más ganas que antes. Ya no es solo ilusión: eres mi persona favorita, mi lugar seguro y alguien con quien sí quiero construir futuro.`,
+          rewardKey: 'Llave del Presente',
+          onInteract() { unlock('pres-corazon'); rewardPresentCheck(this, true); }
+        },
+        {
+          id: 'cristal-1', x: 1670, y: 610, w: 54, h: 54, label: 'Cristal 1', icon: '✨',
+          title: 'Cristal de la risa',
+          body: `Primer cristal activado. Guardé aquí todas esas veces en que terminamos riéndonos aunque el día partiera raro.`,
+          onInteract() { activateCrystal(this, 'cr1'); }
+        },
+        {
+          id: 'cristal-2', x: 1920, y: 785, w: 54, h: 54, label: 'Cristal 2', icon: '✨',
+          title: 'Cristal del abrazo',
+          body: `Segundo cristal activado. Aquí puse esa sensación de cuando me abrazas y de verdad todo baja mil revoluciones.`,
+          onInteract() { activateCrystal(this, 'cr2'); }
+        },
+        {
+          id: 'cristal-3', x: 1745, y: 980, w: 54, h: 54, label: 'Cristal 3', icon: '✨',
+          title: 'Cristal del te amo',
+          body: `Tercer cristal activado. Aquí quedaron guardados esos “te amo” que llegan justo cuando más falta hacen.`,
+          onInteract() { activateCrystal(this, 'cr3'); }
+        },
+        {
+          id: 'cofre-bosque', x: 2050, y: 610, w: 70, h: 62, label: 'Cofre del bosque', icon: '🗝️',
+          title: 'Cofre del Bosque',
+          body: `Este cofre solo se abre cuando los 3 cristales brillan.`,
+          rewardKey: 'Llave de las Risas',
+          onInteract() {
+            if (state.crystals < 3) {
+              openDialog({ title: this.title, body: 'Todavía faltan cristales por activar en el bosque. Cuando los tres brillen, el cofre te entregará una nueva llave. 💖', actions: [{ label: 'Seguir buscando', primary: true, onClick: closeDialog }] });
+              return;
+            }
+            rewardKey(this.id, this.rewardKey, `Abriste el cofre del bosque. Aquí guardé todo lo que nos hace volver a nosotros incluso en los días raros: las bromas, las tonteras y esas risas que siempre nos encuentran.`);
+          }
+        },
+        {
+          id: 'pergamino', x: 1568, y: 875, w: 64, h: 64, label: 'Pergamino de prueba', icon: '📜',
+          title: 'Prueba del corazón',
+          onInteract() {
+            if (state.unlocked.has('quiz-completa')) {
+              openDialog({ title: 'Prueba completada', body: 'Ya respondiste correctamente esta prueba y la llave quedó guardada contigo. 💝', actions: [{ label: 'Cerrar', primary: true, onClick: closeDialog }] });
+              return;
+            }
+            openQuiz();
+          }
+        },
+        {
+          id: 'altar', x: 1895, y: 1325, w: 84, h: 84, label: 'Altar de promesas', icon: '⭐',
+          title: 'Altar de Promesas',
+          body: `Aquí quería dejar algo simple pero total: no quiero solo recordar lo bonito que hemos vivido; quiero seguir construyendo contigo, paso a paso, viaje a viaje, abrazo a abrazo.`,
+          rewardKey: 'Llave del Amor',
+          onInteract() { rewardKey(this.id, this.rewardKey, this.body); }
+        },
+        {
+          id: 'puerta', x: 2300, y: 1010, w: 88, h: 120, label: 'Puerta del Futuro', icon: '🚪',
+          title: 'La Puerta del Futuro',
+          onInteract() {
+            if (state.keys < 5) {
+              openDialog({
+                title: 'La puerta sigue cerrada',
+                body: `Aún faltan ${5 - state.keys} llave${5 - state.keys === 1 ? '' : 's'} del amor. Recorre bien el mapa, revive todo lo nuestro y vuelve cuando estés lista.`,
+                actions: [{ label: 'Seguir explorando', primary: true, onClick: closeDialog }]
+              });
+              return;
+            }
+            if (!state.openedGate) {
+              openDialog({
+                title: 'Todo está listo ✨',
+                body: `Encontraste las 5 llaves. Ya puedes abrir la gran puerta brillante y entrar al lugar donde dejé lo que todavía quiero vivir contigo.`,
+                actions: [
+                  { label: 'Abrir puerta 💖', primary: true, onClick: () => { closeDialog(); openGate(); } },
+                  { label: 'Esperar un poquito', onClick: closeDialog }
+                ]
+              });
+              return;
+            }
+            enterFutureArea();
+          }
+        },
+        {
+          id: 'estrella-1', x: 2330, y: 820, w: 56, h: 56, label: 'Promesa 1', icon: '🌟',
+          title: 'Promesa de compañía',
+          body: `Quiero seguir estando contigo en lo simple y en lo importante: días buenos, días pesados, trayectos cortos, viajes largos y todo lo que se venga.` ,
+          futureOnly: true,
+          onInteract() { openDialog({ title: this.title, body: this.body, actions:[{label:'Seguir', primary:true, onClick: closeDialog}] }); }
+        },
+        {
+          id: 'estrella-2', x: 2450, y: 965, w: 56, h: 56, label: 'Promesa 2', icon: '🌟',
+          title: 'Promesa de crecimiento',
+          body: `Quiero verte crecer, apoyarte, celebrar tus logros y también crecer yo a tu lado. No solo estar contigo: avanzar contigo.`,
+          futureOnly: true,
+          onInteract() { openDialog({ title: this.title, body: this.body, actions:[{label:'Seguir', primary:true, onClick: closeDialog}] }); }
+        },
+        {
+          id: 'estrella-3', x: 2345, y: 1180, w: 56, h: 56, label: 'Promesa 3', icon: '🌟',
+          title: 'Promesa de aventura',
+          body: `Quiero más viajes, más escapadas, más historias improvisadas y más momentos de “qué bueno que estoy aquí contigo”.`,
+          futureOnly: true,
+          onInteract() { openDialog({ title: this.title, body: this.body, actions:[{label:'Seguir', primary:true, onClick: closeDialog}] }); }
+        },
+        {
+          id: 'carta-final', x: 2420, y: 1325, w: 72, h: 72, label: 'Carta final', icon: '💌',
+          futureOnly: true,
+          onInteract() { openFinalLetter(); }
+        },
+      ];
+
+      function init() {
+        if (state.initialized) return;
+        canvas = document.getElementById('futuregame-canvas');
+        if (!canvas) return;
+        ctx = canvas.getContext('2d');
+        objectiveEl = document.getElementById('futuregame-objective');
+        hintEl = document.getElementById('futuregame-action-hint');
+        keyEl = document.getElementById('futuregame-keys');
+        memoryEl = document.getElementById('futuregame-memories');
+        crystalEl = document.getElementById('futuregame-crystals');
+        dialogEl = document.getElementById('futuregame-dialog');
+        dialogTitleEl = document.getElementById('futuregame-dialog-title');
+        dialogBodyEl = document.getElementById('futuregame-dialog-body');
+        dialogOptionsEl = document.getElementById('futuregame-dialog-options');
+        dialogActionsEl = document.getElementById('futuregame-dialog-actions');
+        endingEl = document.getElementById('futuregame-ending');
+        bindControls();
+        resetGame(false);
+        state.initialized = true;
+        requestAnimationFrame(loop);
+      }
+
+      function startFromButton() {
+        init();
+        if (!state.running) {
+          state.running = true;
+          openDialog({
+            title: 'La Puerta del Futuro',
+            body: `Bienvenida, amor.\n\nExplora el mundo, revive 4 recuerdos del jardín, habla con el presente, activa los 3 cristales del bosque, consigue las 5 llaves del amor y vuelve a la gran puerta brillante.`,
+            actions: [{ label: 'Jugar ahora 💖', primary: true, onClick: closeDialog }]
+          });
+        }
+        updateObjective();
+      }
+
+      function resetGame(showDialogAfter) {
+        state.running = false;
+        state.showFutureIntro = false;
+        state.openedGate = false;
+        state.keys = 0;
+        state.memories = 0;
+        state.crystals = 0;
+        state.nearbyAction = null;
+        state.dialogOpen = false;
+        state.unlocked = new Set();
+        state.particles = [];
+        state.controls = { up: false, down: false, left: false, right: false };
+        player.x = 180; player.y = 815;
+        state.camera.x = 0; state.camera.y = 0;
+        updateHud();
+        closeDialog();
+        if (showDialogAfter) {
+          openDialog({ title: 'Aventura reiniciada', body: 'Todo volvió al comienzo. Cuando quieras, vuelve a tocar “Empezar aventura” y recorre otra vez nuestro mapa. 💖', actions: [{ label: 'Perfecto', primary: true, onClick: closeDialog }] });
+        }
+      }
+
+      function bindControls() {
+        document.querySelectorAll('[data-move]').forEach(btn => {
+          const dir = btn.getAttribute('data-move');
+          const on = () => { state.controls[dir] = true; btn.classList.add('active'); };
+          const off = () => { state.controls[dir] = false; btn.classList.remove('active'); };
+          btn.addEventListener('pointerdown', e => { e.preventDefault(); on(); });
+          btn.addEventListener('pointerup', off);
+          btn.addEventListener('pointercancel', off);
+          btn.addEventListener('pointerleave', off);
+        });
+
+        const interactBtn = document.getElementById('futuregame-interact-btn');
+        if (interactBtn) {
+          interactBtn.addEventListener('click', () => tryInteract());
+        }
+
+        window.addEventListener('keydown', e => {
+          const key = e.key.toLowerCase();
+          if (['arrowup','w'].includes(key)) state.controls.up = true;
+          if (['arrowdown','s'].includes(key)) state.controls.down = true;
+          if (['arrowleft','a'].includes(key)) state.controls.left = true;
+          if (['arrowright','d'].includes(key)) state.controls.right = true;
+          if ([' ','enter','e'].includes(key)) {
+            if (document.getElementById('puerta-futuro')?.style.display !== 'block') return;
+            e.preventDefault();
+            if (state.dialogOpen) return;
+            tryInteract();
+          }
+        });
+
+        window.addEventListener('keyup', e => {
+          const key = e.key.toLowerCase();
+          if (['arrowup','w'].includes(key)) state.controls.up = false;
+          if (['arrowdown','s'].includes(key)) state.controls.down = false;
+          if (['arrowleft','a'].includes(key)) state.controls.left = false;
+          if (['arrowright','d'].includes(key)) state.controls.right = false;
+        });
+      }
+
+      function loop(ts) {
+        init();
+        const dt = Math.min(0.033, (ts - (state.lastTime || ts)) / 1000);
+        state.lastTime = ts;
+        if (state.activeSection && state.running && !state.dialogOpen) update(dt);
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      function update(dt) {
+        let dx = 0, dy = 0;
+        if (state.controls.left) dx -= 1;
+        if (state.controls.right) dx += 1;
+        if (state.controls.up) dy -= 1;
+        if (state.controls.down) dy += 1;
+
+        if (dx || dy) {
+          const len = Math.hypot(dx, dy) || 1;
+          dx /= len; dy /= len;
+          movePlayer(dx * player.speed * dt, dy * player.speed * dt);
+        }
+
+        for (let i = state.particles.length - 1; i >= 0; i--) {
+          const p = state.particles[i];
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.life -= dt;
+          p.vy -= 5 * dt;
+          if (p.life <= 0) state.particles.splice(i, 1);
+        }
+
+        state.nearbyAction = findNearbyInteractable();
+        hintEl.innerText = state.nearbyAction ? `Estás cerca de: ${state.nearbyAction.label}. Toca ❤ para interactuar.` : '';
+
+        state.camera.x += (((player.x - canvas.width / 2)) - state.camera.x) * 0.09;
+        state.camera.y += (((player.y - canvas.height / 2)) - state.camera.y) * 0.09;
+        state.camera.x = clamp(state.camera.x, 0, world.width - canvas.width);
+        state.camera.y = clamp(state.camera.y, 0, world.height - canvas.height);
+      }
+
+      function movePlayer(mx, my) {
+        const nextX = clamp(player.x + mx, 20, world.width - player.w - 20);
+        const nextY = clamp(player.y + my, 20, world.height - player.h - 20);
+        if (!collidesWithBlocking(nextX, player.y)) player.x = nextX;
+        if (!collidesWithBlocking(player.x, nextY)) player.y = nextY;
+      }
+
+      function collidesWithBlocking(x, y) {
+        const pr = { x, y, w: player.w, h: player.h };
+        for (const t of trees) {
+          const tr = { x: t.x - t.r * .7, y: t.y - t.r * .55, w: t.r * 1.4, h: t.r * 1.2 };
+          if (rectsOverlap(pr, tr)) return true;
+        }
+        const lakeCore = { x: lake.x + 120, y: lake.y + 88, w: lake.w - 240, h: lake.h - 176 };
+        if (rectsOverlap(pr, lakeCore)) return true;
+        if (!state.openedGate) {
+          const gateBlock = { x: gate.x + 22, y: gate.y + 78, w: gate.w - 44, h: gate.h - 82 };
+          if (rectsOverlap(pr, gateBlock)) return true;
+        }
+        return false;
+      }
+
+      function draw() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
+        ctx.save();
+        ctx.translate(-state.camera.x, -state.camera.y);
+
+        drawZones();
+        drawPaths();
+        drawLake();
+        drawFlowers();
+        drawTrees();
+        drawInteractables();
+        drawGate();
+        drawPlayer();
+        drawParticles();
+
+        ctx.restore();
+      }
+
+      function drawBackground() {
+        const grad = ctx.createLinearGradient(0,0,0,canvas.height);
+        grad.addColorStop(0, '#ffd8e9');
+        grad.addColorStop(1, '#fff7fb');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+      }
+
+      function drawZones() {
+        zones.forEach(zone => {
+          ctx.fillStyle = zone.tint;
+          roundRect(ctx, zone.x, zone.y, zone.w, zone.h, 28, true, false);
+          ctx.fillStyle = 'rgba(214,51,132,.09)';
+          ctx.font = '800 28px Arial';
+          ctx.fillText(zone.title, zone.x + 24, zone.y + 42);
+        });
+      }
+
+      function drawPaths() {
+        ctx.fillStyle = '#f7d8e5';
+        world.paths.forEach(path => roundRect(ctx, path.x, path.y, path.w, path.h, 34, true, false));
+      }
+
+      function drawTrees() {
+        trees.forEach(t => {
+          ctx.fillStyle = '#bb7e9d';
+          ctx.fillRect(t.x - 12, t.y + 16, 24, 36);
+          ctx.beginPath();
+          ctx.fillStyle = '#ffb7d5';
+          ctx.arc(t.x, t.y, t.r, 0, Math.PI*2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.fillStyle = '#ffd7e9';
+          ctx.arc(t.x - 16, t.y - 10, t.r * .42, 0, Math.PI*2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.fillStyle = '#ff8fc2';
+          ctx.arc(t.x + 18, t.y - 8, t.r * .3, 0, Math.PI*2);
+          ctx.fill();
+        });
+      }
+
+      function drawFlowers() {
+        flowers.forEach(([x,y], i) => {
+          ctx.fillStyle = i % 3 === 0 ? '#ff8fc2' : i % 3 === 1 ? '#ffc8df' : '#ffa7cd';
+          for (let a=0;a<5;a++) {
+            const ang = (Math.PI*2/5) * a;
+            ctx.beginPath();
+            ctx.arc(x + Math.cos(ang)*8, y + Math.sin(ang)*8, 6, 0, Math.PI*2);
+            ctx.fill();
+          }
+          ctx.fillStyle = '#ffd84d';
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI*2);
+          ctx.fill();
+        });
+      }
+
+      function drawLake() {
+        ctx.fillStyle = '#caecff';
+        roundRect(ctx, lake.x, lake.y, lake.w, lake.h, 120, true, false);
+        ctx.fillStyle = 'rgba(255,255,255,.5)';
+        roundRect(ctx, lake.x + 44, lake.y + 50, 170, 60, 40, true, false);
+      }
+
+      function drawInteractables() {
+        interactables.forEach(item => {
+          if (item.futureOnly && !state.openedGate) return;
+          const isNearby = state.nearbyAction && state.nearbyAction.id === item.id;
+          const isUnlocked = state.unlocked.has(item.id);
+          ctx.save();
+          if (item.id.startsWith('cristal') && state.unlocked.has(item.id)) {
+            ctx.shadowBlur = 26;
+            ctx.shadowColor = '#ff5fa7';
+          } else if (isNearby) {
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = 'rgba(214,51,132,.35)';
+          }
+          ctx.fillStyle = isUnlocked ? '#ffdfed' : '#fff';
+          roundRect(ctx, item.x, item.y, item.w, item.h, 18, true, false);
+          ctx.fillStyle = '#d63384';
+          ctx.font = `${Math.min(item.w, item.h) * 0.55}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(item.icon || '❤', item.x + item.w/2, item.y + item.h/2 + 2);
+          ctx.restore();
+        });
+      }
+
+      function drawGate() {
+        ctx.save();
+        if (state.openedGate) {
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = 'transparent';
+        }
+        ctx.fillStyle = state.openedGate ? '#ffe7f7' : '#ffb3d1';
+        roundRect(ctx, gate.x, gate.y, gate.w, gate.h, 34, true, false);
+        ctx.fillStyle = state.openedGate ? '#fff8fe' : '#ffd4e8';
+        roundRect(ctx, gate.x + 26, gate.y + 34, gate.w - 52, gate.h - 38, 18, true, false);
+        ctx.fillStyle = '#d63384';
+        ctx.beginPath();
+        ctx.arc(gate.x + gate.w - 46, gate.y + gate.h/2, 7, 0, Math.PI*2);
+        ctx.fill();
+        ctx.font = '800 30px Arial';
+        ctx.fillText('✨', gate.x + gate.w/2, gate.y - 18);
+        ctx.restore();
+      }
+
+      function drawPlayer() {
+        const x = player.x, y = player.y;
+        const cx = x + player.w / 2;
+        const cy = y + player.h / 2;
+        ctx.save();
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(214,51,132,.25)';
+
+        ctx.fillStyle = '#ff7eb6';
+        roundRect(ctx, x + 6, y + 20, 30, 24, 12, true, false);
+
+        ctx.fillStyle = '#f5d1b3';
+        ctx.beginPath();
+        ctx.arc(cx, y + 18, 12, 0, Math.PI*2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f1d25f';
+        ctx.beginPath();
+        ctx.arc(cx, y + 15, 13, Math.PI, Math.PI * 2);
+        ctx.fill();
+        roundRect(ctx, x + 10, y + 8, 22, 10, 6, true, false);
+        roundRect(ctx, x + 8, y + 12, 6, 10, 4, true, false);
+        roundRect(ctx, x + 28, y + 12, 6, 10, 4, true, false);
+
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+        ctx.arc(x + 17, y + 18, 1.8, 0, Math.PI*2);
+        ctx.arc(x + 25, y + 18, 1.8, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.arc(cx, y + 22, 4.2, 0.15, Math.PI - 0.15);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#f5d1b3';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(x + 13, y + 44);
+        ctx.lineTo(x + 10, y + 58);
+        ctx.moveTo(x + 29, y + 44);
+        ctx.lineTo(x + 32, y + 58);
+        ctx.moveTo(x + 16, y + 30);
+        ctx.lineTo(x + 8, y + 40);
+        ctx.moveTo(x + 26, y + 30);
+        ctx.lineTo(x + 34, y + 40);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ff4fa0';
+        ctx.font = '800 18px Arial';
+        ctx.fillText('❤', x + 14, y - 8);
+        ctx.restore();
+      }
+
+      function drawParticles() {
+        state.particles.forEach(p => {
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.life / p.maxLife);
+          ctx.fillStyle = p.color;
+          ctx.font = `${p.size}px Arial`;
+          ctx.fillText(p.char, p.x, p.y);
+          ctx.restore();
+        });
+      }
+
+      function findNearbyInteractable() {
+        const reach = 110;
+        let nearest = null;
+        let best = Infinity;
+        interactables.forEach(item => {
+          if (item.futureOnly && !state.openedGate) return;
+          const cx = item.x + item.w/2;
+          const cy = item.y + item.h/2;
+          const px = player.x + player.w/2;
+          const py = player.y + player.h/2;
+          const d = Math.hypot(cx - px, cy - py);
+          if (d < reach && d < best) {
+            best = d;
+            nearest = item;
+          }
+        });
+        return nearest;
+      }
+
+      function tryInteract() {
+        if (!state.activeSection || state.dialogOpen || !state.running) return;
+        const item = state.nearbyAction || findNearbyInteractable();
+        if (!item) return;
+        if (item.id === 'puerta' && state.keys >= 5 && !state.openedGate) {
+          openGate();
+          return;
+        }
+        item.onInteract?.();
+      }
+
+      function rewardMemoryAndMaybeKey(item, memoryId) {
+        const already = state.unlocked.has(memoryId);
+        unlock(item.id);
+        if (!already) {
+          state.unlocked.add(memoryId);
+          state.memories += 1;
+          burst(item.x + item.w/2, item.y + item.h/2, 14, ['💖','🌸','✨']);
+        }
+        let extra = item.body;
+        if (state.memories >= 4 && !state.unlocked.has('llave-jardin')) {
+          extra += `\n\nReviviendo los 4 recuerdos del jardín, acabas de formar la Llave de los Recuerdos. Ahora el pasado quedó completo y puedes seguir avanzando.`;
+          rewardKey('llave-jardin', 'Llave de los Recuerdos');
+        } else {
+          openDialog({ title: item.title, body: extra, actions:[{ label:'Seguir explorando', primary:true, onClick: closeDialog }] });
+        }
+        updateHud();
+        updateObjective();
+      }
+
+      function rewardPresentCheck(item, canGiveKey = false) {
+        unlock(item.id);
+        burst(item.x + item.w/2, item.y + item.h/2, 10, ['💗','✨']);
+        const presenteListo = ['pres-banca','pres-farol','pres-corazon'].every(id => state.unlocked.has(id));
+        if (canGiveKey && presenteListo && !state.unlocked.has('llave-presente')) {
+          rewardKey('llave-presente', item.rewardKey || 'Llave del Presente', item.body + `\n\nCon esto cerraste la zona del presente. Ya tienes otra llave guardada contigo.`);
+        } else {
+          openDialog({ title: item.title, body: item.body, actions:[{ label:'Continuar', primary:true, onClick: closeDialog }] });
+        }
+        updateObjective();
+      }
+
+      function activateCrystal(item, key) {
+        if (state.unlocked.has(item.id)) {
+          openDialog({ title: item.title, body: 'Este cristal ya está activo y sigue brillando para ti. ✨', actions:[{ label:'Cerrar', primary:true, onClick: closeDialog }] });
+          return;
+        }
+        unlock(item.id);
+        state.unlocked.add(key);
+        state.crystals += 1;
+        burst(item.x + item.w/2, item.y + item.h/2, 16, ['✨','💖']);
+        openDialog({ title: item.title, body: item.body, actions:[{ label:'Seguir', primary:true, onClick: closeDialog }] });
+        updateHud();
+        updateObjective();
+      }
+
+      function rewardKey(id, label, customBody = '') {
+        if (state.unlocked.has(id)) {
+          if (customBody) openDialog({ title: label, body: customBody, actions:[{ label:'Cerrar', primary:true, onClick: closeDialog }] });
+          return;
+        }
+        state.unlocked.add(id);
+        state.keys += 1;
+        burst(player.x + player.w/2, player.y, 20, ['🗝️','💖','✨']);
+        const body = customBody || `Conseguiste ${label}. Ya la guardé en tu inventario para acercarte un poco más a la gran puerta final.`;
+        openDialog({ title: label + ' conseguida', body, actions:[{ label:'Guardar y seguir 💖', primary:true, onClick: closeDialog }] });
+        updateHud();
+        updateObjective();
+      }
+
+      function openQuiz() {
+        state.dialogOpen = true;
+        dialogEl.classList.add('show');
+        dialogTitleEl.innerText = 'Prueba del corazón';
+        dialogBodyEl.innerHTML = `<p>Para ganar esta llave, responde algo que para nosotros importa de verdad:</p><p><strong>¿Qué fecha empezó oficialmente lo nuestro?</strong></p>`;
+        dialogOptionsEl.innerHTML = '';
+        dialogActionsEl.innerHTML = '';
+        [
+          { label: '16/04/2025', ok: false },
+          { label: '30/04/2025', ok: true },
+          { label: '30/05/2025', ok: false },
+        ].forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'futuregame-option';
+          btn.textContent = opt.label;
+          btn.onclick = () => {
+            if (opt.ok) {
+              state.unlocked.add('quiz-completa');
+              closeDialog();
+              rewardKey('llave-confianza', 'Llave de la Confianza', 'Respuesta correcta. Quise que esta llave se llamara así porque elegirnos oficialmente fue también una forma de confiar el corazón y el futuro el uno al otro.');
+            } else {
+              dialogBodyEl.innerHTML = `<p>Esa no era 💔</p><p>Piensa en el día del “sí”, el día en que lo nuestro se volvió oficialmente nuestro.</p>`;
+            }
+          };
+          dialogOptionsEl.appendChild(btn);
+        });
+        const cancel = document.createElement('button');
+        cancel.className = 'futuregame-dialog-btn';
+        cancel.textContent = 'Volver luego';
+        cancel.onclick = closeDialog;
+        dialogActionsEl.appendChild(cancel);
+      }
+
+      function openGate() {
+        state.openedGate = true;
+        state.showFutureIntro = true;
+        updateObjective();
+        enterFutureArea();
+      }
+
+      function enterFutureArea() {
+        player.x = 2355;
+        player.y = 1080;
+        state.camera.x = clamp(player.x - canvas.width / 2, 0, world.width - canvas.width);
+        state.camera.y = clamp(player.y - canvas.height / 2, 0, world.height - canvas.height);
+        if (state.showFutureIntro) {
+          state.showFutureIntro = false;
+          openDialog({
+            title: 'Entraste al Cielo del Mañana ✨',
+            body: `Llegaste. Detrás de esta puerta no escondí un final, escondí todo lo que todavía quiero vivir contigo.\n\nExplora las estrellas del futuro y cuando quieras, abre la carta final.`,
+            actions: [{ label: 'Seguir caminando 💖', primary: true, onClick: closeDialog }]
+          });
+        }
+      }
+
+      function openFinalLetter() {
+        openDialog({
+          title: 'Carta final: detrás de la puerta',
+          body: `Constanza,\n\nSi el pasado contigo ya fue tan bonito, entonces el futuro contigo me ilusiona todavía más. Quiero más viajes, más risas, más abrazos que curan días difíciles, más logros tuyos que pueda celebrar de cerca y más momentos simples que terminen volviéndose recuerdos gigantes.\n\nNo quiero que esta puerta sea el cierre de algo. Quiero que sea una promesa: seguir eligiéndote, seguir cuidando lo nuestro y seguir construyendo una historia que valga la pena vivir completa contigo.\n\nTe amo hoy, mañana y en cada puerta que todavía nos falte abrir. 💖`,
+          extraHtml: `
+            <div class="futuregame-promise-grid">
+              <div class="futuregame-promise"><strong>Más aniversarios</strong>Quiero seguir celebrando años contigo y mirar atrás sabiendo que cada año valió la pena.</div>
+              <div class="futuregame-promise"><strong>Más viajes</strong>Quiero seguir conociendo lugares, pero sobre todo seguir conociéndolos contigo al lado.</div>
+              <div class="futuregame-promise"><strong>Más crecimiento</strong>Quiero acompañarte en tus metas y convertirme también en una mejor versión de mí contigo.</div>
+              <div class="futuregame-promise"><strong>Más nosotros</strong>Quiero seguir eligiéndote incluso en los días complejos, porque ahí también vive el amor de verdad.</div>
+            </div>
+          `,
+          actions: [{ label: 'Ver final ✨', primary: true, onClick: () => { closeDialog(); showEnding(); } }]
+        });
+      }
+
+      function showEnding() {
+        if (state.endingShown) return;
+        state.endingShown = true;
+        if (endingEl) {
+          endingEl.style.display = 'flex';
+          endingEl.classList.add('show');
+        }
+      }
+
+      function openDialog({ title, body, actions = [], extraHtml = '' }) {
+        state.dialogOpen = true;
+        dialogEl.classList.add('show');
+        dialogTitleEl.innerText = title;
+        dialogBodyEl.innerHTML = body.split('\n\n').map(t => `<p>${t}</p>`).join('') + extraHtml;
+        dialogOptionsEl.innerHTML = '';
+        dialogActionsEl.innerHTML = '';
+        actions.forEach(action => {
+          const btn = document.createElement('button');
+          btn.className = 'futuregame-dialog-btn' + (action.primary ? ' primary' : '');
+          btn.textContent = action.label;
+          btn.onclick = action.onClick;
+          dialogActionsEl.appendChild(btn);
+        });
+      }
+
+      function closeDialog() {
+        state.dialogOpen = false;
+        dialogEl?.classList.remove('show');
+        if (dialogOptionsEl) dialogOptionsEl.innerHTML = '';
+        if (dialogActionsEl) dialogActionsEl.innerHTML = '';
+      }
+
+      function unlock(id) { state.unlocked.add(id); }
+
+      function burst(x, y, count, chars) {
+        return;
+      }
+
+      function updateObjective() {
+        let text = 'Toca “Empezar aventura” para entrar al mapa.';
+        if (state.running) {
+          if (state.keys >= 5 && !state.openedGate) {
+            text = 'Ya tienes las 5 llaves del amor. Ve a la gran puerta brillante del extremo derecho y ábrela.';
+          } else if (state.memories < 4) {
+            text = `Explora el Jardín del Pasado y revive los 4 recuerdos principales. Llevas ${state.memories}/4.`;
+          } else if (!state.unlocked.has('llave-presente')) {
+            text = 'Ve al Lago del Presente y habla con la banca, el farol y el corazón para obtener la Llave del Presente.';
+          } else if (state.crystals < 3) {
+            text = `Activa los 3 cristales del Bosque de Pruebas. Llevas ${state.crystals}/3.`;
+          } else if (!state.unlocked.has('llave-confianza')) {
+            text = 'Responde la prueba del pergamino para ganar la Llave de la Confianza.';
+          } else if (!state.unlocked.has('altar')) {
+            text = 'Pasa por el Sendero de Promesas y activa el altar para conseguir la última llave.';
+          } else if (state.openedGate) {
+            text = 'Explora el Cielo del Mañana y abre la carta final cuando quieras.';
+          }
+        }
+        objectiveEl.innerText = text;
+      }
+
+      function updateHud() {
+        keyEl.innerText = state.keys;
+        memoryEl.innerText = state.memories;
+        crystalEl.innerText = state.crystals;
+        updateObjective();
+      }
+
+      function setSectionActive(isActive) {
+        state.activeSection = isActive;
+      }
+
+      function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+      function rectsOverlap(a, b) { return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y; }
+
+      function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+        const rr = Math.min(r, w/2, h/2);
+        ctx.beginPath();
+        ctx.moveTo(x + rr, y);
+        ctx.arcTo(x + w, y, x + w, y + h, rr);
+        ctx.arcTo(x + w, y + h, x, y + h, rr);
+        ctx.arcTo(x, y + h, x, y, rr);
+        ctx.arcTo(x, y, x + w, y, rr);
+        ctx.closePath();
+        if (fill) ctx.fill();
+        if (stroke) ctx.stroke();
+      }
+
+      return { init, startFromButton, resetGame, setSectionActive };
+    })();
+
+    (function integrateFutureGame() {
+      const previousMostrarSeccion = mostrarSeccion;
+      mostrarSeccion = function(id, btn) {
+        previousMostrarSeccion(id, btn);
+        try { futureGame.init(); } catch(e) {}
+        futureGame.setSectionActive(id === 'puerta-futuro');
+      };
+      window.addEventListener('load', () => { try { futureGame.init(); } catch(e) {} });
+    })();
+
 
     setInterval(actualizarContador, 1000);
     setInterval(actualizarAniversario, 1000);
