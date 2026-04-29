@@ -901,6 +901,235 @@
       }
     }
 
+
+    /* ================= ANIMACIÓN ÉPICA 1 AÑO ================= */
+    #btn-aniversario-epico{
+      margin-top: 14px;
+      font-size: 17px;
+      padding: 14px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #btn-aniversario-epico.aniversario-locked{
+      opacity: .62;
+      cursor: not-allowed;
+      filter: grayscale(.2);
+      box-shadow: none;
+    }
+
+    #btn-aniversario-epico.aniversario-ready{
+      animation: aniversarioButtonPulse 1s infinite alternate, aniversarioButtonGlow 2s infinite;
+    }
+
+    @keyframes aniversarioButtonPulse{
+      from{ transform: scale(1); }
+      to{ transform: scale(1.06); }
+    }
+
+    @keyframes aniversarioButtonGlow{
+      0%, 100%{ box-shadow: 0 0 18px rgba(214,51,132,.35), 0 0 35px rgba(255,126,182,.22); }
+      50%{ box-shadow: 0 0 28px rgba(214,51,132,.65), 0 0 70px rgba(255,126,182,.42); }
+    }
+
+    #aniversario-epico-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.33) 0%, rgba(255,255,255,0) 28%),
+        radial-gradient(circle at 15% 10%, rgba(255,214,232,.75) 0%, rgba(255,214,232,0) 28%),
+        radial-gradient(circle at 85% 18%, rgba(255,126,182,.65) 0%, rgba(255,126,182,0) 30%),
+        linear-gradient(135deg, #14000b 0%, #5b0031 38%, #d63384 70%, #ff9bc8 100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #aniversario-epico-overlay.show{
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+      animation: aniversarioOverlayIn .8s ease forwards, aniversarioScreenShake .22s linear 5 .75s;
+    }
+
+    #aniversario-epico-overlay::before,
+    #aniversario-epico-overlay::after{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      pointer-events:none;
+    }
+
+    #aniversario-epico-overlay::before{
+      background:
+        repeating-conic-gradient(from 0deg, rgba(255,255,255,.18) 0deg 8deg, transparent 8deg 18deg);
+      animation: aniversarioRays 12s linear infinite;
+      opacity: .65;
+      mix-blend-mode: screen;
+    }
+
+    #aniversario-epico-overlay::after{
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.95) 0 2px, transparent 3px),
+        radial-gradient(circle, rgba(255,214,232,.9) 0 2px, transparent 3px),
+        radial-gradient(circle, rgba(255,126,182,.9) 0 1px, transparent 3px);
+      background-size: 90px 90px, 130px 130px, 70px 70px;
+      animation: aniversarioStars 8s linear infinite;
+      opacity: .42;
+    }
+
+    #aniversario-fireworks,
+    #aniversario-confetti{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      pointer-events:none;
+    }
+
+    #aniversario-fireworks{ z-index:1; }
+    #aniversario-confetti{ z-index:2; }
+
+    .aniversario-epico-content{
+      position: relative;
+      z-index: 5;
+      width: min(94vw, 980px);
+      text-align: center;
+      padding: 36px 18px;
+      animation: aniversarioContentEntry 1.25s cubic-bezier(.2,1.2,.25,1) forwards;
+    }
+
+    .aniversario-epico-badge{
+      display:inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 2px;
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+      text-shadow: 0 2px 12px rgba(0,0,0,.2);
+      animation: aniversarioFloat 2.2s ease-in-out infinite;
+    }
+
+    .aniversario-epico-title{
+      margin: 18px 0 0;
+      font-size: clamp(48px, 12vw, 142px);
+      line-height: .92;
+      color: #fff;
+      font-weight: 1000;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 12px rgba(255,255,255,1),
+        0 0 35px rgba(255,182,217,.95),
+        0 0 75px rgba(255,68,153,.75),
+        0 8px 0 rgba(138,20,80,.35);
+      animation: aniversarioTitleGlow .75s ease-in-out infinite alternate, aniversarioTitlePop 1.6s ease forwards;
+    }
+
+    .aniversario-epico-love{
+      margin: 10px 0 0;
+      font-size: clamp(46px, 10vw, 118px);
+      line-height: .95;
+      font-weight: 1000;
+      color: #fff6fb;
+      text-shadow:
+        0 0 16px #fff,
+        0 0 40px #ffb6d9,
+        0 0 90px #d63384;
+      animation: aniversarioLoveBeat .72s ease-in-out infinite;
+    }
+
+    .aniversario-epico-subtitle{
+      max-width: 820px;
+      margin: 22px auto 0;
+      font-size: clamp(18px, 3vw, 30px);
+      line-height: 1.45;
+      color: #fff;
+      font-weight: 800;
+      text-shadow: 0 2px 16px rgba(0,0,0,.35);
+    }
+
+    .aniversario-epico-close{
+      margin-top: 26px;
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(255,255,255,.17);
+      color: white;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.16);
+    }
+
+    .aniversario-heart-burst{
+      position: fixed;
+      z-index: 9999999;
+      pointer-events: none;
+      animation: aniversarioHeartBurst 2.8s ease-out forwards;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,.18));
+    }
+
+    @keyframes aniversarioOverlayIn{
+      from{ opacity:0; filter: saturate(.6) brightness(.8); }
+      to{ opacity:1; filter: saturate(1.3) brightness(1); }
+    }
+
+    @keyframes aniversarioScreenShake{
+      0%,100%{ transform: translate(0,0) rotate(0deg); }
+      25%{ transform: translate(5px,-4px) rotate(.25deg); }
+      50%{ transform: translate(-5px,5px) rotate(-.25deg); }
+      75%{ transform: translate(3px,4px) rotate(.15deg); }
+    }
+
+    @keyframes aniversarioRays{
+      from{ transform: rotate(0deg) scale(1.1); }
+      to{ transform: rotate(360deg) scale(1.1); }
+    }
+
+    @keyframes aniversarioStars{
+      from{ transform: translateY(0); }
+      to{ transform: translateY(90px); }
+    }
+
+    @keyframes aniversarioContentEntry{
+      0%{ transform: scale(.2) rotate(-14deg); opacity:0; filter: blur(8px); }
+      62%{ transform: scale(1.15) rotate(3deg); opacity:1; filter: blur(0); }
+      100%{ transform: scale(1) rotate(0deg); opacity:1; }
+    }
+
+    @keyframes aniversarioFloat{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-8px); }
+    }
+
+    @keyframes aniversarioTitleGlow{
+      from{ filter: brightness(1); transform: translateY(0); }
+      to{ filter: brightness(1.18); transform: translateY(-4px); }
+    }
+
+    @keyframes aniversarioTitlePop{
+      0%{ letter-spacing: 8px; }
+      100%{ letter-spacing: -3px; }
+    }
+
+    @keyframes aniversarioLoveBeat{
+      0%,100%{ transform: scale(1); }
+      30%{ transform: scale(1.12); }
+      55%{ transform: scale(.98); }
+      78%{ transform: scale(1.07); }
+    }
+
+    @keyframes aniversarioHeartBurst{
+      0%{ transform: translate(-50%, -50%) scale(.3) rotate(0deg); opacity:0; }
+      12%{ opacity:1; }
+      100%{ transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(var(--s)) rotate(var(--r)); opacity:0; }
+    }
+
   </style>
 </head>
 
@@ -960,6 +1189,10 @@
       <div class="card">
         <h2>Cuenta regresiva para nuestro primer año 🎉</h2>
         <p id="aniversario" class="latido" style="font-size:22px;"></p>
+        <button id="btn-aniversario-epico" class="btn primary-btn aniversario-locked" onclick="lanzarAniversarioEpico()" disabled>
+          🔒 Se desbloquea al cumplir 1 año
+        </button>
+        <p id="aniversario-btn-hint" class="mini-text">Cuando el contador llegue a 0, podrás abrir la sorpresa final 💖</p>
       </div>
     </div>
 
@@ -1776,6 +2009,22 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
 
     </div>
 
+
+  <!-- ================= SORPRESA FINAL 1 AÑO ================= -->
+  <div id="aniversario-epico-overlay" aria-hidden="true">
+    <canvas id="aniversario-fireworks"></canvas>
+    <canvas id="aniversario-confetti"></canvas>
+    <div class="aniversario-epico-content">
+      <div class="aniversario-epico-badge">NUESTRO PRIMER AÑO</div>
+      <h1 class="aniversario-epico-title">💖 FELIZ 1 AÑO 💖</h1>
+      <h2 class="aniversario-epico-love">TE AMO</h2>
+      <p class="aniversario-epico-subtitle">
+        Un año de nosotros, de recuerdos, de amor, de elegirnos una y otra vez. Que este sea solo el comienzo de toda nuestra historia. 💞
+      </p>
+      <button class="btn aniversario-epico-close" onclick="cerrarAniversarioEpico()">Cerrar y seguir viendo nuestra historia 💖</button>
+    </div>
+  </div>
+
   <script>
     const principalPhotos = [
       { src: "imagenes/papi.jpeg", msg: "Nuestro comienzo 💖" },
@@ -2039,10 +2288,19 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       const ahora = new Date();
       const diff = aniversario - ahora;
       const el = document.getElementById("aniversario");
+      const btn = document.getElementById("btn-aniversario-epico");
+      const hint = document.getElementById("aniversario-btn-hint");
       if (!el) return;
 
       if (diff <= 0) {
         el.innerText = "¡Feliz primer aniversario! 💖🎉";
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove("aniversario-locked");
+          btn.classList.add("aniversario-ready");
+          btn.innerText = "💖 Abrir sorpresa épica de 1 año 💖";
+        }
+        if (hint) hint.innerText = "Ya llegó nuestro día. Aprieta el botón y abre la sorpresa final ✨";
         return;
       }
 
@@ -2052,6 +2310,13 @@ Te amo incluso en los días complicados, porque también forman parte de nuestra
       const segundos = Math.floor((diff / 1000) % 60);
 
       el.innerText = `Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💝`;
+      if (btn) {
+        btn.disabled = true;
+        btn.classList.add("aniversario-locked");
+        btn.classList.remove("aniversario-ready");
+        btn.innerText = "🔒 Se desbloquea al cumplir 1 año";
+      }
+      if (hint) hint.innerText = "Cuando el contador llegue a 0, podrás abrir la sorpresa final 💖";
     }
 
     function mostrarAmor(texto) {
@@ -3331,6 +3596,231 @@ function actualizarCartasDiarias() {
       };
       window.addEventListener('load', () => { try { futureGame.init(); } catch(e) {} });
     })();
+
+
+    /* ================= MOTOR ANIMACIÓN ÉPICA 1 AÑO ================= */
+    let aniversarioEpicoActivo = false;
+    let aniversarioFireworksLoop = null;
+    let aniversarioConfettiLoop = null;
+
+    function lanzarAniversarioEpico() {
+      const btn = document.getElementById("btn-aniversario-epico");
+      if (btn && btn.disabled) return;
+
+      const overlay = document.getElementById("aniversario-epico-overlay");
+      if (!overlay) return;
+
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+      aniversarioEpicoActivo = true;
+
+      iniciarFuegosArtificialesAniversario();
+      iniciarConfettiAniversario();
+      explosionCorazonesAniversario(140);
+
+      setTimeout(() => explosionCorazonesAniversario(80), 900);
+      setTimeout(() => explosionCorazonesAniversario(90), 1800);
+    }
+
+    function cerrarAniversarioEpico() {
+      const overlay = document.getElementById("aniversario-epico-overlay");
+      if (overlay) {
+        overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+      aniversarioEpicoActivo = false;
+      if (aniversarioFireworksLoop) cancelAnimationFrame(aniversarioFireworksLoop);
+      if (aniversarioConfettiLoop) cancelAnimationFrame(aniversarioConfettiLoop);
+    }
+
+    function explosionCorazonesAniversario(cantidad) {
+      const emojis = ["💖", "💗", "💘", "💝", "💕", "✨", "🌸", "💞"];
+      for (let i = 0; i < cantidad; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("div");
+          heart.className = "aniversario-heart-burst";
+          heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+          heart.style.left = "50vw";
+          heart.style.top = "50vh";
+          heart.style.fontSize = (18 + Math.random() * 46) + "px";
+          heart.style.setProperty("--x", ((Math.random() - .5) * 150) + "vw");
+          heart.style.setProperty("--y", ((Math.random() - .5) * 130) + "vh");
+          heart.style.setProperty("--s", (1 + Math.random() * 1.8));
+          heart.style.setProperty("--r", ((Math.random() - .5) * 900) + "deg");
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 3100);
+        }, i * 10);
+      }
+    }
+
+    function prepararCanvasAniversario(canvas) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    function iniciarFuegosArtificialesAniversario() {
+      const canvas = document.getElementById("aniversario-fireworks");
+      if (!canvas) return;
+      const fireworks = [];
+      const particles = [];
+      const colors = ["#ffffff", "#ffd6e8", "#ff7eb6", "#d63384", "#ffea00", "#b8fffb"];
+      let lastLaunch = 0;
+
+      function launch(width, height) {
+        fireworks.push({
+          x: width * (.12 + Math.random() * .76),
+          y: height + 20,
+          targetY: height * (.12 + Math.random() * .42),
+          speed: 7 + Math.random() * 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          trail: []
+        });
+      }
+
+      function explode(x, y, color) {
+        const count = 56 + Math.floor(Math.random() * 56);
+        for (let i = 0; i < count; i++) {
+          const angle = (Math.PI * 2 * i) / count;
+          const speed = 2 + Math.random() * 6;
+          particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 70 + Math.random() * 28,
+            maxLife: 100,
+            size: 1.5 + Math.random() * 3.5,
+            color
+          });
+        }
+      }
+
+      function frame(t) {
+        if (!aniversarioEpicoActivo) return;
+        const { ctx, width, height } = prepararCanvasAniversario(canvas);
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgba(10, 0, 20, 0.20)";
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalCompositeOperation = "lighter";
+
+        if (t - lastLaunch > 240) {
+          launch(width, height);
+          if (Math.random() > .45) launch(width, height);
+          lastLaunch = t;
+        }
+
+        for (let i = fireworks.length - 1; i >= 0; i--) {
+          const f = fireworks[i];
+          f.trail.push({ x: f.x, y: f.y });
+          if (f.trail.length > 10) f.trail.shift();
+          f.y -= f.speed;
+          f.x += Math.sin(t / 160 + i) * .8;
+
+          ctx.beginPath();
+          for (let j = 0; j < f.trail.length; j++) {
+            const p = f.trail[j];
+            ctx.globalAlpha = j / f.trail.length;
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          }
+          ctx.fillStyle = f.color;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, 3.4, 0, Math.PI * 2);
+          ctx.fillStyle = f.color;
+          ctx.fill();
+
+          if (f.y <= f.targetY) {
+            explode(f.x, f.y, f.color);
+            fireworks.splice(i, 1);
+          }
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += .045;
+          p.vx *= .99;
+          p.vy *= .99;
+          p.life--;
+          const alpha = Math.max(0, p.life / p.maxLife);
+
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 18;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.globalAlpha = 1;
+
+          if (p.life <= 0) particles.splice(i, 1);
+        }
+
+        aniversarioFireworksLoop = requestAnimationFrame(frame);
+      }
+
+      if (aniversarioFireworksLoop) cancelAnimationFrame(aniversarioFireworksLoop);
+      aniversarioFireworksLoop = requestAnimationFrame(frame);
+    }
+
+    function iniciarConfettiAniversario() {
+      const canvas = document.getElementById("aniversario-confetti");
+      if (!canvas) return;
+      const confetti = [];
+      const colors = ["#ffffff", "#ffd6e8", "#ff7eb6", "#d63384", "#ffe066", "#b8fffb"];
+
+      for (let i = 0; i < 260; i++) {
+        confetti.push({
+          x: Math.random(),
+          y: Math.random() * -1,
+          vx: (Math.random() - .5) * .003,
+          vy: .003 + Math.random() * .008,
+          size: 5 + Math.random() * 10,
+          rot: Math.random() * Math.PI * 2,
+          spin: (Math.random() - .5) * .22,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      function frame() {
+        if (!aniversarioEpicoActivo) return;
+        const { ctx, width, height } = prepararCanvasAniversario(canvas);
+        ctx.clearRect(0, 0, width, height);
+
+        for (const c of confetti) {
+          c.x += c.vx;
+          c.y += c.vy;
+          c.rot += c.spin;
+          if (c.y > 1.08) {
+            c.y = -.08;
+            c.x = Math.random();
+          }
+          if (c.x < -.05) c.x = 1.05;
+          if (c.x > 1.05) c.x = -.05;
+
+          ctx.save();
+          ctx.translate(c.x * width, c.y * height);
+          ctx.rotate(c.rot);
+          ctx.fillStyle = c.color;
+          ctx.globalAlpha = .9;
+          ctx.fillRect(-c.size / 2, -c.size / 4, c.size, c.size / 2);
+          ctx.restore();
+        }
+
+        aniversarioConfettiLoop = requestAnimationFrame(frame);
+      }
+
+      if (aniversarioConfettiLoop) cancelAnimationFrame(aniversarioConfettiLoop);
+      aniversarioConfettiLoop = requestAnimationFrame(frame);
+    }
 
 
     setInterval(actualizarContador, 1000);
